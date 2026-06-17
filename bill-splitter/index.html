@@ -1,1 +1,887 @@
-utf8
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roommate Bill Splitter: Split Rent &amp; Utility Costs Easily (2026)</title>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C7V3YR4WTZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-C7V3YR4WTZ');
+</script>
+<meta name="description" content="Free roommate bill splitter calculator. Split rent, utilities, internet, and shared expenses equally or by income. No signup needed. Print your bill breakdown.">
+<meta name="keywords" content="roommate bill splitter, split bills with roommates, rent split calculator, utility cost splitter, roommate expense tracker, shared living expenses">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#2563EB;--primary-light:#60A5FA;--primary-dark:#1D4ED8;
+  --accent:#3B82F6;--accent-hover:#2563EB;--success:#10B981;--success-dark:#065F46;
+  --bg:#F8F9FA;--card:#FFFFFF;--card-hover:#F1F3F5;--text:#1F2937;--text-light:#6B7280;
+  --border:#E5E7EB;--shadow:0 2px 12px rgba(0,0,0,.08);--radius:12px;--radius-sm:8px;
+  --font:'Inter',-apple-system,sans-serif;--max-w:1200px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--primary);color:#fff}
+.site-header{background:var(--card);border-bottom:1px solid var(--border);padding:16px 20px;position:sticky;top:0;z-index:100}
+.site-header .inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.site-header .logo{font-weight:800;font-size:1.2rem;letter-spacing:-.5px;display:flex;align-items:center;gap:8px;color:var(--text)}
+.site-header .logo span{color:var(--primary)}
+.site-header .tagline{font-size:.78rem;color:var(--text-light);display:none}
+@media(min-width:640px){.site-header .tagline{display:block}}
+.container{max-width:var(--max-w);margin:0 auto;padding:16px 16px 40px;flex:1}
+.intro{text-align:center;padding:16px 0 10px}
+.intro h1{font-size:1.55rem;font-weight:800;color:var(--text);letter-spacing:-.5px}
+.intro h1 span{color:var(--primary)}
+.intro p{color:var(--text-light);font-size:.88rem;margin-top:4px;max-width:600px;margin-left:auto;margin-right:auto}
+.ad-placeholder{background:var(--card);border:1px dashed var(--border);border-radius:var(--radius-sm);text-align:center;padding:18px;margin:14px 0;color:var(--text-light);font-size:.75rem;min-height:90px;display:flex;align-items:center;justify-content:center}
+.ad-placeholder--tall{min-height:160px}
+.app-layout{display:block;gap:16px;margin-top:10px}
+.app-main{min-width:0}
+.tabs-wrap{background:var(--card);border-radius:var(--radius) var(--radius) 0 0;box-shadow:var(--shadow);margin:12px 0 0;padding:10px 12px 0;position:relative}
+.tabs-scroll{display:flex;gap:5px;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;scrollbar-color:transparent transparent;-ms-overflow-style:none;padding-bottom:10px;-webkit-overflow-scrolling:touch}
+.tabs-wrap:hover .tabs-scroll{scrollbar-color:var(--border) transparent}
+.tabs-scroll::-webkit-scrollbar{height:4px}
+.tabs-scroll::-webkit-scrollbar-thumb{background:transparent;border-radius:4px}
+.tabs-wrap:hover .tabs-scroll::-webkit-scrollbar-thumb{background:var(--border)}
+.tab-scroll-btn{position:absolute;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;border:none;background:var(--bg);box-shadow:0 2px 8px rgba(0,0,0,.12);cursor:pointer;z-index:3;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:700;color:var(--text-light);opacity:0;transition:opacity .2s;line-height:1}
+.tab-scroll-btn.is-visible{opacity:1}
+.tab-scroll-btn:hover{color:var(--primary)}.tab-scroll-btn--left{left:-4px}.tab-scroll-btn--right{right:-4px}
+.tab-btn{flex-shrink:0;padding:8px 16px;border:none;border-radius:18px;font-family:var(--font);font-size:.8rem;font-weight:600;background:var(--bg);color:var(--text-light);cursor:pointer;white-space:nowrap;transition:all .2s;display:flex;align-items:center;gap:4px}
+.tab-btn:hover{background:var(--card-hover);color:var(--primary)}
+.tab-btn.is-active{background:var(--primary);color:#fff;box-shadow:0 2px 8px rgba(37,99,235,.3)}
+.tab-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.category-panel{background:var(--card);border-radius:0 0 var(--radius) var(--radius);padding:16px 18px 18px;box-shadow:var(--shadow);border-top:2px solid var(--border)}
+
+/* ==================== CALC FORM ==================== */
+.calc-form{background:var(--bg);border-radius:var(--radius-sm);padding:20px;margin-bottom:16px}
+.calc-form .form-row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:12px}
+.calc-form .form-group{flex:1;min-width:160px}
+.calc-form label{display:block;font-size:.8rem;font-weight:600;color:var(--text-light);margin-bottom:4px}
+.calc-form input,.calc-form select{width:100%;padding:11px 14px;border:2px solid var(--border);border-radius:8px;font-family:var(--font);font-size:.9rem;outline:none;transition:border-color .2s,box-shadow .2s;background:var(--card);color:var(--text)}
+.calc-form input:focus,.calc-form select:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+.calc-form input::placeholder{color:#9CA3AF;font-size:.82rem}
+.calc-form .form-hint{font-size:.7rem;color:var(--text-light);margin-top:3px}
+.calc-btn{width:100%;padding:14px 0;border:none;border-radius:var(--radius-sm);background:var(--primary);color:#fff;font-family:var(--font);font-size:.95rem;font-weight:700;cursor:pointer;transition:all .2s;margin-top:8px}
+.calc-btn:hover{background:var(--primary-dark);box-shadow:0 4px 16px rgba(37,99,235,.35);transform:translateY(-1px)}
+.calc-btn:active{transform:translateY(0)}
+.calc-btn--sm{width:auto;padding:9px 18px;font-size:.82rem;margin-top:0}
+.calc-btn--outline{background:transparent;color:var(--primary);border:2px solid var(--primary)}
+.calc-btn--outline:hover{background:var(--primary);color:#fff;transform:none;box-shadow:none}
+
+/* ==================== EXPENSE ITEMS ==================== */
+.expense-list{margin-bottom:14px}
+.expense-item{display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--card);border:1px solid var(--border);border-radius:6px;margin-bottom:6px;transition:all .15s}
+.expense-item:hover{border-color:var(--primary-light)}
+.expense-item .ei-icon{font-size:1rem;flex-shrink:0}
+.expense-item .ei-name{font-size:.82rem;font-weight:600;flex:1;min-width:80px}
+.expense-item .ei-amount{width:100px;padding:6px 8px;border:2px solid var(--border);border-radius:6px;font-family:var(--font);font-size:.85rem;text-align:right;outline:none;transition:border-color .2s}
+.expense-item .ei-amount:focus{border-color:var(--primary);box-shadow:0 0 0 2px rgba(37,99,235,.1)}
+.expense-item .ei-remove{background:none;border:none;font-size:.75rem;color:var(--text-light);cursor:pointer;padding:4px 6px;border-radius:4px;transition:all .12s;flex-shrink:0}
+.expense-item .ei-remove:hover{color:#DC2626;background:#FEE2E2}
+.expense-item .ei-split{font-size:.7rem;color:var(--text-light);white-space:nowrap;flex-shrink:0}
+.expense-add-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.expense-add-row select{flex:1;min-width:120px;padding:8px 10px;border:2px solid var(--border);border-radius:6px;font-family:var(--font);font-size:.82rem;outline:none;background:var(--card)}
+.expense-add-row select:focus{border-color:var(--primary)}
+.expense-add-row input{width:100px;padding:8px 10px;border:2px solid var(--border);border-radius:6px;font-family:var(--font);font-size:.85rem;text-align:right;outline:none}
+.expense-add-row input:focus{border-color:var(--primary)}
+
+/* ==================== ROOMMATE INPUTS ==================== */
+.roommate-inputs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.roommate-tag{display:flex;align-items:center;gap:6px;background:var(--card);border:2px solid var(--border);border-radius:20px;padding:4px 12px 4px 16px;font-size:.82rem;font-weight:500;transition:border-color .2s}
+.roommate-tag.is-you{border-color:var(--primary);background:#EFF6FF}
+.roommate-tag .rt-name{width:70px;border:none;font-family:var(--font);font-size:.82rem;font-weight:600;outline:none;background:transparent;color:var(--text);padding:4px 0}
+.roommate-tag .rt-rm{background:none;border:none;font-size:.7rem;color:var(--text-light);cursor:pointer;padding:2px 5px;border-radius:50%;transition:all .12s}
+.roommate-tag .rt-rm:hover{color:#DC2626;background:#FEE2E2}
+.roommate-tag .rt-badge{font-size:.6rem;font-weight:700;background:var(--primary);color:#fff;padding:1px 7px;border-radius:10px}
+
+/* ==================== SPLIT METHOD ==================== */
+.split-methods{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.split-method-btn{padding:8px 16px;border:2px solid var(--border);border-radius:20px;background:var(--card);font-family:var(--font);font-size:.8rem;font-weight:600;cursor:pointer;transition:all .18s;color:var(--text-light)}
+.split-method-btn:hover{border-color:var(--primary-light);color:var(--primary)}
+.split-method-btn.is-active{border-color:var(--primary);background:#EFF6FF;color:var(--primary);font-weight:700}
+.split-detail{margin-bottom:14px}
+.split-detail .sd-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;padding:6px 8px;background:var(--card);border-radius:6px;border:1px solid var(--border)}
+.split-detail .sd-row .sd-name{flex:1;font-size:.82rem;font-weight:600}
+.split-detail .sd-row .sd-pct{width:80px;padding:5px 8px;border:2px solid var(--border);border-radius:6px;font-family:var(--font);font-size:.82rem;text-align:right;outline:none;transition:border-color .2s}
+.split-detail .sd-row .sd-pct:focus{border-color:var(--primary)}
+.split-detail .sd-row .sd-label{font-size:.72rem;color:var(--text-light);min-width:30px}
+
+/* ==================== PER-PERSON BREAKDOWN ==================== */
+.breakdown-grid{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:12px}
+@media(min-width:480px){.breakdown-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:768px){.breakdown-grid{grid-template-columns:1fr 1fr 1fr}}
+.person-card{background:var(--card);border-radius:var(--radius-sm);padding:14px;border:1px solid var(--border);transition:all .15s}
+.person-card:hover{border-color:var(--primary-light)}
+.person-card .pc-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.person-card .pc-name{font-size:.88rem;font-weight:700;display:flex;align-items:center;gap:5px}
+.person-card .pc-total{font-size:1.3rem;font-weight:800;color:var(--primary)}
+.person-card .pc-detail{font-size:.72rem;color:var(--text-light);margin-bottom:4px}
+.person-card .pc-items{font-size:.7rem;color:var(--text-light)}
+.person-card .pc-items li{list-style:none;padding:2px 0;display:flex;justify-content:space-between}
+.person-card .pc-items li span{font-weight:600;color:var(--text)}
+
+/* Settlement section */
+.settlement-card{background:var(--bg);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:12px;border-left:4px solid var(--success)}
+.settlement-card h3{font-size:.85rem;font-weight:700;margin-bottom:6px;color:var(--text)}
+.settlement-card .settle-row{font-size:.82rem;padding:4px 0;color:var(--text-light)}
+.settlement-card .settle-row strong{color:var(--text)}
+.settlement-card .settle-row .pay{color:#DC2626}
+.settlement-card .settle-row .get{color:var(--success)}
+
+/* Summary cards */
+.summary-cards{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.summary-cards .sc-item{background:var(--bg);border-radius:6px;padding:12px;text-align:center}
+.summary-cards .sc-value{font-size:1.3rem;font-weight:800;color:var(--primary)}
+.summary-cards .sc-label{font-size:.72rem;color:var(--text-light);margin-top:2px}
+
+/* ==================== TIPS ==================== */
+.tip-card{background:var(--bg);border-radius:var(--radius-sm);padding:16px;margin-bottom:10px;border-left:4px solid var(--primary)}
+.tip-card h3{font-size:.9rem;font-weight:700;margin-bottom:4px;color:var(--text)}
+.tip-card p{font-size:.8rem;color:var(--text-light)}
+.tip-card ul{margin:4px 0 0 16px;font-size:.8rem;color:var(--text-light)}
+.tip-card ul li{margin-bottom:2px}
+
+/* ==================== AFFILIATE PRODUCTS ==================== */
+.affiliate-card{background:var(--bg);border-radius:var(--radius-sm);padding:14px;margin-bottom:10px;border:1px solid var(--border)}
+.affiliate-card h4{font-size:.82rem;font-weight:700;margin-bottom:2px}
+.affiliate-card p{font-size:.72rem;color:var(--text-light);margin-bottom:6px}
+.affiliate-card .aff-btn{display:inline-flex;align-items:center;gap:5px;padding:7px 16px;border:none;border-radius:6px;font-family:var(--font);font-size:.75rem;font-weight:700;cursor:pointer;transition:all .18s;color:#fff;text-decoration:none}
+.affiliate-card .aff-btn:hover{box-shadow:0 3px 10px rgba(37,99,235,.3);transform:translateY(-1px)}
+.affiliate-card .aff-sub{font-size:.65rem;color:var(--text-light);margin-top:4px}
+.items-grid{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:640px){.items-grid{grid-template-columns:1fr 1fr}}
+.item-card{display:flex;flex-direction:column;background:var(--card);border-radius:var(--radius-sm);padding:14px;transition:all .2s;border:1px solid var(--border)}
+.item-card:hover{border-color:var(--primary-light);box-shadow:0 4px 16px rgba(0,0,0,.06)}
+.item-name{font-size:.85rem;font-weight:600;color:var(--text)}
+.item-desc{font-size:.73rem;color:var(--text-light);margin:3px 0 8px;line-height:1.4}
+.item-shop{display:inline-flex;align-items:center;justify-content:center;gap:4px;padding:7px 14px;background:var(--primary);color:#fff;border:none;border-radius:6px;font-family:var(--font);font-size:.75rem;font-weight:700;cursor:pointer;transition:all .18s;text-decoration:none;line-height:1.2}
+.item-shop:hover{background:var(--primary-dark);box-shadow:0 3px 10px rgba(37,99,235,.3);transform:translateY(-1px)}
+.item-shop:active{transform:translateY(0)}
+
+/* ==================== PRINT ==================== */
+@media print{
+  @page{margin:1.5cm .8cm}
+  body{background:#fff;font-size:11pt;color:#000}
+  .site-header,.tabs-wrap,.bottom-bar,.site-footer,.ad-placeholder,.affiliate-card,.item-card,.item-shop,.calc-btn,.split-methods,.expense-add-row,.ei-remove{display:none!important}
+  .container{padding:0;max-width:100%}.app-layout{display:block}
+  .category-panel{border-radius:0;background:transparent;padding:0;border:none;box-shadow:none}
+  .breakdown-grid{grid-template-columns:1fr 1fr}
+  .person-card{border:1px solid #000;break-inside:avoid}
+  .person-card .pc-total{color:#000}
+}
+
+/* ==================== BOTTOM BAR ==================== */
+.bottom-bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:14px;padding-top:12px;border-top:2px solid var(--border)}
+.summary-text{font-size:.82rem;color:var(--text-light);font-weight:500}
+.bottom-actions{display:flex;gap:6px;flex-wrap:wrap}
+.bottom-actions button,.bottom-actions a{padding:8px 16px;border:none;border-radius:var(--radius-sm);font-family:var(--font);font-size:.8rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:5px}
+.btn-print{background:var(--primary);color:#fff}
+.btn-print:hover{background:var(--primary-dark)}
+.btn-reset{background:var(--bg);color:var(--text-light);border:1px solid var(--border)}
+.btn-reset:hover{color:#DC2626;border-color:#FCA5A5}
+
+/* ==================== RESPONSIVE ==================== */
+@media(min-width:640px){
+  .expense-item .ei-name{min-width:120px}
+}
+@media(min-width:768px){
+  .calc-form .form-row{gap:16px}
+}
+
+/* ==================== FOOTER ==================== */
+.site-footer{background:var(--card);border-top:1px solid var(--border);color:var(--text-light);text-align:center;padding:18px;font-size:.78rem;margin-top:auto}
+.site-footer a{color:var(--text);text-decoration:underline}
+.site-footer a:hover{color:var(--primary)}
+.site-footer .footer-links{display:flex;justify-content:center;gap:14px;margin-bottom:4px;flex-wrap:wrap}
+.site-footer .footer-links a{text-decoration:none;font-weight:500}
+.site-footer .footer-links a:hover{text-decoration:underline;color:var(--primary)}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <div class="logo">🏠 <span>Check</span>listLab</div>
+    <div class="tagline">Split fair. Live better.</div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="intro">
+    <h1>💰 Roommate <span>Bill Splitter</span></h1>
+    <p>Split rent, utilities, internet, and shared expenses with your roommates. Equal or proportional — no signup needed.</p>
+  </div>
+  <div class="ad-placeholder">📢 AdSense Banner (728×90) – Place your ad code here</div>
+  <div class="app-layout">
+    <div class="app-main">
+      <div class="tabs-wrap">
+        <button class="tab-scroll-btn tab-scroll-btn--left" id="tabsScrollLeft">‹</button>
+        <div class="tabs-scroll" id="tabsContainer" role="tablist"></div>
+        <button class="tab-scroll-btn tab-scroll-btn--right" id="tabsScrollRight">›</button>
+      </div>
+      <div class="category-panel" id="categoryPanel"></div>
+      <div class="bottom-bar">
+        <div class="summary-text" id="summaryText">Add expenses and split with your roommates!</div>
+        <div class="bottom-actions">
+          <button class="btn-print" id="printBtn">🖨️ Print</button>
+          <button class="btn-reset" id="resetBtn">🔄 Reset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ad-placeholder ad-placeholder--tall">📢 AdSense Banner (728×90) – Place your ad code here</div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-links">
+    <a href="#">🏠 Home</a> <a href="#">📋 All Tools</a> <a href="#">📧 Contact</a> <a href="#">🔒 Privacy</a>
+    <a href="..\dorm-checklist\index.html">🏫 Dorm</a> <a href="..\move-out-checklist\index.html">🚚 Move-Out</a>
+    <a href="..\first-apartment-checklist\index.html">🏢 First Apt</a> <a href="..\rent-affordability\index.html">💰 Rent Calc</a>
+    <a href="..\roommate-agreement\index.html">🤝 Agreement</a>
+  </div>
+  <div>&copy; 2026 ChecklistLab. Split fair, live better.</div>
+</footer>
+
+<script>
+/* ==================== STATE ==================== */
+var STORAGE_KEY = 'checklistlab_bill_splitter';
+var state = {
+  activeTab: 0,
+  roommates: [],
+  expenses: [],
+  method: 'equal', // 'equal' | 'income' | 'custom'
+  results: null
+};
+
+var EXPENSE_CATEGORIES = [
+  { id:'rent', label:'Rent', icon:'🏠' },
+  { id:'electricity', label:'Electricity', icon:'⚡' },
+  { id:'gas', label:'Gas/Heating', icon:'🔥' },
+  { id:'water', label:'Water', icon:'💧' },
+  { id:'internet', label:'Internet', icon:'🌐' },
+  { id:'streaming', label:'Streaming', icon:'📺' },
+  { id:'groceries', label:'Groceries', icon:'🥦' },
+  { id:'cleaning', label:'Cleaning Supplies', icon:'🧹' },
+  { id:'parking', label:'Parking', icon:'🅿️' },
+  { id:'other', label:'Other', icon:'📋' }
+];
+
+var TABS = [
+  { id:'split', label:'💰 Split' },
+  { id:'breakdown', label:'📊 Breakdown' },
+  { id:'essentials', label:'🛒 Shared Essentials' },
+  { id:'tips', label:'💡 Tips' }
+];
+
+var AFFILIATE_TAG = 'CHECKLISTLAB-20';
+
+var AFFILIATE_PRODUCTS = [
+  { name:'Command Hooks Value Pack', desc:'Perfect for shared entryway — no-damage hanging for keys, coats, towels.', url:'https://www.amazon.com/dp/B0BWHQ4VGQ?tag='+AFFILIATE_TAG, emoji:'🪝', price:'$11.99' },
+  { name:'Whiteboard Calendar', desc:'Track who pays what and when — essential for roommate harmony.', url:'https://www.amazon.com/dp/B07Q2DYSY3?tag='+AFFILIATE_TAG, emoji:'📅', price:'$14.99' },
+  { name:'Under-Bed Storage Bins', desc:'Maximize small shared spaces — each roommate gets their own bin.', url:'https://www.amazon.com/dp/B0822JY2FG?tag='+AFFILIATE_TAG, emoji:'🗃️', price:'$32.99' },
+  { name:'Kitchen Measuring Cups Set', desc:'Label yours, share fairly. No more "who drank my milk" drama.', url:'https://www.amazon.com/dp/B07G5J5G5J?tag='+AFFILIATE_TAG, emoji:'🥄', price:'$9.99' },
+  { name:'Reusable Grocery Bags (6-Pack)', desc:'Shared grocery runs — keep a stash by the door for everyone.', url:'https://www.amazon.com/dp/B07V1JQ1VJ?tag='+AFFILIATE_TAG, emoji:'🛍️', price:'$12.99' },
+  { name:'Surge Protector Power Strip', desc:'Shared living room setup — charge together, save together.', url:'https://www.amazon.com/dp/B0BWHQ4VGQ?tag='+AFFILIATE_TAG, emoji:'🔌', price:'$17.99' }
+];
+
+/* ==================== SAVE / LOAD ==================== */
+function saveState() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+}
+function loadState() {
+  try {
+    var data = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if (data) {
+      state.activeTab = data.activeTab || 0;
+      state.roommates = data.roommates || [];
+      state.expenses = data.expenses || [];
+      state.method = data.method || 'equal';
+    }
+  } catch(e) {}
+}
+
+/* ==================== INIT DEFAULTS ==================== */
+function initDefaults() {
+  if (state.roommates.length === 0) {
+    state.roommates = [
+      { id:'rm-1', name:'You', isYou:true, income:0, sharePct:0 },
+      { id:'rm-2', name:'Roommate 2', isYou:false, income:0, sharePct:0 }
+    ];
+  }
+  if (state.expenses.length === 0) {
+    state.expenses = [
+      { id:'exp-1', catId:'rent', label:'Rent', amount:0 },
+      { id:'exp-2', catId:'electricity', label:'Electricity', amount:0 },
+      { id:'exp-3', catId:'internet', label:'Internet', amount:0 }
+    ];
+  }
+  recalcShares();
+}
+
+function recalcShares() {
+  if (state.method !== 'equal') return;
+  var count = state.roommates.length;
+  if (count === 0) return;
+  var pct = Math.floor(10000 / count) / 100;
+  var remainder = 100 - pct * count;
+  state.roommates.forEach(function(r) { r.sharePct = pct; });
+  state.roommates[count - 1].sharePct = +(pct + remainder).toFixed(2);
+}
+
+/* ==================== RENDER ==================== */
+function escHtml(s) { var d=document.createElement('div'); d.appendChild(document.createTextNode(s)); return d.innerHTML; }
+
+function renderAll() {
+  renderTabs();
+  renderPanel();
+  updateSummary();
+}
+
+function renderTabs() {
+  var container = document.getElementById('tabsContainer');
+  var html = '';
+  TABS.forEach(function(t, i) {
+    html += '<button class="tab-btn' + (i === state.activeTab ? ' is-active' : '') + '" data-tab="' + i + '">' + t.label + '</button>';
+  });
+  container.innerHTML = html;
+  container.querySelectorAll('.tab-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      state.activeTab = parseInt(this.dataset.tab);
+      saveState();
+      renderAll();
+    });
+  });
+  updateTabScroll();
+}
+
+function updateTabScroll() {
+  var c = document.getElementById('tabsContainer');
+  var l = document.getElementById('tabsScrollLeft');
+  var r = document.getElementById('tabsScrollRight');
+  if (!c) return;
+  var check = function() {
+    if (c.scrollWidth > c.clientWidth) {
+      l.classList.add('is-visible');
+      r.classList.add('is-visible');
+    } else {
+      l.classList.remove('is-visible');
+      r.classList.remove('is-visible');
+    }
+  };
+  check();
+  setTimeout(check, 100);
+  l.onclick = function() { c.scrollBy(-150, 0); };
+  r.onclick = function() { c.scrollBy(150, 0); };
+}
+
+function updateSummary() {
+  var el = document.getElementById('summaryText');
+  if (!el) return;
+  var total = state.expenses.reduce(function(s, e) { return s + (parseFloat(e.amount) || 0); }, 0);
+  var count = state.roommates.length;
+  if (total > 0) {
+    var perPerson = total / count;
+    el.textContent = 'Total: $' + total.toFixed(2) + ' | $' + perPerson.toFixed(2) + ' per person (' + count + ' roommates)';
+  } else {
+    el.textContent = 'Add expenses and split with your roommates!';
+  }
+}
+
+/* ==================== PANEL RENDERERS ==================== */
+function renderPanel() {
+  var panel = document.getElementById('categoryPanel');
+  if (!panel) return;
+  switch (state.activeTab) {
+    case 0: panel.innerHTML = renderSplitTab(); break;
+    case 1: panel.innerHTML = renderBreakdownTab(); break;
+    case 2: panel.innerHTML = renderEssentialsTab(); break;
+    case 3: panel.innerHTML = renderTipsTab(); break;
+  }
+  bindSplitEvents();
+}
+
+/* ---------- TAB 0: Split ---------- */
+function renderSplitTab() {
+  var total = state.expenses.reduce(function(s, e) { return s + (parseFloat(e.amount) || 0); }, 0);
+  var count = state.roommates.length;
+  var perPerson = count > 0 ? total / count : 0;
+
+  var html = '';
+
+  // Roommates section
+  html += '<div class="section-header"><div class="section-title">👥 Roommates</div></div>';
+  html += '<div class="roommate-inputs" id="roommateInputs">';
+  state.roommates.forEach(function(r, i) {
+    html += '<div class="roommate-tag' + (r.isYou ? ' is-you' : '') + '">';
+    html += '<input class="rt-name" data-rid="' + r.id + '" value="' + escHtml(r.name) + '" maxlength="20">';
+    if (r.isYou) html += '<span class="rt-badge">You</span>';
+    if (!r.isYou) html += '<button class="rt-rm" data-rid="' + r.id + '">✕</button>';
+    html += '</div>';
+  });
+  html += '<button class="calc-btn calc-btn--sm calc-btn--outline" id="addRoommateBtn">+ Add Roommate</button>';
+  html += '</div>';
+
+  // Split method
+  html += '<div class="section-header"><div class="section-title">⚖️ Split Method</div></div>';
+  html += '<div class="split-methods">';
+  var methods = [
+    { id:'equal', label:'Equal Split' },
+    { id:'income', label:'By Income' },
+    { id:'custom', label:'Custom %' }
+  ];
+  methods.forEach(function(m) {
+    html += '<button class="split-method-btn' + (state.method === m.id ? ' is-active' : '') + '" data-method="' + m.id + '">' + m.label + '</button>';
+  });
+  html += '</div>';
+
+  // Split detail (income or custom)
+  if (state.method === 'income' || state.method === 'custom') {
+    html += '<div class="split-detail">';
+    state.roommates.forEach(function(r) {
+      html += '<div class="sd-row">';
+      html += '<span class="sd-name">' + escHtml(r.name) + '</span>';
+      if (state.method === 'income') {
+        html += '<span class="sd-label">Income:</span>';
+        html += '<input class="sd-pct" type="number" min="0" step="100" data-rid="' + r.id + '" data-field="income" value="' + (r.income || '') + '" placeholder="$">';
+      } else {
+        html += '<input class="sd-pct" type="number" min="0" max="100" step="1" data-rid="' + r.id + '" data-field="sharePct" value="' + (r.sharePct || '') + '">';
+        html += '<span class="sd-label">%</span>';
+      }
+      html += '</div>';
+    });
+    if (state.method === 'custom') {
+      html += '<div style="font-size:.7rem;color:var(--text-light);text-align:right">Percentages should add up to 100%</div>';
+    }
+    html += '</div>';
+  }
+
+  // Expenses
+  html += '<div class="section-header"><div class="section-title">🧾 Expenses</div></div>';
+  html += '<div class="expense-list" id="expenseList">';
+  state.expenses.forEach(function(e) {
+    var cat = EXPENSE_CATEGORIES.find(function(c) { return c.id === e.catId; });
+    html += '<div class="expense-item" data-eid="' + e.id + '">';
+    html += '<span class="ei-icon">' + (cat ? cat.icon : '📋') + '</span>';
+    html += '<span class="ei-name">' + escHtml(e.label) + '</span>';
+    html += '<span class="ei-split">split ' + count + ' ways</span>';
+    html += '<span style="font-size:.75rem;color:var(--text-light)">$</span>';
+    html += '<input class="ei-amount" type="number" min="0" step="1" data-eid="' + e.id + '" value="' + (e.amount || '') + '" placeholder="0">';
+    html += '<button class="ei-remove" data-eid="' + e.id + '">✕</button>';
+    html += '</div>';
+  });
+  html += '</div>';
+
+  // Add expense row
+  html += '<div class="expense-add-row">';
+  html += '<select id="newExpenseCat">';
+  EXPENSE_CATEGORIES.forEach(function(c) {
+    html += '<option value="' + c.id + '">' + c.icon + ' ' + c.label + '</option>';
+  });
+  html += '</select>';
+  html += '<input type="number" id="newExpenseAmount" min="0" step="1" placeholder="$0" style="width:100px;padding:8px 10px;border:2px solid var(--border);border-radius:6px;font-family:var(--font);font-size:.85rem;text-align:right;outline:none">';
+  html += '<button class="calc-btn calc-btn--sm calc-btn--outline" id="addExpenseBtn">+ Add</button>';
+  html += '</div>';
+
+  // Calculate button
+  html += '<button class="calc-btn" id="calculateBtn">🧮 Calculate Split</button>';
+
+  return html;
+}
+
+/* ---------- TAB 1: Breakdown ---------- */
+function renderBreakdownTab() {
+  var total = state.expenses.reduce(function(s, e) { return s + (parseFloat(e.amount) || 0); }, 0);
+  var count = state.roommates.length;
+
+  if (total === 0) {
+    return '<div class="tip-card"><h3>📊 No data yet</h3><p>Go to the <strong>Split</strong> tab, enter your expenses, and click Calculate. Then come here for the full breakdown.</p></div>';
+  }
+
+  var html = '';
+
+  // Summary cards
+  html += '<div class="summary-cards">';
+  html += '<div class="sc-item"><div class="sc-value">$' + total.toFixed(2) + '</div><div class="sc-label">Total Monthly</div></div>';
+  html += '<div class="sc-item"><div class="sc-value">$' + (total/count).toFixed(2) + '</div><div class="sc-label">Per Person</div></div>';
+  html += '</div>';
+
+  // Per-person detailed breakdown
+  html += '<div class="section-header"><div class="section-title">👥 Detailed Breakdown</div></div>';
+  html += '<div class="breakdown-grid">';
+  state.roommates.forEach(function(r) {
+    var pct = state.method === 'equal' ? (100/count) : (state.method === 'income' ? calcIncomePct(r.id) : r.sharePct);
+    var share = total * pct / 100;
+    html += '<div class="person-card">';
+    html += '<div class="pc-header">';
+    html += '<div class="pc-name">' + (r.isYou ? '👤 ' : '') + escHtml(r.name) + '</div>';
+    html += '<div class="pc-total">$' + share.toFixed(2) + '</div>';
+    html += '</div>';
+    html += '<div class="pc-detail">' + pct.toFixed(1) + '% share';
+    if (state.method === 'income' && r.income > 0) html += ' · $' + r.income.toLocaleString() + '/yr';
+    html += '</div>';
+    html += '<ul class="pc-items">';
+    state.expenses.forEach(function(e) {
+      var cat = EXPENSE_CATEGORIES.find(function(c) { return c.id === e.catId; });
+      var itemShare = (parseFloat(e.amount) || 0) * pct / 100;
+      html += '<li>' + (cat ? cat.icon : '📋') + ' ' + escHtml(e.label) + ' <span>$' + itemShare.toFixed(2) + '</span></li>';
+    });
+    html += '</ul>';
+    html += '</div>';
+  });
+  html += '</div>';
+
+  // Settlement suggestions
+  if (state.method === 'equal' && count >= 2) {
+    html += renderSettlement(total);
+  }
+
+  return html;
+}
+
+function renderSettlement(total) {
+  var count = state.roommates.length;
+  var fairShare = total / count;
+  var owes = [];
+  var owed = [];
+
+  // Assume roommate 0 (You) paid everything by default
+  // In a real app we'd track who paid what. For MVP, suggest based on who owes.
+  state.roommates.forEach(function(r, i) {
+    var balance = -fairShare; // they owe fair share (negative means they owe)
+    if (r.isYou) balance = total - fairShare; // you paid everything, so you're owed
+    if (balance > 0.01) owed.push({ name: r.name, amount: balance, isYou: r.isYou });
+    else if (balance < -0.01) owes.push({ name: r.name, amount: -balance, isYou: r.isYou });
+  });
+
+  if (owes.length === 0 || owed.length === 0) return '';
+
+  var html = '<div class="settlement-card">';
+  html += '<h3>💸 Suggested Settlements</h3>';
+  // Simple: each person who owes pays the person who is owed
+  owes.forEach(function(o) {
+    owed.forEach(function(od) {
+      if (o.amount > 0.01 && od.amount > 0.01) {
+        var pay = Math.min(o.amount, od.amount);
+        html += '<div class="settle-row">';
+        html += (o.isYou ? '👤 ' : '') + '<strong>' + escHtml(o.name) + '</strong> <span class="pay">pays</span> ';
+        html += (od.isYou ? '👤 ' : '') + '<strong>' + escHtml(od.name) + '</strong> ';
+        html += '<strong>$' + pay.toFixed(2) + '</strong>';
+        html += '</div>';
+        o.amount -= pay;
+        od.amount -= pay;
+      }
+    });
+  });
+  html += '<p style="font-size:.72rem;color:var(--text-light);margin-top:6px">Assumes one person paid all bills. Adjust if you split differently.</p>';
+  html += '</div>';
+
+  return html;
+}
+
+/* ---------- TAB 2: Essentials ---------- */
+function renderEssentialsTab() {
+  var html = '';
+  html += '<div class="section-header"><div class="section-title">🛒 Shared Household Essentials</div></div>';
+  html += '<p style="font-size:.82rem;color:var(--text-light);margin-bottom:12px">Things every roommate household needs. Split the cost, share the benefit.</p>';
+
+  html += '<div class="items-grid">';
+  AFFILIATE_PRODUCTS.forEach(function(p) {
+    html += '<div class="item-card">';
+    html += '<div style="display:flex;align-items:flex-start;gap:8px">';
+    html += '<span style="font-size:1.4rem;flex-shrink:0">' + p.emoji + '</span>';
+    html += '<div>';
+    html += '<div class="item-name">' + escHtml(p.name) + '</div>';
+    html += '<div class="item-desc">' + escHtml(p.desc) + '</div>';
+    html += '<a class="item-shop" href="' + p.url + '" target="_blank" rel="noopener">Check Price on Amazon ↗</a>';
+    html += '</div></div></div>';
+  });
+  html += '</div>';
+
+  html += '<div class="tip-card" style="margin-top:12px">';
+  html += '<h3>📝 Pro Tip</h3>';
+  html += '<p>When roommates buy shared essentials together, use the bill splitter to add the cost and split it evenly. No more "who bought the dish soap last time?" arguments.</p>';
+  html += '</div>';
+
+  return html;
+}
+
+/* ---------- TAB 3: Tips ---------- */
+function renderTipsTab() {
+  var html = '';
+
+  html += '<div class="section-header"><div class="section-title">💡 Roommate Finance Tips</div></div>';
+
+  var tips = [
+    {
+      icon:'📋',
+      title:'Start with a Roommate Agreement',
+      text:'Before moving in, agree on: how rent is split, who pays which utilities, due dates, and what happens if someone is late. A written agreement prevents 90% of disputes.',
+      link:'..\\roommate-agreement\\index.html',
+      linkText:'📝 Use ChecklistLab Roommate Agreement →'
+    },
+    {
+      icon:'💰',
+      title:'Pick a Split Method and Stick to It',
+      text:'Equal split works when rooms are similar. By income is fairer when earnings differ. Custom % handles special cases like one person has a private bathroom. Decide upfront, don\'t change mid-month.',
+      link:false
+    },
+    {
+      icon:'📱',
+      title:'Set a Monthly "Settle Up" Day',
+      text:'Pick the 1st or 15th of every month to review and settle all shared expenses. Use this tool to generate the report and share it with everyone. No surprises, no resentment.',
+      link:false
+    },
+    {
+      icon:'🔔',
+      title:'Use Auto-Pay for Recurring Bills',
+      text:'Set rent and utilities on auto-pay from one person\'s account, then have everyone else pay their share by the due date. This avoids late fees and service interruptions.',
+      link:false
+    },
+    {
+      icon:'🤝',
+      title:'Create a "House Fund" for Emergencies',
+      text:'Each person contributes $20-50/month to a shared fund. Use it for unexpected expenses like a broken vacuum, cleaning supplies, or a plumber visit. No awkward collections.',
+      link:false
+    },
+    {
+      icon:'📊',
+      title:'Track Your Rent Affordability',
+      text:'Before signing a lease, make sure everyone can afford their share. Use the Rent Affordability Calculator to check your budget against the 30% rule.',
+      link:'..\\rent-affordability\\index.html',
+      linkText:'💰 Try Rent Affordability Calculator →'
+    }
+  ];
+
+  tips.forEach(function(t) {
+    html += '<div class="tip-card">';
+    html += '<h3>' + t.icon + ' ' + escHtml(t.title) + '</h3>';
+    html += '<p>' + escHtml(t.text) + '</p>';
+    if (t.link) {
+      html += '<a href="' + t.link + '" style="display:inline-block;margin-top:6px;font-size:.8rem;color:var(--primary);font-weight:600;text-decoration:underline">' + t.linkText + ' →</a>';
+    }
+    html += '</div>';
+  });
+
+  // Affiliate CTA
+  html += '<div class="affiliate-card">';
+  html += '<h4>🛒 Stock Your Shared Kitchen</h4>';
+  html += '<p>Essential kitchen tools every roommate household needs — split the cost, share the benefit.</p>';
+  html += '<a class="aff-btn" style="background:#FF9900" href="https://www.amazon.com/s?k=roommate+kitchen+essentials&tag=' + AFFILIATE_TAG + '" target="_blank" rel="noopener">Shop Kitchen Essentials on Amazon ↗</a>';
+  html += '</div>';
+
+  return html;
+}
+
+/* ==================== EVENTS ==================== */
+function bindSplitEvents() {
+  // Roommate name changes
+  document.querySelectorAll('.rt-name').forEach(function(inp) {
+    inp.addEventListener('input', function() {
+      var r = state.roommates.find(function(rm) { return rm.id === this.dataset.rid; }.bind(this));
+      if (r) r.name = this.value || 'Roommate';
+      saveState();
+    });
+  });
+
+  // Remove roommate
+  document.querySelectorAll('.rt-rm').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var idx = state.roommates.findIndex(function(r) { return r.id === this.dataset.rid; }.bind(this));
+      if (idx > -1 && !state.roommates[idx].isYou) {
+        state.roommates.splice(idx, 1);
+        if (state.roommates.length < 2) {
+          state.roommates.push({ id:'rm-new', name:'Roommate ' + (state.roommates.length + 1), isYou:false, income:0, sharePct:0 });
+        }
+        recalcShares();
+        saveState();
+        renderAll();
+      }
+    });
+  });
+
+  // Add roommate
+  var addBtn = document.getElementById('addRoommateBtn');
+  if (addBtn) {
+    addBtn.addEventListener('click', function() {
+      var idx = state.roommates.length + 1;
+      state.roommates.push({ id:'rm-' + Date.now(), name:'Roommate ' + idx, isYou:false, income:0, sharePct:0 });
+      recalcShares();
+      saveState();
+      renderAll();
+    });
+  }
+
+  // Split method
+  document.querySelectorAll('.split-method-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      state.method = this.dataset.method;
+      if (state.method === 'equal') recalcShares();
+      saveState();
+      renderAll();
+    });
+  });
+
+  // Income / custom fields
+  document.querySelectorAll('.sd-pct').forEach(function(inp) {
+    inp.addEventListener('input', function() {
+      var r = state.roommates.find(function(rm) { return rm.id === this.dataset.rid; }.bind(this));
+      if (r) {
+        r[this.dataset.field] = parseFloat(this.value) || 0;
+        if (state.method === 'custom') {
+          // Normalize percentages
+          var total = state.roommates.reduce(function(s, rm) { return s + (rm.sharePct || 0); }, 0);
+          if (total > 0) {
+            state.roommates.forEach(function(rm) {
+              rm.sharePct = +(rm.sharePct / total * 100).toFixed(1);
+            });
+          }
+        }
+        saveState();
+      }
+    });
+  });
+
+  // Expense amount
+  document.querySelectorAll('.ei-amount').forEach(function(inp) {
+    inp.addEventListener('input', function() {
+      var e = state.expenses.find(function(ex) { return ex.id === this.dataset.eid; }.bind(this));
+      if (e) {
+        e.amount = parseFloat(this.value) || 0;
+        saveState();
+      }
+      updateSummary();
+    });
+  });
+
+  // Remove expense
+  document.querySelectorAll('.ei-remove').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var idx = state.expenses.findIndex(function(e) { return e.id === this.dataset.eid; }.bind(this));
+      if (idx > -1) {
+        state.expenses.splice(idx, 1);
+        saveState();
+        renderAll();
+      }
+    });
+  });
+
+  // Add expense
+  var addExpBtn = document.getElementById('addExpenseBtn');
+  if (addExpBtn) {
+    addExpBtn.addEventListener('click', function() {
+      var catSelect = document.getElementById('newExpenseCat');
+      var amountInput = document.getElementById('newExpenseAmount');
+      if (!catSelect || !amountInput) return;
+      var cat = EXPENSE_CATEGORIES.find(function(c) { return c.id === catSelect.value; });
+      state.expenses.push({
+        id: 'exp-' + Date.now(),
+        catId: catSelect.value,
+        label: cat ? cat.label : 'Other',
+        amount: parseFloat(amountInput.value) || 0
+      });
+      amountInput.value = '';
+      saveState();
+      renderAll();
+    });
+  }
+
+  // Calculate
+  var calcBtn = document.getElementById('calculateBtn');
+  if (calcBtn) {
+    calcBtn.addEventListener('click', calculate);
+  }
+}
+
+/* ==================== CALCULATE ==================== */
+function calculate() {
+  var total = state.expenses.reduce(function(s, e) { return s + (parseFloat(e.amount) || 0); }, 0);
+  var count = state.roommates.length;
+  if (count === 0 || total === 0) return;
+
+  var methodTexts = { equal:'equally', income:'by income', custom:'by custom %' };
+  var perPerson = [];
+
+  state.roommates.forEach(function(r) {
+    var pct;
+    if (state.method === 'equal') {
+      pct = 100 / count;
+    } else if (state.method === 'income') {
+      pct = calcIncomePct(r.id);
+    } else {
+      pct = r.sharePct || 0;
+    }
+    perPerson.push({
+      id: r.id,
+      name: r.name,
+      isYou: r.isYou,
+      percentage: pct,
+      total: total * pct / 100
+    });
+  });
+
+  state.results = {
+    total: total,
+    perPerson: perPerson,
+    methodText: methodTexts[state.method] || 'equally'
+  };
+
+  state.activeTab = 1;
+  saveState();
+  renderAll();
+}
+
+function calcIncomePct(rmId) {
+  var totalIncome = state.roommates.reduce(function(s, r) { return s + (r.income || 0); }, 0);
+  if (totalIncome === 0) return 100 / state.roommates.length;
+  var r = state.roommates.find(function(rm) { return rm.id === rmId; });
+  return r ? (r.income || 0) / totalIncome * 100 : 0;
+}
+
+/* ==================== PRINT ==================== */
+function printReport() {
+  // Switch to breakdown tab before printing
+  state.activeTab = 1;
+  renderAll();
+  setTimeout(function() { window.print(); }, 200);
+}
+
+/* ==================== RESET ==================== */
+function resetAll() {
+  if (!confirm('Reset all data? This will clear your roommates, expenses, and results.')) return;
+  state.roommates = [];
+  state.expenses = [];
+  state.results = null;
+  state.method = 'equal';
+  initDefaults();
+  saveState();
+  renderAll();
+}
+
+/* ==================== INIT ==================== */
+function init() {
+  loadState();
+  initDefaults();
+  renderAll();
+
+  document.getElementById('printBtn').addEventListener('click', printReport);
+  document.getElementById('resetBtn').addEventListener('click', resetAll);
+
+  // Tab scroll buttons
+  var tsContainer = document.getElementById('tabsContainer');
+  var tsLeft = document.getElementById('tabsScrollLeft');
+  var tsRight = document.getElementById('tabsScrollRight');
+  if (tsLeft) tsLeft.addEventListener('click', function() { tsContainer.scrollBy(-150, 0); });
+  if (tsRight) tsRight.addEventListener('click', function() { tsContainer.scrollBy(150, 0); });
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
