@@ -12,6 +12,33 @@
   gtag('js', new Date());
   gtag('config', 'G-C7V3YR4WTZ');
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["WebApplication", "ItemPage"],
+  "name": "Rent Affordability Calculator for College Students: How Much Rent Can You Afford? (2026)",
+  "description": "Calculate how much rent you can afford based on your income, student loans, and expenses. 30% rule, 50-30-20, and DTI methods. Free — no signup.",
+  "url": "https://dormtool.com/rent-affordability/",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "browserRequirements": "Requires JavaScript",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  ,
+  "author": { "@type": "Organization", "name": "SettleList Labs", "url": "https://dormtool.com" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://dormtool.com/rent-affordability/" },
+  "mentions": [
+    { "@type": "WebPage", "name": "DormTool Hub", "url": "https://dormtool.com/" },
+    { "@type": "WebPage", "name": "Dorm Checklist", "url": "https://dormtool.com/dorm-checklist/" },
+    { "@type": "WebPage", "name": "Dorm Laundry Hub", "url": "https://dormtool.com/dorm-laundry-hub/" },
+    { "@type": "WebPage", "name": "Move-Out Checklist", "url": "https://dormtool.com/move-out-checklist/" },
+    { "@type": "WebPage", "name": "Moving Cost Calculator", "url": "https://dormtool.com/moving-cost-calculator/" },
+    { "@type": "WebPage", "name": "First Apartment Checklist", "url": "https://dormtool.com/first-apartment-checklist/" },
+    { "@type": "WebPage", "name": "Rent Affordability Calculator", "url": "https://dormtool.com/rent-affordability/" },
+    { "@type": "WebPage", "name": "Roommate Bill Splitter", "url": "https://dormtool.com/bill-splitter/" }
+  ]
+}
+</script>
+
 <meta name="description" content="Calculate how much rent you can afford based on your income, student loans, and expenses. 30% rule, 50-30-20, and DTI methods. Free — no signup.">
 <meta name="keywords" content="rent affordability calculator, how much rent can I afford college student, rent calculator with student loans, 30% rule rent, first apartment budget calculator">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,17 +51,43 @@
   --bg:#F8F9FA;--card:#FFFFFF;--card-hover:#F1F3F5;--text:#1F2937;--text-light:#6B7280;
   --border:#E5E7EB;--shadow:0 2px 12px rgba(0,0,0,.08);--radius:12px;--radius-sm:8px;
   --font:'Inter',-apple-system,sans-serif;--max-w:1200px;
+  --ease:cubic-bezier(.4,0,.2,1);--ease-spring:cubic-bezier(.22,1,.36,1);
 }
 html{scroll-behavior:smooth}
 body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
 a{color:inherit;text-decoration:none}
 ::selection{background:var(--primary);color:#fff}
-.site-header{background:var(--card);border-bottom:1px solid var(--border);padding:16px 20px;position:sticky;top:0;z-index:100}
-.site-header .inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.site-header .logo{font-weight:800;font-size:1.2rem;letter-spacing:-.5px;display:flex;align-items:center;gap:8px;color:var(--text)}
-.site-header .logo span{color:var(--primary)}
-.site-header .tagline{font-size:.78rem;color:var(--text-light);display:none}
+.site-header{background:var(--primary);color:#fff;padding:14px 20px;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,0,0,.18)}
+.site-header .inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.site-header .logo{font-weight:800;font-size:1.25rem;letter-spacing:-.5px;display:flex;align-items:center;gap:7px;color:#fff;transition:all .25s var(--ease)}
+.site-header .logo:hover{opacity:.85;transform:scale(1.03)}
+.site-header .logo span{color:var(--accent)}
+.site-header .tagline{font-size:.78rem;opacity:.7;display:none}
 @media(min-width:640px){.site-header .tagline{display:block}}
+
+/* Tool Navigation — capsule pills */
+.tool-nav{position:relative}
+.nav-toggle{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:10px;border:2px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font-size:1.2rem;cursor:pointer;transition:all .2s var(--ease)}
+.nav-toggle:hover{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.35)}
+@media(min-width:768px){.nav-toggle{display:none}}
+.nav-links{display:none;flex-direction:column;position:absolute;top:calc(100% + 8px);right:0;background:var(--card);border-radius:var(--radius);box-shadow:0 12px 40px rgba(0,0,0,.2);padding:8px;min-width:220px;z-index:300;gap:2px;border:1px solid var(--border)}
+.nav-links.is-open{display:flex}
+@media(min-width:768px){
+  .nav-links{display:flex;flex-direction:row;position:static;background:transparent;box-shadow:none;padding:0;min-width:auto;border:none;gap:3px}
+}
+.nav-link{padding:6px 12px;border-radius:8px;font-size:.74rem;font-weight:600;color:rgba(255,255,255,.75);white-space:nowrap;transition:all .2s var(--ease);display:flex;align-items:center;gap:4px}
+.nav-link:hover{background:rgba(255,255,255,.12);color:#fff;transform:translateY(-1px)}
+.nav-link.is-current{background:rgba(255,255,255,.18);color:#fff;font-weight:700}
+@media(min-width:768px){
+  .nav-link{padding:6px 11px;font-size:.72rem;color:rgba(255,255,255,.7);border-radius:8px}
+  .nav-link.is-current{background:rgba(255,255,255,.2);color:#fff}
+}
+@media(max-width:767px){
+  .nav-links.is-open{display:flex;flex-direction:column}
+  .nav-link{padding:10px 14px;color:var(--text);border-radius:6px}
+  .nav-link:hover{background:var(--bg);color:var(--primary)}
+  .nav-link.is-current{background:var(--primary);color:#fff}
+}
 .container{max-width:var(--max-w);margin:0 auto;padding:16px 16px 40px;flex:1}
 .intro{text-align:center;padding:16px 0 10px}
 .intro h1{font-size:1.55rem;font-weight:800;color:var(--text);letter-spacing:-.5px}
@@ -171,10 +224,45 @@ a{color:inherit;text-decoration:none}
 .site-footer .footer-links{display:flex;justify-content:center;gap:14px;margin-bottom:4px;flex-wrap:wrap}
 .site-footer .footer-links a{text-decoration:none;font-weight:500}
 .site-footer .footer-links a:hover{text-decoration:underline;color:var(--primary)}
+/* ==================== COMPLIANCE MODALS ==================== */
+.modal-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);justify-content:center;align-items:center;padding:20px}
+.modal-overlay.is-open{display:flex}
+.modal-card{background:var(--card);border-radius:var(--radius);max-width:680px;width:100%;max-height:80vh;display:flex;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,.25);position:relative}
+.modal-card .mc-header{display:flex;align-items:center;justify-content:space-between;padding:18px 22px 12px;border-bottom:2px solid var(--bg);flex-shrink:0}
+.modal-card .mc-header h2{font-size:1.1rem;font-weight:700;display:flex;align-items:center;gap:8px;color:var(--text)}
+.modal-card .mc-close{background:none;border:none;font-size:1.2rem;color:var(--text-light);cursor:pointer;width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.modal-card .mc-close:hover{background:var(--bg);color:var(--text)}
+.modal-card .mc-body{overflow-y:auto;padding:16px 22px 24px;flex:1;font-size:.88rem;line-height:1.75;color:var(--text)}
+.modal-card .mc-body h3{font-size:1rem;font-weight:700;margin:18px 0 6px;color:var(--primary)}
+.modal-card .mc-body h3:first-child{margin-top:0}
+.modal-card .mc-body p{margin:0 0 10px}
+.modal-card .mc-body ul{margin:4px 0 10px 18px}
+.modal-card .mc-body ul li{margin-bottom:4px}
+.modal-card .mc-body a{color:var(--primary);text-decoration:underline}
+.modal-card .mc-body a:hover{color:var(--primary-dark)}
+.contact-form{background:var(--bg);border-radius:var(--radius-sm);padding:18px;margin-top:12px}
+.contact-form .cf-email{font-size:.9rem;font-weight:600;margin-bottom:12px;color:var(--text)}
+.contact-form label{display:block;font-size:.78rem;font-weight:600;color:var(--text-light);margin-bottom:3px;margin-top:10px}
+.contact-form input,.contact-form textarea{width:100%;padding:10px 12px;border:2px solid var(--border);border-radius:8px;font-family:var(--font);font-size:.85rem;outline:none;background:var(--card);color:var(--text);transition:border-color .2s}
+.contact-form input:focus,.contact-form textarea:focus{border-color:var(--primary)}
+.contact-form textarea{min-height:100px;resize:vertical}
+.contact-form .cf-btn{width:100%;padding:12px;margin-top:12px;border:none;border-radius:var(--radius-sm);background:var(--primary);color:#fff;font-family:var(--font);font-size:.9rem;font-weight:700;cursor:pointer;transition:all .2s}
+.contact-form .cf-btn:hover{background:var(--primary-dark)}
+
+/* ==================== MICRO-ANIMATIONS ==================== */
+*{transition-duration:.2s;transition-timing-function:var(--ease)}
+.item-card:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.06)}
+.tab-btn:hover{transform:translateY(-1px)}
+.category-panel{animation:fadeUp .3s var(--ease-spring)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.modal-overlay{animation:modalFadeIn .25s var(--ease)}
+.modal-card{animation:modalSlideIn .3s var(--ease-spring)}
+@keyframes modalFadeIn{from{opacity:0}to{opacity:1}}
+@keyframes modalSlideIn{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
 @media print{
   @page{margin:1.5cm .8cm}
   body{background:#fff;font-size:11pt;color:#000}
-  .site-header,.tabs-wrap,.bottom-bar,.site-footer,.ad-placeholder,.affiliate-card,.item-shop,.calc-btn{display:none!important}
+  .site-header,.tabs-wrap,.bottom-bar,.site-footer,.ad-placeholder,.affiliate-card,.item-shop,.calc-btn,.modal-overlay{display:none!important}
   .container{padding:0;max-width:100%}.app-layout{display:block}
   .category-panel{border-radius:0;background:transparent;padding:0;border:none;box-shadow:none}
   .result-card{border-left:2px solid #000;page-break-inside:avoid}
@@ -187,8 +275,20 @@ a{color:inherit;text-decoration:none}
 
 <header class="site-header">
   <div class="inner">
-    <div class="logo">🏠 <span>Check</span>listLab</div>
+    <a href="../index.html" class="logo">🛠 <span>Dorm</span>Tool</a>
     <div class="tagline">Know what you can afford. Rent smart.</div>
+    <nav class="tool-nav">
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="../dorm-checklist/index.html" class="nav-link">📋 Dorm Checklist</a>
+        <a href="../dorm-laundry-hub/index.html" class="nav-link">🧺 Laundry Hub</a>
+        <a href="../move-out-checklist/index.html" class="nav-link">📋 Move-Out</a>
+        <a href="../moving-cost-calculator/index.html" class="nav-link">🚚 Moving Cost</a>
+        <a href="../first-apartment-checklist/index.html" class="nav-link">🏢 First Apt</a>
+        <a href="../rent-affordability/index.html" class="nav-link is-current">💰 Rent Calc</a>
+        <a href="../bill-splitter/index.html" class="nav-link">💰 Bill Splitter</a>
+      </div>
+    </nav>
   </div>
 </header>
 
@@ -576,12 +676,79 @@ function printChecklist(){window.print();}
 
 function init(){
   loadState();renderAll();
+
+  // Mobile nav toggle
+  var navToggle = document.getElementById('navToggle');
+  var navLinks = document.getElementById('navLinks');
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      navLinks.classList.toggle('is-open');
+    });
+    document.addEventListener('click', function() { navLinks.classList.remove('is-open'); });
+    navLinks.addEventListener('click', function(e) { e.stopPropagation(); });
+  }
+
   document.getElementById('printBtn').addEventListener('click',printChecklist);
   document.getElementById('resetBtn').addEventListener('click',resetAll);
   var tc=document.getElementById('tabsContainer'),tl=document.getElementById('tabsScrollLeft'),tr=document.getElementById('tabsScrollRight');
   function uts(){var sl=tc.scrollLeft,sw=tc.scrollWidth-tc.clientWidth;tl.classList.toggle('is-visible',sl>8);tr.classList.toggle('is-visible',sl<sw-8);}
   tc.addEventListener('scroll',uts);tl.addEventListener('click',function(){tc.scrollBy({left:-200,behavior:'smooth'});});
   tr.addEventListener('click',function(){tc.scrollBy({left:200,behavior:'smooth'});});uts();
+
+  // Compliance modals
+  function openModal(id) {
+    var el = document.getElementById('modal-' + id);
+    if (el) {
+      el.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  function closeAllModals() {
+    document.querySelectorAll('.modal-overlay').forEach(function(m) {
+      m.classList.remove('is-open');
+    });
+    document.body.style.overflow = '';
+  }
+  // Footer legal links
+  document.querySelectorAll('[data-modal]').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      openModal(this.dataset.modal);
+    });
+  });
+  // Close buttons
+  document.querySelectorAll('[data-modal-close]').forEach(function(btn) {
+    btn.addEventListener('click', closeAllModals);
+  });
+  // Click outside to close
+  document.querySelectorAll('.modal-overlay').forEach(function(overlay) {
+    overlay.addEventListener('click', function(e) {
+      if (e.target === this) closeAllModals();
+    });
+  });
+  // Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeAllModals();
+  });
+  // Contact form submit
+  var cfBtn = document.getElementById('cfSubmit');
+  if (cfBtn) {
+    cfBtn.addEventListener('click', function() {
+      var name = document.getElementById('cfName').value.trim();
+      var email = document.getElementById('cfEmail').value.trim();
+      var msg = document.getElementById('cfMessage').value.trim();
+      var status = document.getElementById('cfStatus');
+      if (!name || !email || !msg) {
+        status.textContent = '⚠️ Please fill in all fields.';
+        return;
+      }
+      status.innerHTML = '✅ Thanks ' + escHtml(name) + '! Your message has been received. We will get back to you within 48 hours at ' + escHtml(email) + '.';
+      document.getElementById('cfName').value = '';
+      document.getElementById('cfEmail').value = '';
+      document.getElementById('cfMessage').value = '';
+    });
+  }
 }
 document.addEventListener('DOMContentLoaded',init);
 </script>

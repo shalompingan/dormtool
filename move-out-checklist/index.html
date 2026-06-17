@@ -12,6 +12,33 @@
   gtag('js', new Date());
   gtag('config', 'G-C7V3YR4WTZ');
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["WebApplication", "ItemPage"],
+  "name": "Dorm Move-Out Checklist: Avoid Fines & Get Your Deposit Back (2026)",
+  "description": "Moving out of your dorm? Avoid $50-$1,000 in fines with our interactive checklist. Print, pack & pass inspection. Get your full deposit back.",
+  "url": "https://dormtool.com/move-out-checklist/",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "browserRequirements": "Requires JavaScript",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  ,
+  "author": { "@type": "Organization", "name": "SettleList Labs", "url": "https://dormtool.com" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://dormtool.com/move-out-checklist/" },
+  "mentions": [
+    { "@type": "WebPage", "name": "DormTool Hub", "url": "https://dormtool.com/" },
+    { "@type": "WebPage", "name": "Dorm Checklist", "url": "https://dormtool.com/dorm-checklist/" },
+    { "@type": "WebPage", "name": "Dorm Laundry Hub", "url": "https://dormtool.com/dorm-laundry-hub/" },
+    { "@type": "WebPage", "name": "Move-Out Checklist", "url": "https://dormtool.com/move-out-checklist/" },
+    { "@type": "WebPage", "name": "Moving Cost Calculator", "url": "https://dormtool.com/moving-cost-calculator/" },
+    { "@type": "WebPage", "name": "First Apartment Checklist", "url": "https://dormtool.com/first-apartment-checklist/" },
+    { "@type": "WebPage", "name": "Rent Affordability Calculator", "url": "https://dormtool.com/rent-affordability/" },
+    { "@type": "WebPage", "name": "Roommate Bill Splitter", "url": "https://dormtool.com/bill-splitter/" }
+  ]
+}
+</script>
+
 <meta name="description" content="Moving out of your dorm? Avoid $50-$1,000 in fines with our interactive checklist. Print, pack & pass inspection. Get your full deposit back — guaranteed.">
 <meta name="keywords" content="dorm move out checklist, college move out, avoid dorm fines, dorm cleaning checklist, dorm inspection, college packing list">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,6 +52,7 @@
   --bg:#F8F9FA;--card:#FFFFFF;--card-hover:#F1F3F5;--text:#1F2937;--text-light:#6B7280;
   --border:#E5E7EB;--shadow:0 2px 12px rgba(0,0,0,.08);--radius:12px;--radius-sm:8px;
   --font:'Inter',-apple-system,sans-serif;--max-w:1200px;
+  --ease:cubic-bezier(.4,0,.2,1);--ease-spring:cubic-bezier(.22,1,.36,1);
   --risk-common:#DC2626;--risk-common-bg:#FEE2E2;--risk-possible:#D97706;--risk-possible-bg:#FEF3C7;--risk-low:#059669;--risk-low-bg:#D1FAE5;
 }
 html{scroll-behavior:smooth}
@@ -33,12 +61,37 @@ a{color:inherit;text-decoration:none}
 ::selection{background:var(--primary);color:#fff}
 
 /* ==================== HEADER ==================== */
-.site-header{background:var(--card);border-bottom:1px solid var(--border);padding:16px 20px;position:sticky;top:0;z-index:100}
-.site-header .inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.site-header .logo{font-weight:800;font-size:1.2rem;letter-spacing:-.5px;display:flex;align-items:center;gap:8px;color:var(--text)}
-.site-header .logo span{color:var(--primary)}
-.site-header .tagline{font-size:.78rem;color:var(--text-light);display:none}
+.site-header{background:var(--primary);color:#fff;padding:14px 20px;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,0,0,.18)}
+.site-header .inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.site-header .logo{font-weight:800;font-size:1.25rem;letter-spacing:-.5px;display:flex;align-items:center;gap:7px;color:#fff;transition:all .25s var(--ease)}
+.site-header .logo:hover{opacity:.85;transform:scale(1.03)}
+.site-header .logo span{color:var(--accent)}
+.site-header .tagline{font-size:.78rem;opacity:.7;display:none}
 @media(min-width:640px){.site-header .tagline{display:block}}
+
+/* Tool Navigation — capsule pills */
+.tool-nav{position:relative}
+.nav-toggle{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:10px;border:2px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font-size:1.2rem;cursor:pointer;transition:all .2s var(--ease)}
+.nav-toggle:hover{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.35)}
+@media(min-width:768px){.nav-toggle{display:none}}
+.nav-links{display:none;flex-direction:column;position:absolute;top:calc(100% + 8px);right:0;background:var(--card);border-radius:var(--radius);box-shadow:0 12px 40px rgba(0,0,0,.2);padding:8px;min-width:220px;z-index:300;gap:2px;border:1px solid var(--border)}
+.nav-links.is-open{display:flex}
+@media(min-width:768px){
+  .nav-links{display:flex;flex-direction:row;position:static;background:transparent;box-shadow:none;padding:0;min-width:auto;border:none;gap:3px}
+}
+.nav-link{padding:6px 12px;border-radius:8px;font-size:.74rem;font-weight:600;color:rgba(255,255,255,.75);white-space:nowrap;transition:all .2s var(--ease);display:flex;align-items:center;gap:4px}
+.nav-link:hover{background:rgba(255,255,255,.12);color:#fff;transform:translateY(-1px)}
+.nav-link.is-current{background:rgba(255,255,255,.18);color:#fff;font-weight:700}
+@media(min-width:768px){
+  .nav-link{padding:6px 11px;font-size:.72rem;color:rgba(255,255,255,.7);border-radius:8px}
+  .nav-link.is-current{background:rgba(255,255,255,.2);color:#fff}
+}
+@media(max-width:767px){
+  .nav-links.is-open{display:flex;flex-direction:column}
+  .nav-link{padding:10px 14px;color:var(--text);border-radius:6px}
+  .nav-link:hover{background:var(--bg);color:var(--primary)}
+  .nav-link.is-current{background:var(--primary);color:#fff}
+}
 
 /* ==================== CONTAINER ==================== */
 .container{max-width:var(--max-w);margin:0 auto;padding:16px 16px 40px;flex:1}
@@ -268,11 +321,18 @@ a{color:inherit;text-decoration:none}
   .tab-btn{padding:6px 12px;font-size:.74rem}
 }
 
+/* ==================== MICRO-ANIMATIONS ==================== */
+*{transition-duration:.2s;transition-timing-function:var(--ease)}
+.item-card:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.06)}
+.tab-btn:hover{transform:translateY(-1px)}
+.category-panel{animation:fadeUp .3s var(--ease-spring)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
 /* ==================== PRINT ==================== */
 @media print{
   @page{margin:1.5cm .8cm}
   body{background:#fff;font-size:11pt;color:#000}
-  .site-header,.tabs-wrap,.bottom-bar,.site-footer,
+  .modal-overlay,.site-header,.tabs-wrap,.bottom-bar,.site-footer,
   .ad-placeholder,.cat-actions,.item-shop,.item-meta,
   .intro p,.intro .fine-warning,.item-remove,.add-item-form,.filter-bar,
   .cart-floating-bar,.cart-modal-overlay,.cart-drawer,.cart-drawer-tab{display:none!important}
@@ -311,8 +371,20 @@ a{color:inherit;text-decoration:none}
 
 <header class="site-header">
   <div class="inner">
-    <div class="logo">🚚 <span>Check</span>listLab</div>
+    <a href="../index.html" class="logo">🛠 <span>Dorm</span>Tool</a>
     <div class="tagline">Don't lose your deposit. Move out stress-free.</div>
+    <nav class="tool-nav">
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="../dorm-checklist/index.html" class="nav-link">📋 Dorm Checklist</a>
+        <a href="../dorm-laundry-hub/index.html" class="nav-link">🧺 Laundry Hub</a>
+        <a href="../move-out-checklist/index.html" class="nav-link is-current">📋 Move-Out</a>
+        <a href="../moving-cost-calculator/index.html" class="nav-link">🚚 Moving Cost</a>
+        <a href="../first-apartment-checklist/index.html" class="nav-link">🏢 First Apt</a>
+        <a href="../rent-affordability/index.html" class="nav-link">💰 Rent Calc</a>
+        <a href="../bill-splitter/index.html" class="nav-link">💰 Bill Splitter</a>
+      </div>
+    </nav>
   </div>
 </header>
 
@@ -964,6 +1036,17 @@ function toggleCartDrawer() {
 /* ==================== INIT ==================== */
 function init() {
   loadState();
+  // Nav toggle
+  document.getElementById('navToggle').addEventListener('click', function() {
+    document.getElementById('navLinks').classList.toggle('is-open');
+  });
+  document.addEventListener('click', function(e) {
+    var nav = document.getElementById('navLinks');
+    var toggle = document.getElementById('navToggle');
+    if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+      nav.classList.remove('is-open');
+    }
+  });
   updateProgress(); renderTabs(); renderCategory(state.activeTab); renderCart();
 
   document.getElementById('printBtn').addEventListener('click', printChecklist);

@@ -12,6 +12,33 @@
   gtag('js', new Date());
   gtag('config', 'G-C7V3YR4WTZ');
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["WebApplication", "ItemPage"],
+  "name": "First Apartment Essentials Checklist – Interactive Moving List",
+  "description": "Never forget a thing when moving into your first apartment! Interactive checklist with budget tracker — bedroom, kitchen, bathroom & more. Shop smart with one click.",
+  "url": "https://dormtool.com/first-apartment-checklist/",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "browserRequirements": "Requires JavaScript",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  ,
+  "author": { "@type": "Organization", "name": "SettleList Labs", "url": "https://dormtool.com" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://dormtool.com/first-apartment-checklist/" },
+  "mentions": [
+    { "@type": "WebPage", "name": "DormTool Hub", "url": "https://dormtool.com/" },
+    { "@type": "WebPage", "name": "Dorm Checklist", "url": "https://dormtool.com/dorm-checklist/" },
+    { "@type": "WebPage", "name": "Dorm Laundry Hub", "url": "https://dormtool.com/dorm-laundry-hub/" },
+    { "@type": "WebPage", "name": "Move-Out Checklist", "url": "https://dormtool.com/move-out-checklist/" },
+    { "@type": "WebPage", "name": "Moving Cost Calculator", "url": "https://dormtool.com/moving-cost-calculator/" },
+    { "@type": "WebPage", "name": "First Apartment Checklist", "url": "https://dormtool.com/first-apartment-checklist/" },
+    { "@type": "WebPage", "name": "Rent Affordability Calculator", "url": "https://dormtool.com/rent-affordability/" },
+    { "@type": "WebPage", "name": "Roommate Bill Splitter", "url": "https://dormtool.com/bill-splitter/" }
+  ]
+}
+</script>
+
 <meta name="description" content="Never forget a thing when moving into your first apartment! Interactive checklist with budget tracker — bedroom, kitchen, bathroom & more. Shop smart with one click.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -23,7 +50,7 @@
   --accent:#F59E0B;--accent-hover:#D97706;--success:#10B981;--success-light:#D1FAE5;
   --bg:#F8FAFC;--card:#FFF;--text:#1F2937;--text-light:#6B7280;--border:#E5E7EB;
   --shadow:0 2px 8px rgba(0,0,0,.06);--radius:12px;--radius-sm:8px;
-  --font:'Inter',-apple-system,sans-serif;--max-w:1200px;
+  --font:'Inter',-apple-system,sans-serif;--max-w:1200px;--ease:cubic-bezier(.22,1,.36,1);--ease-spring:cubic-bezier(.34,1.56,.64,1);
   --tier-budget:#10B981;--tier-moderate:#FF6B35;--tier-premium:#8B5CF6;
 }
 html{scroll-behavior:smooth}
@@ -31,12 +58,37 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:
 a{color:inherit;text-decoration:none}
 
 /* ==================== HEADER ==================== */
-.site-header{background:var(--primary);color:#fff;padding:18px 20px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.15)}
-.site-header .inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.site-header .logo{font-weight:800;font-size:1.3rem;letter-spacing:-.5px;display:flex;align-items:center;gap:8px}
+.site-header{background:var(--primary);color:#fff;padding:14px 20px;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,0,0,.18)}
+.site-header .inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.site-header .logo{font-weight:800;font-size:1.25rem;letter-spacing:-.5px;display:flex;align-items:center;gap:7px;color:#fff;transition:all .25s var(--ease)}
+.site-header .logo:hover{opacity:.85;transform:scale(1.03)}
 .site-header .logo span{color:var(--accent)}
-.site-header .tagline{font-size:.8rem;opacity:.8;display:none}
+.site-header .tagline{font-size:.78rem;opacity:.7;display:none}
 @media(min-width:640px){.site-header .tagline{display:block}}
+
+/* Tool Navigation — capsule pills */
+.tool-nav{position:relative}
+.nav-toggle{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:10px;border:2px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font-size:1.2rem;cursor:pointer;transition:all .2s var(--ease)}
+.nav-toggle:hover{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.35)}
+@media(min-width:768px){.nav-toggle{display:none}}
+.nav-links{display:none;flex-direction:column;position:absolute;top:calc(100% + 8px);right:0;background:var(--card);border-radius:var(--radius);box-shadow:0 12px 40px rgba(0,0,0,.2);padding:8px;min-width:220px;z-index:300;gap:2px;border:1px solid var(--border)}
+.nav-links.is-open{display:flex}
+@media(min-width:768px){
+  .nav-links{display:flex;flex-direction:row;position:static;background:transparent;box-shadow:none;padding:0;min-width:auto;border:none;gap:3px}
+}
+.nav-link{padding:6px 12px;border-radius:8px;font-size:.74rem;font-weight:600;color:rgba(255,255,255,.75);white-space:nowrap;transition:all .2s var(--ease);display:flex;align-items:center;gap:4px}
+.nav-link:hover{background:rgba(255,255,255,.12);color:#fff;transform:translateY(-1px)}
+.nav-link.is-current{background:rgba(255,255,255,.18);color:#fff;font-weight:700}
+@media(min-width:768px){
+  .nav-link{padding:6px 11px;font-size:.72rem;color:rgba(255,255,255,.7);border-radius:8px}
+  .nav-link.is-current{background:rgba(255,255,255,.2);color:#fff}
+}
+@media(max-width:767px){
+  .nav-links.is-open{display:flex;flex-direction:column}
+  .nav-link{padding:10px 14px;color:var(--text);border-radius:6px}
+  .nav-link:hover{background:var(--bg);color:var(--primary)}
+  .nav-link.is-current{background:var(--primary);color:#fff}
+}
 
 /* ==================== CONTAINER ==================== */
 .container{max-width:var(--max-w);margin:0 auto;padding:16px 16px 40px;flex:1}
@@ -258,11 +310,18 @@ a{color:inherit;text-decoration:none}
   .tab-btn{padding:6px 12px;font-size:.74rem}
 }
 
+/* ==================== MICRO-ANIMATIONS ==================== */
+*{transition-duration:.2s;transition-timing-function:var(--ease)}
+.item-card:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.06)}
+.tab-btn:hover{transform:translateY(-1px)}
+.category-panel{animation:fadeUp .3s var(--ease-spring)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
 /* ==================== PRINT ==================== */
 @media print{
   @page{margin:1.5cm .8cm}
   body{background:#fff;font-size:11pt;color:#000}
-  .site-header,.tabs-wrap,.bottom-bar,.site-footer,
+  .site-header,.tabs-wrap,.bottom-bar,.site-footer,.modal-overlay,
   .ad-placeholder,.cat-actions,.item-shop,.item-meta,
   .intro p,.item-remove,.add-item-form,.filter-bar,.item-tiers,
   .cart-sidebar,.cart-floating-bar,.cart-modal-overlay{display:none!important}
@@ -292,8 +351,20 @@ a{color:inherit;text-decoration:none}
 
 <header class="site-header">
   <div class="inner">
-    <div class="logo">🏠 <span>Check</span>listLab</div>
+    <a href="../index.html" class="logo">🛠 <span>Dorm</span>Tool</a>
     <div class="tagline">Interactive checklists for life's big moments</div>
+    <nav class="tool-nav">
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="../dorm-checklist/index.html" class="nav-link">📋 Dorm Checklist</a>
+        <a href="../dorm-laundry-hub/index.html" class="nav-link">🧺 Laundry Hub</a>
+        <a href="../move-out-checklist/index.html" class="nav-link">📋 Move-Out</a>
+        <a href="../moving-cost-calculator/index.html" class="nav-link">🚚 Moving Cost</a>
+        <a href="../first-apartment-checklist/index.html" class="nav-link is-current">🏢 First Apt</a>
+        <a href="../rent-affordability/index.html" class="nav-link">💰 Rent Calc</a>
+        <a href="../bill-splitter/index.html" class="nav-link">💰 Bill Splitter</a>
+      </div>
+    </nav>
   </div>
 </header>
 
@@ -951,6 +1022,19 @@ function init() {
   tsLeft.addEventListener('click', function(){ tsContainer.scrollBy({ left:-200, behavior:'smooth' }); });
   tsRight.addEventListener('click', function(){ tsContainer.scrollBy({ left:200, behavior:'smooth' }); });
   updateTabScroll();
+  // Nav toggle
+  var navToggle = document.getElementById('navToggle');
+  var navLinks = document.getElementById('navLinks');
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', function() {
+      navLinks.classList.toggle('is-open');
+    });
+    document.addEventListener('click', function(e) {
+      if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
+        navLinks.classList.remove('is-open');
+      }
+    });
+  }
   // Compliance modals
   function openModal(id) {
     var el = document.getElementById('modal-' + id);
