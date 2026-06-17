@@ -135,11 +135,15 @@ img{max-width:100%;display:block}
 
 #dorm-checklist-app .dc-grid{display:grid;grid-template-columns:1fr;gap:5px}
 @media(min-width:540px){#dorm-checklist-app .dc-grid{grid-template-columns:1fr 1fr}}
+#dorm-checklist-app .dc-layout{overflow-x:hidden;max-width:100%}
+#dorm-checklist-app .dc-body{overflow-x:hidden}
+#dorm-checklist-app .dc-panel{overflow-x:hidden}
 #dorm-checklist-app .dc-item{display:flex;flex-direction:column;background:var(--bg);border-radius:var(--radius-sm);padding:8px 10px;transition:all .18s;border:2px solid transparent}
 #dorm-checklist-app .dc-item:hover{border-color:var(--border)}
 #dorm-checklist-app .dc-item.is-checked{background:var(--success-light);border-color:var(--success)}
 #dorm-checklist-app .dc-item.is-checked .dc-iname{font-weight:600}
 #dorm-checklist-app .dc-irow{display:flex;align-items:center;gap:7px;flex-wrap:nowrap}
+@media(max-width:420px){#dorm-checklist-app .dc-irow{flex-wrap:wrap;gap:3px}}
 #dorm-checklist-app .dc-ichk{cursor:pointer;display:flex;align-items:center;gap:7px;flex:1;min-width:0}
 #dorm-checklist-app .dc-ichk input{position:absolute;opacity:0;width:0;height:0}
 #dorm-checklist-app .dc-ibox{flex-shrink:0;width:17px;height:17px;border:2px solid #CBD5E1;border-radius:4px;display:flex;align-items:center;justify-content:center;transition:all .2s;background:var(--card)}
@@ -150,6 +154,7 @@ img{max-width:100%;display:block}
 #dorm-checklist-app .dc-iname{font-size:.8rem;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #dorm-checklist-app .dc-idesc{font-size:.68rem;color:var(--text-light);margin-top:1px;margin-left:34px;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
 #dorm-checklist-app .dc-ishop{font-size:.66rem;font-weight:700;color:#fff;background:var(--accent);padding:3px 9px;border-radius:4px;transition:all .18s;white-space:nowrap;display:inline-flex;align-items:center;gap:2px;border:none;cursor:pointer;font-family:var(--font);flex-shrink:0;line-height:1.3}
+@media(max-width:420px){#dorm-checklist-app .dc-ishop{font-size:.6rem;padding:2px 6px}}
 #dorm-checklist-app .dc-ishop:hover{background:var(--accent-hover);transform:translateY(-1px)}
 #dorm-checklist-app .dc-ishop:active{transform:translateY(0)}
 #dorm-checklist-app .dc-ishop.is-incart{background:var(--success)}
