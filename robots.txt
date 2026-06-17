@@ -1,0 +1,6 @@
+Sitemap: https://dormtool.com/sitemap.xml
+
+User-agent: *
+Allow: /
+
+# No disallow rules — all content is public
