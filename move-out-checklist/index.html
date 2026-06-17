@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dorm Move-Out Checklist: Avoid Fines & Get Your Deposit Back (2026)</title>
+<meta name="description" content="Moving out of your dorm? Avoid $50-$1,000 in fines with our interactive checklist. Print, pack & pass inspection. Get your full deposit back — guaranteed.">
+<meta name="keywords" content="dorm move out checklist, college move out, avoid dorm fines, dorm cleaning checklist, dorm inspection, college packing list">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ==================== RESET + VARIABLES ==================== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#D97706;--primary-light:#F59E0B;--primary-dark:#B45309;
+  --accent:#F59E0B;--accent-hover:#D97706;--success:#10B981;--success-dark:#065F46;
+  --bg:#F8F9FA;--card:#FFFFFF;--card-hover:#F1F3F5;--text:#1F2937;--text-light:#6B7280;
+  --border:#E5E7EB;--shadow:0 2px 12px rgba(0,0,0,.08);--radius:12px;--radius-sm:8px;
+  --font:'Inter',-apple-system,sans-serif;--max-w:1200px;
+  --risk-common:#DC2626;--risk-common-bg:#FEE2E2;--risk-possible:#D97706;--risk-possible-bg:#FEF3C7;--risk-low:#059669;--risk-low-bg:#D1FAE5;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--primary);color:#fff}
+
+/* ==================== HEADER ==================== */
+.site-header{background:var(--card);border-bottom:1px solid var(--border);padding:16px 20px;position:sticky;top:0;z-index:100}
+.site-header .inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.site-header .logo{font-weight:800;font-size:1.2rem;letter-spacing:-.5px;display:flex;align-items:center;gap:8px;color:var(--text)}
+.site-header .logo span{color:var(--primary)}
+.site-header .tagline{font-size:.78rem;color:var(--text-light);display:none}
+@media(min-width:640px){.site-header .tagline{display:block}}
+
+/* ==================== CONTAINER ==================== */
+.container{max-width:var(--max-w);margin:0 auto;padding:16px 16px 40px;flex:1}
+.intro{text-align:center;padding:16px 0 10px}
+.intro h1{font-size:1.5rem;font-weight:800;color:var(--text);letter-spacing:-.5px}
+.intro h1 span{color:var(--primary)}
+.intro p{color:var(--text-light);font-size:.88rem;margin-top:4px;max-width:600px;margin-left:auto;margin-right:auto}
+.intro .fine-warning{margin-top:8px;display:inline-flex;align-items:center;gap:6px;background:var(--risk-common-bg);color:#FECACA;padding:5px 14px;border-radius:20px;font-size:.75rem;font-weight:600}
+
+/* ==================== ADSENSE ==================== */
+.ad-placeholder{background:var(--card);border:1px dashed var(--border);border-radius:var(--radius-sm);text-align:center;padding:18px;margin:14px 0;color:var(--text-light);font-size:.75rem;min-height:90px;display:flex;align-items:center;justify-content:center}
+.ad-placeholder--tall{min-height:160px}
+
+/* ==================== APP LAYOUT ==================== */
+.app-layout{display:block;margin-top:10px}
+.app-main{min-width:0}
+
+/* ==================== PROGRESS ==================== */
+.progress-wrap{background:var(--card);border-radius:var(--radius);padding:14px 18px 16px;box-shadow:var(--shadow);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.progress-stats{font-size:.85rem;font-weight:600;white-space:nowrap;color:var(--text)}
+.progress-stats span{color:var(--primary)}
+.progress-bar-track{flex:1;min-width:100px;height:9px;background:var(--border);border-radius:6px;overflow:hidden}
+.progress-bar-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--primary),var(--primary-light));border-radius:6px;transition:width .45s cubic-bezier(.22,1,.36,1)}
+.progress-label{font-size:.76rem;color:var(--text-light);min-width:36px;text-align:right;font-weight:600}
+.progress-wrap.is-done .progress-bar-fill{background:linear-gradient(90deg,var(--success),#34D399)}
+.progress-wrap.is-done .progress-label{color:var(--success)}
+
+/* ==================== TABS ==================== */
+.tabs-wrap{background:var(--card);border-radius:var(--radius) var(--radius) 0 0;box-shadow:var(--shadow);margin:12px 0 0;padding:10px 12px 0;position:relative}
+.tabs-scroll{display:flex;gap:5px;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;scrollbar-color:transparent transparent;-ms-overflow-style:none;padding-bottom:10px;-webkit-overflow-scrolling:touch}
+.tabs-wrap:hover .tabs-scroll{scrollbar-color:var(--border) transparent}
+.tabs-scroll::-webkit-scrollbar{height:4px}
+.tabs-scroll::-webkit-scrollbar-thumb{background:transparent;border-radius:4px}
+.tabs-wrap:hover .tabs-scroll::-webkit-scrollbar-thumb{background:var(--border)}
+.tab-scroll-btn{position:absolute;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;border:none;background:var(--bg);box-shadow:0 2px 8px rgba(0,0,0,.3);cursor:pointer;z-index:3;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:700;color:var(--text-light);opacity:0;transition:opacity .2s;line-height:1}
+.tab-scroll-btn.is-visible{opacity:1}
+.tab-scroll-btn:hover{color:var(--primary)}
+.tab-scroll-btn--left{left:-4px}
+.tab-scroll-btn--right{right:-4px}
+.tab-btn{flex-shrink:0;padding:8px 16px;border:none;border-radius:18px;font-family:var(--font);font-size:.8rem;font-weight:600;background:var(--bg);color:var(--text-light);cursor:pointer;white-space:nowrap;transition:all .2s;display:flex;align-items:center;gap:4px}
+.tab-btn:hover{background:var(--card-hover);color:var(--primary-light)}
+.tab-btn.is-active{background:var(--primary);color:#fff;box-shadow:0 2px 8px rgba(217,119,6,.3)}
+.tab-btn .tab-count{font-size:.68rem;font-weight:500;opacity:.6;background:rgba(255,255,255,.2);padding:1px 6px;border-radius:8px}
+.tab-btn.is-active .tab-count{opacity:.9;background:rgba(255,255,255,.18)}
+.tab-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ==================== CATEGORY PANEL ==================== */
+.category-panel{background:var(--card);border-radius:0 0 var(--radius) var(--radius);padding:16px 18px 18px;box-shadow:var(--shadow);border-top:2px solid var(--border)}
+.category-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--border);flex-wrap:wrap;gap:6px}
+.category-title{font-size:1.05rem;font-weight:700;display:flex;align-items:center;gap:6px;color:var(--text)}
+.cat-actions{display:flex;gap:5px}
+.cat-actions button{padding:4px 12px;border:none;border-radius:12px;font-family:var(--font);font-size:.73rem;font-weight:600;cursor:pointer;transition:all .18s}
+.btn-select-all{background:var(--bg);color:var(--text-light)}
+.btn-select-all:hover{background:var(--primary);color:#fff}
+.btn-deselect-all{background:var(--bg);color:var(--text-light)}
+.btn-deselect-all:hover{background:#FEE2E2;color:#DC2626}
+.cat-actions button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ==================== FILTER BAR ==================== */
+.filter-bar{display:flex;gap:5px;margin-bottom:10px;flex-wrap:wrap}
+.filter-btn{padding:5px 14px;border:none;border-radius:14px;font-family:var(--font);font-size:.73rem;font-weight:600;cursor:pointer;transition:all .18s;background:var(--bg);color:var(--text-light)}
+.filter-btn:hover{background:var(--card-hover);color:var(--primary-light)}
+.filter-btn.is-active{background:var(--primary);color:#fff;box-shadow:0 1px 4px rgba(217,119,6,.25)}
+
+/* ==================== ITEMS GRID ==================== */
+.items-grid{display:grid;grid-template-columns:1fr;gap:6px}
+@media(min-width:640px){.items-grid{grid-template-columns:1fr 1fr}}
+.item-card{display:flex;flex-direction:column;background:var(--bg);border-radius:var(--radius-sm);padding:10px 12px;transition:all .2s;border:2px solid transparent;position:relative}
+.item-card:hover{border-color:var(--border)}
+.item-card.is-checked{background:#ECFDF5;border-color:var(--success)}
+.item-card.is-checked .item-name{font-weight:600;color:var(--success-dark)}
+.item-row{display:flex;align-items:center;gap:8px;flex-wrap:nowrap}
+.item-check{cursor:pointer;display:flex;align-items:center;gap:8px;flex:1;min-width:0}
+.item-check input{position:absolute;opacity:0;width:0;height:0}
+.check-box{flex-shrink:0;width:18px;height:18px;border:2px solid #4B5563;border-radius:4px;display:flex;align-items:center;justify-content:center;transition:all .2s;background:var(--card)}
+.item-check input:checked~.check-box{background:var(--success);border-color:var(--success)}
+.check-box svg{opacity:0;transition:opacity .12s;width:10px;height:10px}
+.item-check input:checked~.check-box svg{opacity:1}
+.item-name{font-size:.84rem;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.item-desc{font-size:.72rem;color:var(--text-light);margin-top:1px;margin-left:36px;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+
+/* ==================== BADGES ==================== */
+.item-meta{display:flex;align-items:center;gap:5px;margin-left:36px;margin-top:4px;flex-wrap:wrap}
+.risk-badge{font-size:.6rem;font-weight:700;padding:1px 7px;border-radius:4px;display:inline-flex;align-items:center;gap:3px;letter-spacing:.2px}
+.risk-badge--common{background:var(--risk-common-bg);color:#FECACA}
+.risk-badge--possible{background:var(--risk-possible-bg);color:#FED7AA}
+.risk-badge--low{background:var(--risk-low-bg);color:#A7F3D0}
+.time-badge{font-size:.6rem;font-weight:600;padding:1px 7px;border-radius:4px;background:var(--card-hover);color:var(--text-light);display:inline-flex;align-items:center;gap:3px;letter-spacing:.2px}
+
+/* Shop button */
+.item-shop{font-size:.7rem;font-weight:700;color:#fff;background:var(--primary);padding:4px 10px;border-radius:5px;transition:all .18s;white-space:nowrap;display:inline-flex;align-items:center;gap:3px;border:none;cursor:pointer;font-family:var(--font);flex-shrink:0;line-height:1.3}
+.item-shop:hover{background:var(--primary-dark);transform:translateY(-1px)}
+.item-shop:active{transform:translateY(0)}
+.item-shop.is-in-cart{background:var(--success)}
+.item-shop.is-in-cart:hover{background:#059669}
+
+/* ==================== CUSTOM ITEMS ==================== */
+.item-card--custom{background:#FFFBEB;border-color:#FDE68A}
+.item-card--custom.is-checked{background:#ECFDF5;border-color:var(--success)}
+.item-card--custom .item-name::after{content:'Custom';font-size:.6rem;color:var(--text-light);background:var(--card-hover);padding:0 5px;border-radius:3px;margin-left:5px;font-weight:400}
+.item-remove{background:none;border:none;cursor:pointer;font-size:.85rem;color:var(--text-light);padding:2px 5px;border-radius:4px;transition:all .15s;flex-shrink:0;line-height:1}
+.item-remove:hover{color:#FECACA;background:var(--risk-common-bg)}
+.add-item-form{grid-column:1/-1;display:flex;gap:5px;margin-top:4px;padding-top:8px;border-top:1px dashed var(--border)}
+.add-item-input{flex:1;padding:8px 10px;border:2px solid var(--border);border-radius:var(--radius-sm);font-family:var(--font);font-size:.82rem;outline:none;transition:border-color .2s;background:var(--card);color:var(--text)}
+.add-item-input:focus{border-color:var(--primary)}
+.add-item-input::placeholder{color:var(--text-light);font-size:.78rem}
+.add-item-btn{padding:8px 14px;border:none;border-radius:var(--radius-sm);background:var(--primary);color:#fff;font-family:var(--font);font-size:.8rem;font-weight:600;cursor:pointer;transition:background .18s;white-space:nowrap}
+.add-item-btn:hover{background:var(--primary-dark)}
+
+/* ==================== FLOATING CART BAR ==================== */
+.cart-floating-bar{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--card);border-top:1px solid var(--border);color:var(--text);padding:10px 16px;align-items:center;justify-content:space-between;box-shadow:0 -4px 16px rgba(0,0,0,.3);transform:translateY(100%);transition:transform .3s cubic-bezier(.22,1,.36,1)}
+.cart-floating-bar.is-visible{transform:translateY(0)}
+.cart-floating-bar .cfb-label{font-size:.85rem;font-weight:600;display:flex;align-items:center;gap:6px}
+.cart-floating-bar .cfb-btn{padding:8px 18px;border:none;border-radius:var(--radius-sm);background:var(--primary);color:#fff;font-family:var(--font);font-size:.82rem;font-weight:700;cursor:pointer;transition:background .18s}
+.cart-floating-bar .cfb-btn:hover{background:var(--primary-dark)}
+
+/* ==================== CART MODAL ==================== */
+.cart-modal-overlay{display:none;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.6);backdrop-filter:blur(4px)}
+.cart-modal-overlay.is-open{display:block}
+.cart-modal{position:fixed;bottom:0;left:0;right:0;max-height:80vh;background:var(--card);border-radius:var(--radius) var(--radius) 0 0;display:flex;flex-direction:column;animation:slideUp .3s cubic-bezier(.22,1,.36,1)}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.cart-modal-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:2px solid var(--border);font-size:.95rem;font-weight:700}
+.cart-modal-header .cmh-close{background:none;border:none;font-size:1.1rem;cursor:pointer;color:var(--text-light);padding:4px 8px;border-radius:4px}
+.cart-modal-header .cmh-close:hover{background:var(--bg);color:var(--text)}
+.cart-modal-body{flex:1;overflow-y:auto;padding:8px 14px;min-height:100px}
+/* Cart item base styles (used in modal) */
+.cart-modal-body .cart-item{display:flex;align-items:center;gap:8px;padding:10px 4px;border-bottom:1px solid var(--border);border-radius:6px}
+.cart-modal-body .cart-item:hover{background:var(--bg)}
+.cart-modal-body .ci-emoji{font-size:.9rem;flex-shrink:0}
+.cart-modal-body .ci-name{font-size:.8rem;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cart-modal-body .ci-remove{background:none;border:none;cursor:pointer;font-size:.7rem;color:var(--text-light);padding:3px 5px;border-radius:3px;transition:all .12s;flex-shrink:0}
+.cart-modal-body .ci-remove:hover{color:#FECACA;background:var(--risk-common-bg)}
+.cart-modal-body .cart-empty{text-align:center;color:var(--text-light);font-size:.8rem;padding:30px 10px}
+.cart-modal-footer{padding:12px 16px 20px;border-top:2px solid var(--border)}
+.cart-modal-footer .cart-checkout{width:100%;padding:13px 0;border:none;border-radius:var(--radius-sm);background:var(--primary);color:#fff;font-family:var(--font);font-size:.9rem;font-weight:700;cursor:pointer;transition:all .2s}
+.cart-modal-footer .cart-checkout:hover{background:var(--primary-dark)}
+.cart-modal-footer .cart-checkout:disabled{opacity:.4;cursor:not-allowed}
+
+/* ==================== CART DRAWER (Desktop right overlay) ==================== */
+.cart-drawer,.cart-drawer-tab{display:none}
+@media(min-width:1024px){
+  .cart-floating-bar{display:none!important}
+  .cart-drawer{display:flex;flex-direction:column;position:fixed;right:0;top:60px;width:320px;max-height:calc(100vh - 60px);z-index:100;background:var(--card);box-shadow:-4px 0 20px rgba(0,0,0,.12);transform:translateX(100%);transition:transform .3s cubic-bezier(.22,1,.36,1);overflow:hidden;border-radius:0 0 0 var(--radius)}
+  .cart-drawer.is-open{transform:translateX(0)}
+  .cart-drawer-tab{display:flex;position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:99;width:32px;height:48px;background:var(--primary);color:#fff;border:none;border-radius:6px 0 0 6px;cursor:pointer;font-size:.85rem;align-items:center;justify-content:center;flex-direction:column;gap:2px;box-shadow:-2px 2px 8px rgba(0,0,0,.15);transition:right .3s cubic-bezier(.22,1,.36,1);font-family:var(--font);line-height:1}
+  .cart-drawer-tab:hover{background:var(--primary-dark);width:36px}
+  .cart-drawer.is-open ~ .cart-drawer-tab{right:320px}
+  .cart-drawer-tab .tab-count{font-size:.58rem;font-weight:700;background:rgba(255,255,255,.2);padding:0 4px;border-radius:6px;min-width:16px;text-align:center;line-height:1.4}
+  .cart-drawer-header{padding:14px 16px 10px;font-size:.95rem;font-weight:700;border-bottom:2px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+  .cart-drawer-close{background:none;border:none;font-size:1rem;cursor:pointer;color:var(--text-light);padding:2px 6px;border-radius:4px;line-height:1}
+  .cart-drawer-close:hover{background:var(--bg);color:var(--text)}
+  .cart-drawer-items{flex:1;overflow-y:auto;padding:8px 12px;min-height:60px}
+  .cart-drawer-items .cart-empty{text-align:center;color:var(--text-light);font-size:.8rem;padding:30px 10px}
+  .cart-drawer-items .cart-item{display:flex;align-items:center;gap:8px;padding:7px 6px;border-radius:6px;transition:background .15s}
+  .cart-drawer-items .cart-item:hover{background:var(--bg)}
+  .cart-drawer-items .ci-emoji{font-size:.9rem;flex-shrink:0}
+  .cart-drawer-items .ci-name{font-size:.8rem;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .cart-drawer-items .ci-remove{background:none;border:none;cursor:pointer;font-size:.7rem;color:var(--text-light);padding:3px 5px;border-radius:3px;transition:all .12s;flex-shrink:0}
+  .cart-drawer-items .ci-remove:hover{color:#FECACA;background:var(--risk-common-bg)}
+  .cart-drawer-footer{padding:10px 14px 14px;border-top:2px solid var(--border);flex-shrink:0}
+  .cart-drawer-count{font-size:.78rem;color:var(--text-light);margin-bottom:8px}
+  .cart-drawer-checkout{width:100%;padding:11px 0;border:none;border-radius:var(--radius-sm);background:var(--primary);color:#fff;font-family:var(--font);font-size:.85rem;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px}
+  .cart-drawer-checkout:hover{background:var(--primary-dark);box-shadow:0 4px 12px rgba(217,119,6,.35)}
+  .cart-drawer-checkout:disabled{opacity:.4;cursor:not-allowed}
+}
+
+/* ==================== BOTTOM BAR ==================== */
+.bottom-bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:14px;padding-top:12px;border-top:2px solid var(--border)}
+.summary-text{font-size:.82rem;color:var(--text-light);font-weight:500}
+.bottom-actions{display:flex;gap:6px;flex-wrap:wrap}
+.bottom-actions button,.bottom-actions a{padding:8px 16px;border:none;border-radius:var(--radius-sm);font-family:var(--font);font-size:.8rem;font-weight:600;cursor:pointer;transition:all .18s;display:inline-flex;align-items:center;gap:5px}
+.btn-print{background:var(--primary);color:#fff}
+.btn-print:hover{background:var(--primary-dark)}
+.btn-reset{background:var(--bg);color:var(--text-light);border:1px solid var(--border)}
+.btn-reset:hover{color:#DC2626;border-color:#FCA5A5}
+.btn-print:focus-visible,.btn-reset:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ==================== FOOTER ==================== */
+.site-footer{background:var(--card);border-top:1px solid var(--border);color:var(--text-light);text-align:center;padding:18px;font-size:.78rem;margin-top:auto}
+.site-footer a{color:var(--text);text-decoration:underline}
+.site-footer a:hover{color:var(--primary)}
+.site-footer .footer-links{display:flex;justify-content:center;gap:14px;margin-bottom:4px;flex-wrap:wrap}
+.site-footer .footer-links a{text-decoration:none;font-weight:500}
+.site-footer .footer-links a:hover{text-decoration:underline;color:var(--primary)}
+
+/* ==================== RESPONSIVE ==================== */
+@media(max-width:400px){
+  .intro h1{font-size:1.15rem}
+  .site-header .logo{font-size:1rem}
+  .item-card{padding:8px 10px}
+  .item-shop{font-size:.65rem;padding:3px 8px}
+  .tab-btn{padding:6px 12px;font-size:.74rem}
+}
+
+/* ==================== PRINT ==================== */
+@media print{
+  @page{margin:1.5cm .8cm}
+  body{background:#fff;font-size:11pt;color:#000}
+  .site-header,.tabs-wrap,.bottom-bar,.site-footer,
+  .ad-placeholder,.cat-actions,.item-shop,.item-meta,
+  .intro p,.intro .fine-warning,.item-remove,.add-item-form,.filter-bar,
+  .cart-floating-bar,.cart-modal-overlay,.cart-drawer,.cart-drawer-tab{display:none!important}
+  .progress-wrap,.category-panel{box-shadow:none;padding:4px 0;margin:0}
+  .progress-wrap{display:none!important}
+  .container{padding:0;max-width:100%}
+  .app-layout{display:block}
+  .category-panel{border-radius:0;background:transparent;padding:0;border:none}
+  .category-header{border-bottom:1px solid #ccc;margin-top:14px}
+  .category-title{font-size:13pt}
+  .items-grid{display:block}
+  .item-card{display:none;padding:3px 0;background:transparent;border:none;page-break-inside:avoid}
+  .item-card.is-checked{display:flex;flex-direction:row;align-items:center;background:transparent}
+  .item-card.is-checked .item-row{width:100%}
+  .item-card.is-checked .check-box{background:transparent;border:none;width:auto;height:auto}
+  .item-card.is-checked .check-box svg{display:none}
+  .item-card.is-checked .check-box::after{content:"☐";font-size:14pt;line-height:1}
+  .item-card.is-checked .item-check input:checked~.check-box::after{content:"☑"}
+  .item-card.is-checked .item-name{font-weight:600;color:#000}
+  .item-card.is-checked .item-desc{color:#555;display:block}
+  .item-card.is-checked .risk-badge{display:none}
+  .item-card.is-checked .time-badge{display:none}
+  .item-card--custom .item-name::after{display:none}
+}
+
+/* ==================== DEPOSIT SAVED CTA ==================== */
+.deposit-cta{background:linear-gradient(135deg,#FFFBEB,#FEF3C7);border:1px solid #FDE68A;border-radius:var(--radius);padding:20px;margin:16px 0;text-align:center}
+.deposit-cta h3{font-size:1.1rem;font-weight:700;margin-bottom:6px;color:var(--primary-dark)}
+.deposit-cta p{font-size:.82rem;color:var(--text-light);margin-bottom:12px}
+.deposit-cta .cta-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border:none;border-radius:var(--radius-sm);background:var(--primary);color:#fff;font-family:var(--font);font-size:.9rem;font-weight:700;cursor:pointer;transition:all .2s}
+.deposit-cta .cta-btn:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 4px 12px rgba(217,119,6,.3)}
+.deposit-cta .cta-sub{font-size:.72rem;color:var(--text-light);margin-top:8px;opacity:.7}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <div class="logo">🚚 <span>Check</span>listLab</div>
+    <div class="tagline">Don't lose your deposit. Move out stress-free.</div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="intro">
+    <h1>🚚 Dorm <span>Move-Out</span> Checklist</h1>
+    <p>Avoid costly fines — check off every step, pass inspection, and get your full deposit back.</p>
+    <div class="fine-warning">🔥 Students lose an average of $127 in move-out fines — don't be one of them</div>
+  </div>
+
+  <div class="ad-placeholder">📢 AdSense Banner (728×90) – Place your ad code here</div>
+
+  <div class="app-layout">
+
+    <!-- ====== LEFT: MAIN TOOL ====== -->
+    <div class="app-main">
+      <div class="progress-wrap" id="progressWrap">
+        <div class="progress-stats"><span id="checkedCount">0</span> of <span id="totalCount">0</span> items</div>
+        <div class="progress-bar-track"><div class="progress-bar-fill" id="progressFill" style="width:0%"></div></div>
+        <div class="progress-label" id="progressLabel">0%</div>
+      </div>
+
+      <div class="tabs-wrap">
+        <button class="tab-scroll-btn tab-scroll-btn--left" id="tabsScrollLeft" aria-label="Scroll left">‹</button>
+        <div class="tabs-scroll" id="tabsContainer" role="tablist"></div>
+        <button class="tab-scroll-btn tab-scroll-btn--right" id="tabsScrollRight" aria-label="Scroll right">›</button>
+      </div>
+
+      <div class="category-panel" id="categoryPanel"></div>
+
+      <!-- Deposit Saved CTA -->
+      <div class="deposit-cta" id="depositCta">
+        <h3>💰 You've Saved Your Deposit!</h3>
+        <p>You're on track to get your full deposit back. Don't forget packing supplies!</p>
+        <button class="cta-btn" id="ctaShopBtn">🛒 Shop Packing Supplies on Amazon →</button>
+        <div class="cta-sub">We earn a small commission at no extra cost to you</div>
+      </div>
+
+      <div class="bottom-bar">
+        <div class="summary-text" id="summaryText">Ready to move out? Start checking items off!</div>
+        <div class="bottom-actions">
+          <button class="btn-print" id="printBtn">🖨️ Print Checklist</button>
+          <button class="btn-reset" id="resetBtn">🔄 Reset All</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ad-placeholder ad-placeholder--tall">📢 AdSense Banner (728×90) – Place your ad code here</div>
+</main>
+
+<!-- Mobile floating cart bar -->
+<div class="cart-floating-bar" id="cartFloatingBar">
+  <span class="cfb-label">🛒 <span id="cartCountMobile">0</span> Items</span>
+  <button class="cfb-btn" id="cartCheckoutMobile">Checkout ↗</button>
+</div>
+
+<!-- Desktop cart drawer (right overlay) -->
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-drawer-header">
+    <span>🛒 Packing Supplies</span>
+    <button class="cart-drawer-close" id="cartDrawerClose">✕</button>
+  </div>
+  <div class="cart-drawer-items" id="cartDrawerItems">
+    <div class="cart-empty">Add packing supplies to get started</div>
+  </div>
+  <div class="cart-drawer-footer">
+    <div class="cart-drawer-count" id="cartDrawerCount">0 items</div>
+    <button class="cart-drawer-checkout" id="cartDrawerCheckout" disabled>🛒 Shop All (0) on Amazon ↗</button>
+  </div>
+</div>
+<button class="cart-drawer-tab" id="cartDrawerTab" title="Shopping Cart">🛒<span class="tab-count" id="cartDrawerTabCount">0</span></button>
+
+<!-- Mobile cart modal -->
+<div class="cart-modal-overlay" id="cartModal">
+  <div class="cart-modal">
+    <div class="cart-modal-header">
+      <span>🛒 Packing Supplies</span>
+      <button class="cmh-close" id="cartModalClose">✕</button>
+    </div>
+    <div class="cart-modal-body" id="cartModalBody"></div>
+    <div class="cart-modal-footer">
+      <button class="cart-checkout" id="cartModalCheckout" disabled>🛒 Shop All (0) on Amazon ↗</button>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-links">
+    <a href="#">🏠 Home</a> <a href="#">📋 All Checklists</a>
+    <a href="#">📧 Contact</a> <a href="#">🔒 Privacy</a>
+    <a href="..\dorm-checklist\index.html">🏫 Dorm Checklist</a>
+    <a href="..\first-apartment-checklist\index.html">🏢 First Apartment</a>
+  </div>
+  <div>&copy; 2026 ChecklistLab. Don't lose your deposit — move out smart.</div>
+</footer>
+
+<script>
+/* ==================== DATA ==================== */
+var CHECKLIST_DATA = [
+  { id:'paperwork', name:'Paperwork & Planning', icon:'📋', items:[
+    { id:'pw-review-contract',name:'Review Housing Contract & Move-Out Rules',desc:'Know your deadlines, fees, and inspection requirements before you start',priceTier:'budget',fineRisk:'possible',timeFrame:'4w',emoji:'📋'},
+    { id:'pw-schedule-inspection',name:'Schedule Check-Out Inspection with RA',desc:'Book your walkthrough early — slots fill up fast before finals',priceTier:'budget',fineRisk:'common',timeFrame:'4w',emoji:'📅'},
+    { id:'pw-mail-forwarding',name:'Set Up USPS Mail Forwarding',desc:'Forward mail to your summer address at usps.com — free for students',priceTier:'budget',fineRisk:'low',timeFrame:'4w',emoji:'📬'},
+    { id:'pw-update-address',name:'Update Address in School Portal',desc:'Notify the registrar, financial aid, and campus jobs of your new address',priceTier:'budget',fineRisk:'possible',timeFrame:'4w',emoji:'🏛️'},
+    { id:'pw-coordinate-roommates',name:'Coordinate Cleaning & Shared Items with Roommates',desc:'Split duties: who cleans bathroom, who takes the couch, who buys boxes',priceTier:'budget',fineRisk:'possible',timeFrame:'4w',emoji:'🤝'},
+    { id:'pw-summer-storage',name:'Arrange Summer Storage (If Needed)',desc:'Collegeboxes, U-Haul storage, or a friend\'s basement — book early',priceTier:'moderate',fineRisk:'low',timeFrame:'4w',emoji:'📦'},
+    { id:'pw-check-unpaid-fees',name:'Check for Outstanding Fines & Fees',desc:'Library fines, parking tickets, unpaid housing fees — clear them before move-out',priceTier:'budget',fineRisk:'common',timeFrame:'2w',emoji:'💰'},
+    { id:'pw-confirm-checkout',name:'Confirm Check-Out Appointment & Paperwork',desc:'Print your check-out form and confirmation — don\'t show up without it',priceTier:'budget',fineRisk:'common',timeFrame:'1w',emoji:'✅'},
+  ]},
+  { id:'packing', name:'Packing Supplies', icon:'📦', items:[
+    { id:'pk-moving-boxes',name:'Moving Boxes (Medium 3-Pack)',desc:'Standard 1.5 cubic ft boxes — perfect for books, kitchen, and decor',priceTier:'budget',fineRisk:'low',timeFrame:'4w',emoji:'📦'},
+    { id:'pk-packing-tape',name:'Packing Tape + Dispenser',desc:'Get a tape gun — your hands will thank you after 20 boxes',priceTier:'budget',fineRisk:'low',timeFrame:'4w',emoji:'📎'},
+    { id:'pk-bubble-wrap',name:'Bubble Wrap / Packing Paper',desc:'Protect fragile items: mugs, frames, electronics, and mini-fridge shelves',priceTier:'budget',fineRisk:'low',timeFrame:'4w',emoji:'🛡️'},
+    { id:'pk-markers',name:'Permanent Markers (2-Pack)',desc:'Label every box on TWO sides with contents and destination room',priceTier:'budget',fineRisk:'low',timeFrame:'4w',emoji:'🖊️'},
+    { id:'pk-trash-bags',name:'Heavy-Duty Trash Bags (20-Pack)',desc:'For bedding, clothes, pillows, and actual trash — get the thick ones',priceTier:'budget',fineRisk:'low',timeFrame:'4w',emoji:'🗑️'},
+    { id:'pk-box-cutter',name:'Box Cutter / Scissors',desc:'Essential for breaking down boxes and cutting tape — handle with care',priceTier:'budget',fineRisk:'low',timeFrame:'4w',emoji:'✂️'},
+    { id:'pk-furniture-pads',name:'Furniture Blankets / Moving Pads',desc:'Protect desk, dresser, and TV from scratches during transport',priceTier:'moderate',fineRisk:'low',timeFrame:'2w',emoji:'🛋️'},
+  ]},
+  { id:'cleaning', name:'Cleaning', icon:'🧹', items:[
+    { id:'cl-command-strips',name:'Remove All Command Strips from Walls',desc:'Pull straight down (not out) to avoid tearing paint — most common fine!',priceTier:'budget',fineRisk:'common',timeFrame:'1w',emoji:'🧹'},
+    { id:'cl-patch-holes',name:'Patch Nail Holes with Spackle',desc:'Use a tube of spackle — $4 at Walmart vs $70 wall repair fee per hole',priceTier:'budget',fineRisk:'common',timeFrame:'1w',emoji:'🔧'},
+    { id:'cl-wipe-walls',name:'Wipe Down Walls & Baseboards',desc:'Magic Eraser works wonders on scuffs — test in an inconspicuous spot first',priceTier:'budget',fineRisk:'possible',timeFrame:'1w',emoji:'🧽'},
+    { id:'cl-vacuum-floors',name:'Vacuum & Mop All Floors',desc:'Pay extra attention to corners and under the bed — inspect closely',priceTier:'budget',fineRisk:'possible',timeFrame:'1w',emoji:'🧹'},
+    { id:'cl-clean-bathroom',name:'Clean Bathroom (Toilet, Sink, Shower)',desc:'Use bleach cleaner for toilet bowl and a scrub brush — no shortcuts',priceTier:'budget',fineRisk:'common',timeFrame:'1w',emoji:'🚿'},
+    { id:'cl-defrost-fridge',name:'Defrost & Clean Mini-Fridge',desc:'Unplug 24hrs before move-out, leave door open to air dry completely',priceTier:'budget',fineRisk:'common',timeFrame:'1w',emoji:'🧊'},
+    { id:'cl-clean-microwave',name:'Clean Microwave Inside & Out',desc:'Heat a bowl of water + lemon for 2 min — steam loosens everything',priceTier:'budget',fineRisk:'possible',timeFrame:'1w',emoji:'📟'},
+    { id:'cl-wipe-surfaces',name:'Wipe Down All Surfaces & Desks',desc:'Don\'t forget shelves, drawers inside, and window sills',priceTier:'budget',fineRisk:'possible',timeFrame:'1w',emoji:'🧽'},
+    { id:'cl-remove-trash',name:'Take ALL Trash to Outside Dumpsters',desc:'Never leave bags in hallways — fire code violation = instant fine',priceTier:'budget',fineRisk:'common',timeFrame:'moveout',emoji:'🗑️'},
+    { id:'cl-final-vacuum',name:'Final Vacuum After Everything Is Out',desc:'One last pass — you\'ll be amazed what fell behind furniture',priceTier:'budget',fineRisk:'possible',timeFrame:'moveout',emoji:'🧹'},
+  ]},
+  { id:'repairs', name:'Repairs & Prep', icon:'🔧', items:[
+    { id:'rp-furniture-original',name:'Return Furniture to Original Setup',desc:'Lower bed, reassemble desk, put dresser back — match move-in photos',priceTier:'budget',fineRisk:'common',timeFrame:'1w',emoji:'🛏️'},
+    { id:'rp-remove-stickers',name:'Remove Tape & Stickers from Walls',desc:'Goo Gone or a hair dryer on low heat removes sticky residue safely',priceTier:'budget',fineRisk:'common',timeFrame:'1w',emoji:'🏷️'},
+    { id:'rp-lower-bed',name:'Lower Bed Frame to Original Height',desc:'Many schools charge $50+ if bed is left raised — don\'t forget this',priceTier:'budget',fineRisk:'possible',timeFrame:'1w',emoji:'🛏️'},
+    { id:'rp-clean-blinds',name:'Clean Window Blinds',desc:'Dusty blinds are a common inspection fail — use a damp microfiber cloth',priceTier:'budget',fineRisk:'possible',timeFrame:'1w',emoji:'🪟'},
+    { id:'rp-check-closet',name:'Check Closet & Drawers Thoroughly',desc:'Open every drawer, every shelf — clothes, hangers, shoes get left behind',priceTier:'budget',fineRisk:'low',timeFrame:'1w',emoji:'🚪'},
+    { id:'rp-timestamp-photos',name:'Take Timestamped Photos of Clean Room',desc:'Your only defense against false damage charges — email them to yourself',priceTier:'budget',fineRisk:'common',timeFrame:'moveout',emoji:'📸'},
+  ]},
+  { id:'moving', name:'Moving Day', icon:'🚛', items:[
+    { id:'md-load-vehicle',name:'Load Belongings into Vehicle',desc:'Heavy items first, furniture padded, fragile boxes on top, labeled clearly',priceTier:'budget',fineRisk:'low',timeFrame:'moveout',emoji:'🚚'},
+    { id:'md-final-sweep',name:'Final Sweep of Room & Common Areas',desc:'Check closets, drawers, under bed, behind doors, bathroom, living room',priceTier:'budget',fineRisk:'common',timeFrame:'moveout',emoji:'🔍'},
+    { id:'md-return-keys',name:'Return Keys & Access Cards to Front Desk',desc:'Key not returned = $50-$150 charge. Drop them in the express box if after hours',priceTier:'budget',fineRisk:'common',timeFrame:'moveout',emoji:'🔑'},
+    { id:'md-complete-checkout',name:'Complete Check-Out Form with RA',desc:'Walk through with your RA, point out existing damage, get sign-off',priceTier:'budget',fineRisk:'common',timeFrame:'moveout',emoji:'📝'},
+    { id:'md-lock-windows',name:'Lock Windows & Turn Off Lights',desc:'Close and lock all windows, switch off lights, set thermostat to 70°F',priceTier:'budget',fineRisk:'possible',timeFrame:'moveout',emoji:'🔒'},
+    { id:'md-confirm-mail',name:'Double-Check Mail Forwarding Is Active',desc:'Confirm USPS change-of-address went through — do this on your phone before leaving',priceTier:'budget',fineRisk:'possible',timeFrame:'moveout',emoji:'📬'},
+  ]},
+  { id:'disposal', name:'Donate & Dispose', icon:'♻️', items:[
+    { id:'dp-donate-clothes',name:'Donate Unwanted Clothes & Shoes',desc:'Most campuses have donation bins near the front office during move-out week',priceTier:'budget',fineRisk:'low',timeFrame:'2w',emoji:'👕'},
+    { id:'dp-sell-textbooks',name:'Sell Textbooks & Electronics',desc:'Use Amazon Trade-In, Chegg, or Facebook Marketplace — don\'t throw money away',priceTier:'moderate',fineRisk:'low',timeFrame:'2w',emoji:'📚'},
+    { id:'dp-food-disposal',name:'Dispose of Perishable Food & Pantry',desc:'Leftover food = ants, roaches, mice = $100+ cleaning fine. Throw it ALL out.',priceTier:'budget',fineRisk:'common',timeFrame:'1w',emoji:'🥫'},
+    { id:'dp-recycle-cardboard',name:'Recycle Cardboard & Paper',desc:'Break down boxes flat and take to recycling — don\'t leave piles in the room',priceTier:'budget',fineRisk:'possible',timeFrame:'1w',emoji:'♻️'},
+    { id:'dp-lost-found',name:'Check Lost & Found for Your Items',desc:'Check with the front desk before you leave — you might be surprised what turned up',priceTier:'budget',fineRisk:'low',timeFrame:'2w',emoji:'🔍'},
+  ]},
+];
+
+/* ==================== STATE ==================== */
+var STORAGE_KEY = 'checklistlab_moveout';
+var state = {
+  activeTab: CHECKLIST_DATA[0].id,
+  checked: {},
+  customItems: {},
+  cart: [],
+  fineRiskFilter: false,
+};
+
+var totalFixedItems = 0;
+CHECKLIST_DATA.forEach(function(c){ totalFixedItems += c.items.length; });
+
+function ensureCustomItems() {
+  CHECKLIST_DATA.forEach(function(c){ if (!state.customItems[c.id]) state.customItems[c.id] = []; });
+}
+
+/* ==================== DOM REFS ==================== */
+function $(s, e){ return (e||document).querySelector(s); }
+function $$(s, e){ return [...(e||document).querySelectorAll(s)]; }
+
+/* ==================== HELPERS ==================== */
+function getCategory(id) { return CHECKLIST_DATA.find(function(c){ return c.id === id; }); }
+function getCustomItems(cid) { return state.customItems[cid] || []; }
+function getAmazonUrl(name) { return 'https://amazon.com/s?k=' + encodeURIComponent(name + ' college dorm') + '&tag=CHECKLISTLAB-20'; }
+
+function getCheckedCount() {
+  var c = CHECKLIST_DATA.reduce(function(s, cat){ return s + cat.items.filter(function(it){ return state.checked[it.id]; }).length; }, 0);
+  Object.keys(state.customItems).forEach(function(k){
+    (state.customItems[k]||[]).forEach(function(it){ if (it.checked) c++; });
+  });
+  return c;
+}
+
+function getCategoryChecked(cid) {
+  var cat = getCategory(cid);
+  var c = cat ? cat.items.filter(function(it){ return state.checked[it.id]; }).length : 0;
+  getCustomItems(cid).forEach(function(it){ if (it.checked) c++; });
+  return c;
+}
+
+function getCategoryTotal(cid) {
+  var cat = getCategory(cid);
+  return (cat ? cat.items.length : 0) + getCustomItems(cid).length;
+}
+
+function getAllItemsCount() {
+  return totalFixedItems + Object.keys(state.customItems).reduce(function(s, k){ return s + (state.customItems[k]||[]).length; }, 0);
+}
+
+/* ==================== LOCAL STORAGE ==================== */
+function saveState() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ checked: state.checked, customItems: state.customItems, cart: state.cart })); } catch(e) {}
+}
+
+function loadState() {
+  try {
+    var saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      var p = JSON.parse(saved);
+      if (p.checked) {
+        CHECKLIST_DATA.forEach(function(c){
+          c.items.forEach(function(it){ state.checked[it.id] = typeof p.checked[it.id] === 'boolean' ? p.checked[it.id] : false; });
+        });
+      } else {
+        CHECKLIST_DATA.forEach(function(c){ c.items.forEach(function(it){ state.checked[it.id] = false; }); });
+      }
+      if (p.customItems) state.customItems = p.customItems;
+      if (p.cart) state.cart = p.cart;
+      ensureCustomItems();
+    } else {
+      CHECKLIST_DATA.forEach(function(c){ c.items.forEach(function(it){ state.checked[it.id] = false; }); });
+      ensureCustomItems();
+    }
+  } catch(e) {
+    CHECKLIST_DATA.forEach(function(c){ c.items.forEach(function(it){ state.checked[it.id] = false; }); });
+    ensureCustomItems();
+  }
+}
+
+/* ==================== BADGE HELPERS ==================== */
+function getFineRiskBadge(risk) {
+  if (risk === 'common') return '<span class="risk-badge risk-badge--common">🔥 Fine Risk</span>';
+  if (risk === 'possible') return '<span class="risk-badge risk-badge--possible">🟡 Possible Fine</span>';
+  return '<span class="risk-badge risk-badge--low">🟢 No Risk</span>';
+}
+
+function getTimeLabel(tf) {
+  if (tf === '4w') return '⏰ 4 Weeks Before';
+  if (tf === '2w') return '⏰ 2 Weeks Before';
+  if (tf === '1w') return '⏰ 1 Week Before';
+  if (tf === 'moveout') return '⏰ Move-Out Day';
+  return '';
+}
+
+/* ==================== RENDER — Tabs ==================== */
+function renderTabs() {
+  var container = document.getElementById('tabsContainer');
+  container.innerHTML = '';
+  CHECKLIST_DATA.forEach(function(cat){
+    var btn = document.createElement('button');
+    btn.className = 'tab-btn' + (cat.id === state.activeTab ? ' is-active' : '');
+    btn.setAttribute('role','tab');
+    btn.setAttribute('aria-selected', cat.id === state.activeTab ? 'true' : 'false');
+    btn.dataset.category = cat.id;
+    btn.innerHTML = cat.icon + ' ' + cat.name + ' <span class="tab-count">' + getCategoryChecked(cat.id) + '/' + getCategoryTotal(cat.id) + '</span>';
+    btn.addEventListener('click', function(){ switchTab(cat.id); });
+    container.appendChild(btn);
+  });
+}
+
+/* ==================== RENDER — Category Panel ==================== */
+function renderCategory(catId) {
+  var cat = getCategory(catId);
+  if (!cat) return;
+  var custom = getCustomItems(catId);
+  var cartItems = state.cart;
+
+  // Sort items by fine risk if filter active
+  var items;
+  if (state.fineRiskFilter) {
+    var common = cat.items.filter(function(i){ return i.fineRisk === 'common'; });
+    var possible = cat.items.filter(function(i){ return i.fineRisk === 'possible'; });
+    var low = cat.items.filter(function(i){ return i.fineRisk === 'low'; });
+    items = common.concat(possible, low);
+  } else {
+    items = cat.items;
+  }
+
+  // Fixed items
+  var fixedHtml = '';
+  items.forEach(function(it) {
+    var isChecked = state.checked[it.id];
+    var inCart = cartItems.some(function(c){ return c.id === it.id; });
+    var fineBadge = getFineRiskBadge(it.fineRisk);
+    var timeLabel = getTimeLabel(it.timeFrame);
+    fixedHtml += '<div class="item-card' + (isChecked?' is-checked':'') + '">' +
+      '<div class="item-row">' +
+        '<label class="item-check">' +
+          '<input type="checkbox"' + (isChecked?' checked':'') + ' data-iid="' + it.id + '">' +
+          '<span class="check-box"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></span>' +
+          '<span class="item-name">' + it.name + '</span>' +
+        '</label>' +
+        '<button class="item-shop' + (inCart?' is-in-cart':'') + '" data-iid="' + it.id + '">' + (inCart ? 'Added ✓' : 'Shop ↗') + '</button>' +
+      '</div>' +
+      (it.desc ? '<div class="item-desc">' + it.desc + '</div>' : '') +
+      '<div class="item-meta">' + fineBadge + timeLabel + '</div>' +
+    '</div>';
+  });
+
+  // Custom items
+  var customHtml = '';
+  custom.forEach(function(it) {
+    var inCart = cartItems.some(function(c){ return c.id === it.id; });
+    customHtml += '<div class="item-card item-card--custom' + (it.checked?' is-checked':'') + '">' +
+      '<div class="item-row">' +
+        '<label class="item-check">' +
+          '<input type="checkbox"' + (it.checked?' checked':'') + ' data-iid="' + it.id + '">' +
+          '<span class="check-box"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></span>' +
+          '<span class="item-name">' + escHtml(it.name) + '</span>' +
+        '</label>' +
+        '<button class="item-shop' + (inCart?' is-in-cart':'') + '" data-iid="' + it.id + '">' + (inCart ? 'Added ✓' : 'Shop ↗') + '</button>' +
+        '<button class="item-remove" data-iid="' + it.id + '" title="Remove">✕</button>' +
+      '</div></div>';
+  });
+
+  // Add form
+  var addFormHtml = '<div class="add-item-form" data-cat="' + catId + '">' +
+    '<input class="add-item-input" type="text" placeholder="+ Add your own item (e.g. Electric screwdriver)" maxlength="120">' +
+    '<button class="add-item-btn" type="button">Add</button></div>';
+
+  // Filter bar
+  var filterBarHtml = '<div class="filter-bar">' +
+    '<button class="filter-btn' + (!state.fineRiskFilter?' is-active':'') + '" data-filter="all">All Items</button>' +
+    '<button class="filter-btn' + (state.fineRiskFilter?' is-active':'') + '" data-filter="finerisk">🔥 Fines First</button>' +
+  '</div>';
+
+  document.getElementById('categoryPanel').innerHTML =
+    filterBarHtml +
+    '<div class="category-header">' +
+      '<div class="category-title">' + cat.icon + ' ' + cat.name + '</div>' +
+      '<div class="cat-actions">' +
+        '<button class="btn-select-all" data-action="select-all">✓ Select All</button>' +
+        '<button class="btn-deselect-all" data-action="deselect-all">✕ Deselect</button>' +
+      '</div></div>' +
+    '<div class="items-grid">' + fixedHtml + customHtml + addFormHtml + '</div>';
+
+  // Filter events
+  $$('.filter-btn', document.getElementById('categoryPanel')).forEach(function(btn) {
+    btn.addEventListener('click', function(){
+      state.fineRiskFilter = this.dataset.filter === 'finerisk';
+      renderCategory(state.activeTab);
+    });
+  });
+
+  // Checkbox events
+  $$('.item-check input[type="checkbox"]', document.getElementById('categoryPanel')).forEach(function(cb) {
+    cb.addEventListener('change', function(){ toggleItem(this.dataset.iid); });
+  });
+  // Shop events
+  $$('.item-shop', document.getElementById('categoryPanel')).forEach(function(btn) {
+    btn.addEventListener('click', function(){ toggleCart(this.dataset.iid); });
+  });
+  // Custom item remove
+  $$('.item-remove', document.getElementById('categoryPanel')).forEach(function(btn) {
+    btn.addEventListener('click', function(){ removeCustomItem(catId, this.dataset.iid); });
+  });
+  // Select/Deselect
+  var selBtn = $('[data-action="select-all"]', document.getElementById('categoryPanel'));
+  var desBtn = $('[data-action="deselect-all"]', document.getElementById('categoryPanel'));
+  if (selBtn) selBtn.addEventListener('click', function(){ selectAll(catId); });
+  if (desBtn) desBtn.addEventListener('click', function(){ deselectAll(catId); });
+  // Add form
+  var form = $('.add-item-form[data-cat="' + catId + '"]', document.getElementById('categoryPanel'));
+  if (form) {
+    var inp = form.querySelector('.add-item-input');
+    var aBtn = form.querySelector('.add-item-btn');
+    function doAdd() {
+      var n = inp.value.trim();
+      if (n.length < 1) return;
+      addCustomItem(catId, n);
+      inp.value = ''; inp.focus();
+    }
+    aBtn.addEventListener('click', doAdd);
+    inp.addEventListener('keydown', function(e){ if (e.key==='Enter') { e.preventDefault(); doAdd(); } });
+  }
+}
+
+/* ==================== RENDER — Cart ==================== */
+function renderCart() {
+  var cart = state.cart;
+  var count = cart.length;
+
+  // Populate modal body (mobile)
+  var modalBody = document.getElementById('cartModalBody');
+  if (modalBody) {
+    if (count === 0) {
+      modalBody.innerHTML = '<div class="cart-empty">Click <strong>Shop ↗</strong> on packing supplies to add them here</div>';
+    } else {
+      var html = '';
+      cart.forEach(function(item) {
+        html += '<div class="cart-item">' +
+          '<span class="ci-emoji">' + (item.emoji||'•') + '</span>' +
+          '<span class="ci-name">' + item.name + '</span>' +
+          '<button class="ci-remove" data-iid="' + item.id + '">✕</button>' +
+        '</div>';
+      });
+      modalBody.innerHTML = html;
+      $$('.ci-remove', modalBody).forEach(function(btn) {
+        btn.addEventListener('click', function(){ toggleCart(this.dataset.iid); });
+      });
+    }
+  }
+
+  // Populate drawer items (desktop)
+  var drawerItems = document.getElementById('cartDrawerItems');
+  if (drawerItems) {
+    if (count === 0) {
+      drawerItems.innerHTML = '<div class="cart-empty">Add packing supplies to get started</div>';
+    } else {
+      var html = '';
+      cart.forEach(function(item) {
+        html += '<div class="cart-item">' +
+          '<span class="ci-emoji">' + (item.emoji||'•') + '</span>' +
+          '<span class="ci-name">' + item.name + '</span>' +
+          '<button class="ci-remove" data-iid="' + item.id + '">✕</button>' +
+        '</div>';
+      });
+      drawerItems.innerHTML = html;
+      $$('.ci-remove', drawerItems).forEach(function(btn) {
+        btn.addEventListener('click', function(){ toggleCart(this.dataset.iid); });
+      });
+    }
+  }
+
+  // Update drawer count & checkout
+  var drawerCount = document.getElementById('cartDrawerCount');
+  if (drawerCount) drawerCount.textContent = count + (count === 1 ? ' item' : ' items');
+  var drawerCheckout = document.getElementById('cartDrawerCheckout');
+  if (drawerCheckout) {
+    drawerCheckout.disabled = count === 0;
+    drawerCheckout.textContent = '🛒 Shop All (' + count + ') on Amazon ↗';
+  }
+
+  // Update tab badge
+  var tabBadge = document.getElementById('cartDrawerTabCount');
+  if (tabBadge) tabBadge.textContent = count;
+
+  // Mobile floating bar
+  var mobileCount = document.getElementById('cartCountMobile');
+  if (mobileCount) mobileCount.textContent = count;
+  var btn2 = document.getElementById('cartModalCheckout');
+  var txt = '🛒 Shop All (' + count + ') on Amazon ↗';
+  if (btn2) { btn2.disabled = count === 0; btn2.textContent = txt; }
+  var bar = document.getElementById('cartFloatingBar');
+  if (bar) bar.classList.toggle('is-visible', count > 0);
+}
+
+/* ==================== CART ACTIONS ==================== */
+function toggleCart(itemId) {
+  var idx = state.cart.findIndex(function(c){ return c.id === itemId; });
+  if (idx >= 0) {
+    state.cart.splice(idx, 1);
+  } else {
+    var found = null;
+    CHECKLIST_DATA.forEach(function(cat) {
+      cat.items.forEach(function(it) {
+        if (it.id === itemId) {
+          found = { id: it.id, name: it.name, emoji: it.emoji, amazonUrl: getAmazonUrl(it.name) };
+        }
+      });
+    });
+    if (found) state.cart.push(found);
+    if (!found) {
+      for (var k in state.customItems) {
+        var arr = state.customItems[k];
+        var it = arr.find(function(i){ return i.id === itemId; });
+        if (it) {
+          found = { id: it.id, name: it.name, emoji: '📦', amazonUrl: getAmazonUrl(it.name) };
+          break;
+        }
+      }
+      if (found) state.cart.push(found);
+    }
+  }
+  saveState();
+  renderCart();
+  renderCategory(state.activeTab);
+  renderTabs();
+}
+
+function shopAll() {
+  var cart = state.cart;
+  if (cart.length === 0) return;
+  cart.forEach(function(item) {
+    window.open(item.amazonUrl, '_blank');
+  });
+}
+
+/* ==================== MOBILE CART MODAL ==================== */
+function openCartModal() {
+  var overlay = document.getElementById('cartModal');
+  overlay.classList.add('is-open');
+  var body = document.getElementById('cartModalBody');
+  var cart = state.cart;
+  if (cart.length === 0) {
+    body.innerHTML = '<div class="cart-empty">Your cart is empty</div>';
+  } else {
+    var html = '';
+    cart.forEach(function(item) {
+      html += '<div class="cart-item">' +
+        '<span class="ci-emoji">' + (item.emoji||'•') + '</span>' +
+        '<span class="ci-name">' + item.name + '</span>' +
+        '<button class="ci-remove" data-iid="' + item.id + '">✕</button>' +
+      '</div>';
+    });
+    body.innerHTML = html;
+    $$('.ci-remove', body).forEach(function(btn) {
+      btn.addEventListener('click', function(){ toggleCart(this.dataset.iid); openCartModal(); });
+    });
+  }
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCartModal() {
+  document.getElementById('cartModal').classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+
+/* ==================== ACTIONS ==================== */
+function switchTab(catId) {
+  state.activeTab = catId;
+  renderTabs(); renderCategory(catId);
+  var btn = $('.tab-btn[data-category="' + catId + '"]', document.getElementById('tabsContainer'));
+  if (btn) btn.scrollIntoView({ behavior:'smooth', inline:'center', block:'nearest' });
+}
+
+function toggleItem(itemId) {
+  if (state.checked.hasOwnProperty(itemId)) {
+    state.checked[itemId] = !state.checked[itemId];
+  } else {
+    for (var k in state.customItems) {
+      var arr = state.customItems[k];
+      var f = arr.find(function(it){ return it.id === itemId; });
+      if (f) { f.checked = !f.checked; break; }
+    }
+  }
+  saveState(); updateProgress(); renderTabs(); renderCategory(state.activeTab);
+}
+
+function selectAll(catId) {
+  var cat = getCategory(catId);
+  if (cat) cat.items.forEach(function(it){ state.checked[it.id] = true; });
+  getCustomItems(catId).forEach(function(it){ it.checked = true; });
+  saveState(); updateProgress(); renderTabs(); renderCategory(catId);
+}
+
+function deselectAll(catId) {
+  var cat = getCategory(catId);
+  if (cat) cat.items.forEach(function(it){ state.checked[it.id] = false; });
+  getCustomItems(catId).forEach(function(it){ it.checked = false; });
+  saveState(); updateProgress(); renderTabs(); renderCategory(catId);
+}
+
+function addCustomItem(catId, name) {
+  var id = 'cus_' + Date.now() + '_' + Math.random().toString(36).slice(2,6);
+  state.customItems[catId].push({ id:id, name:name, checked:false });
+  ensureCustomItems(); saveState(); updateProgress(); renderTabs(); renderCategory(catId);
+}
+
+function removeCustomItem(catId, itemId) {
+  var found = getCustomItems(catId).find(function(it){ return it.id === itemId; });
+  if (!confirm('Remove "' + (found ? found.name : 'this item') + '" from your list?')) return;
+  state.customItems[catId] = state.customItems[catId].filter(function(it){ return it.id !== itemId; });
+  saveState(); updateProgress(); renderTabs(); renderCategory(catId);
+}
+
+function resetAll() {
+  if (!confirm('Reset everything? This will clear your checklist AND shopping cart.')) return;
+  CHECKLIST_DATA.forEach(function(c){ c.items.forEach(function(it){ state.checked[it.id]=false; }); });
+  state.customItems = {}; state.cart = []; state.fineRiskFilter = false;
+  ensureCustomItems(); saveState(); updateProgress(); renderTabs(); renderCategory(state.activeTab); renderCart();
+}
+
+/* ==================== PROGRESS ==================== */
+function updateProgress() {
+  var checked = getCheckedCount();
+  var total = getAllItemsCount();
+  var pct = total > 0 ? Math.round((checked/total)*100) : 0;
+  document.getElementById('checkedCount').textContent = checked;
+  document.getElementById('totalCount').textContent = total;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = pct + '%';
+  var wrap = document.getElementById('progressWrap');
+  wrap.classList.toggle('is-done', pct === 100);
+  var st = document.getElementById('summaryText');
+  if (pct === 0) st.textContent = 'Ready to move out? Start checking items off!';
+  else if (pct === 100) st.textContent = '🎉 All done! Your deposit is safe!';
+  else st.textContent = "You're " + pct + "% there — keep going!";
+}
+
+/* ==================== CTA SHOP BUTTON ==================== */
+function shopPackingSupplies() {
+  // Open Amazon search for common packing supplies
+  var queries = ['moving boxes bulk', 'packing tape dispenser', 'bubble wrap roll', 'heavy duty trash bags', 'furniture moving blanket'];
+  queries.forEach(function(q) {
+    window.open('https://amazon.com/s?k=' + encodeURIComponent(q + ' college') + '&tag=CHECKLISTLAB-20', '_blank');
+  });
+}
+
+/* ==================== PRINT ==================== */
+function printChecklist() { window.print(); }
+
+/* ==================== UTILITY ==================== */
+function escHtml(s) { var d=document.createElement('div'); d.appendChild(document.createTextNode(s)); return d.innerHTML; }
+
+/* ==================== DRAWER TOGGLE ==================== */
+function toggleCartDrawer() {
+  var drawer = document.getElementById('cartDrawer');
+  if (drawer) drawer.classList.toggle('is-open');
+}
+
+/* ==================== INIT ==================== */
+function init() {
+  loadState();
+  updateProgress(); renderTabs(); renderCategory(state.activeTab); renderCart();
+
+  document.getElementById('printBtn').addEventListener('click', printChecklist);
+  document.getElementById('resetBtn').addEventListener('click', resetAll);
+  document.getElementById('cartCheckoutMobile').addEventListener('click', openCartModal);
+  document.getElementById('cartModalCheckout').addEventListener('click', function(){ closeCartModal(); shopAll(); });
+  document.getElementById('cartModalClose').addEventListener('click', closeCartModal);
+  document.getElementById('cartModal').addEventListener('click', function(e) { if (e.target === this) closeCartModal(); });
+  document.getElementById('ctaShopBtn').addEventListener('click', shopPackingSupplies);
+
+  // Desktop drawer events
+  document.getElementById('cartDrawerTab').addEventListener('click', toggleCartDrawer);
+  document.getElementById('cartDrawerClose').addEventListener('click', function() { document.getElementById('cartDrawer').classList.remove('is-open'); });
+  document.getElementById('cartDrawerCheckout').addEventListener('click', shopAll);
+
+  // Tab scroll buttons
+  var tsContainer = document.getElementById('tabsContainer');
+  var tsLeft = document.getElementById('tabsScrollLeft');
+  var tsRight = document.getElementById('tabsScrollRight');
+  function updateTabScroll() {
+    var sl = tsContainer.scrollLeft;
+    var sw = tsContainer.scrollWidth - tsContainer.clientWidth;
+    tsLeft.classList.toggle('is-visible', sl > 8);
+    tsRight.classList.toggle('is-visible', sl < sw - 8);
+  }
+  tsContainer.addEventListener('scroll', updateTabScroll);
+  tsLeft.addEventListener('click', function(){ tsContainer.scrollBy({ left:-200, behavior:'smooth' }); });
+  tsRight.addEventListener('click', function(){ tsContainer.scrollBy({ left:200, behavior:'smooth' }); });
+  updateTabScroll();
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>

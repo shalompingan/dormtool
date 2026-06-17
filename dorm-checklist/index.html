@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>College Dorm Checklist – The Ultimate Interactive Packing List</title>
+<meta name="description" content="Never forget a thing! Check off every dorm essential — bedding, bath, desk, electronics & more. Print your list and shop with one click.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ==================== RESET + VARIABLES ==================== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#1A237E;--primary-light:#3949AB;--primary-dark:#0D1642;
+  --accent:#FF6B35;--accent-hover:#E55A2B;--success:#10B981;--success-light:#D1FAE5;
+  --bg:#F4F5F7;--card:#FFF;--text:#1F2937;--text-light:#6B7280;--border:#E5E7EB;
+  --shadow:0 2px 8px rgba(0,0,0,.06);--radius:12px;--radius-sm:8px;
+  --font:'Inter',-apple-system,sans-serif;--max-w:1200px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
+a{color:inherit;text-decoration:none}
+
+/* ==================== HEADER ==================== */
+.site-header{background:var(--primary);color:#fff;padding:18px 20px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.15)}
+.site-header .inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.site-header .logo{font-weight:800;font-size:1.3rem;letter-spacing:-.5px;display:flex;align-items:center;gap:8px}
+.site-header .logo span{color:var(--accent)}
+.site-header .tagline{font-size:.8rem;opacity:.8;display:none}
+@media(min-width:640px){.site-header .tagline{display:block}}
+
+/* ==================== CONTAINER ==================== */
+.container{max-width:var(--max-w);margin:0 auto;padding:16px 16px 40px;flex:1}
+.intro{text-align:center;padding:12px 0 8px}
+.intro h1{font-size:1.6rem;font-weight:800;color:var(--primary);letter-spacing:-.5px}
+.intro p{color:var(--text-light);font-size:.92rem;margin-top:4px;max-width:600px;margin-left:auto;margin-right:auto}
+
+/* ==================== ADSENSE ==================== */
+.ad-placeholder{background:var(--card);border:2px dashed var(--border);border-radius:var(--radius-sm);text-align:center;padding:18px;margin:14px 0;color:var(--text-light);font-size:.78rem;min-height:90px;display:flex;align-items:center;justify-content:center;transition:border-color .2s}
+.ad-placeholder:hover{border-color:var(--accent)}
+.ad-placeholder--tall{min-height:160px}
+
+/* ==================== APP LAYOUT (Desktop grid) ==================== */
+.app-layout{display:block;gap:16px;margin-top:12px}
+@media(min-width:1024px){.app-layout{display:grid;grid-template-columns:1fr 320px}}
+
+.app-main{min-width:0}
+
+/* ==================== PROGRESS ==================== */
+.progress-wrap{background:var(--card);border-radius:var(--radius);padding:14px 18px 16px;box-shadow:var(--shadow);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.progress-stats{font-size:.85rem;font-weight:600;white-space:nowrap;color:var(--text)}
+.progress-stats span{color:var(--primary)}
+.progress-bar-track{flex:1;min-width:100px;height:9px;background:var(--border);border-radius:6px;overflow:hidden}
+.progress-bar-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--primary),var(--primary-light));border-radius:6px;transition:width .45s cubic-bezier(.22,1,.36,1)}
+.progress-label{font-size:.76rem;color:var(--text-light);min-width:36px;text-align:right;font-weight:600}
+.progress-wrap.is-done .progress-bar-fill{background:linear-gradient(90deg,var(--success),#34D399)}
+.progress-wrap.is-done .progress-label{color:var(--success)}
+
+/* ==================== TABS ==================== */
+.tabs-wrap{background:var(--card);border-radius:var(--radius) var(--radius) 0 0;box-shadow:var(--shadow);margin:12px 0 0;padding:10px 12px 0;position:relative}
+.tabs-scroll{display:flex;gap:5px;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;scrollbar-color:transparent transparent;-ms-overflow-style:none;padding-bottom:10px;-webkit-overflow-scrolling:touch}
+.tabs-wrap:hover .tabs-scroll{scrollbar-color:var(--border) transparent}
+.tabs-scroll::-webkit-scrollbar{height:4px}
+.tabs-scroll::-webkit-scrollbar-thumb{background:transparent;border-radius:4px}
+.tabs-wrap:hover .tabs-scroll::-webkit-scrollbar-thumb{background:var(--border)}
+.tab-scroll-btn{position:absolute;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;border:none;background:var(--card);box-shadow:0 2px 8px rgba(0,0,0,.15);cursor:pointer;z-index:3;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:700;color:var(--text);opacity:0;transition:opacity .2s,box-shadow .2s;line-height:1}
+.tab-scroll-btn.is-visible{opacity:1}
+.tab-scroll-btn:hover{box-shadow:0 3px 12px rgba(0,0,0,.25);color:var(--primary)}
+.tab-scroll-btn--left{left:-4px}
+.tab-scroll-btn--right{right:-4px}
+.tab-btn{flex-shrink:0;padding:8px 16px;border:none;border-radius:18px;font-family:var(--font);font-size:.8rem;font-weight:600;background:var(--bg);color:var(--text-light);cursor:pointer;white-space:nowrap;transition:all .2s;display:flex;align-items:center;gap:4px}
+.tab-btn:hover{background:#E8EAF6;color:var(--primary)}
+.tab-btn.is-active{background:var(--primary);color:#fff;box-shadow:0 2px 8px rgba(26,35,126,.3)}
+.tab-btn .tab-count{font-size:.68rem;font-weight:500;opacity:.6;background:rgba(255,255,255,.2);padding:1px 6px;border-radius:8px}
+.tab-btn.is-active .tab-count{opacity:.9;background:rgba(255,255,255,.18)}
+.tab-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ==================== CATEGORY PANEL ==================== */
+.category-panel{background:var(--card);border-radius:0 0 var(--radius) var(--radius);padding:16px 18px 18px;box-shadow:var(--shadow);border-top:2px solid var(--bg)}
+.category-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--bg);flex-wrap:wrap;gap:6px}
+.category-title{font-size:1.05rem;font-weight:700;display:flex;align-items:center;gap:6px}
+.cat-actions{display:flex;gap:5px}
+.cat-actions button{padding:4px 12px;border:none;border-radius:12px;font-family:var(--font);font-size:.73rem;font-weight:600;cursor:pointer;transition:all .18s}
+.btn-select-all{background:var(--bg);color:var(--text-light)}
+.btn-select-all:hover{background:#E8EAF6;color:var(--primary)}
+.btn-deselect-all{background:var(--bg);color:var(--text-light)}
+.btn-deselect-all:hover{background:#FEE2E2;color:#DC2626}
+.cat-actions button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ==================== ITEMS GRID ==================== */
+.items-grid{display:grid;grid-template-columns:1fr;gap:6px}
+@media(min-width:640px){.items-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1024px){.items-grid{grid-template-columns:1fr 1fr}}
+
+.item-card{display:flex;flex-direction:column;background:var(--bg);border-radius:var(--radius-sm);padding:10px 12px;transition:all .2s;border:2px solid transparent;position:relative}
+.item-card:hover{border-color:var(--border)}
+.item-card.is-checked{background:var(--success-light);border-color:var(--success)}
+.item-card.is-checked .item-name{font-weight:600}
+.item-row{display:flex;align-items:center;gap:8px;flex-wrap:nowrap}
+.item-check{cursor:pointer;display:flex;align-items:center;gap:8px;flex:1;min-width:0}
+.item-check input{position:absolute;opacity:0;width:0;height:0}
+.check-box{flex-shrink:0;width:18px;height:18px;border:2px solid #CBD5E1;border-radius:4px;display:flex;align-items:center;justify-content:center;transition:all .2s;background:var(--card)}
+.item-check input:checked~.check-box{background:var(--success);border-color:var(--success)}
+.check-box svg{opacity:0;transition:opacity .12s;width:10px;height:10px}
+.item-check input:checked~.check-box svg{opacity:1}
+.item-emoji{font-size:1rem;flex-shrink:0}
+.item-name{font-size:.84rem;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.item-desc{font-size:.72rem;color:var(--text-light);margin-top:1px;margin-left:36px;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+
+/* Shop button — toggles between Shop and Added */
+.item-shop{font-size:.7rem;font-weight:700;color:#fff;background:var(--accent);padding:4px 10px;border-radius:5px;transition:all .18s;white-space:nowrap;display:inline-flex;align-items:center;gap:3px;border:none;cursor:pointer;font-family:var(--font);flex-shrink:0;line-height:1.3}
+.item-shop:hover{background:var(--accent-hover);transform:translateY(-1px)}
+.item-shop:active{transform:translateY(0)}
+.item-shop.is-in-cart{background:var(--success)}
+.item-shop.is-in-cart:hover{background:#059669}
+
+/* ==================== CUSTOM ITEMS ==================== */
+.item-card--custom{background:#FFF8E1;border-color:#FFE082}
+.item-card--custom.is-checked{background:var(--success-light);border-color:var(--success)}
+.item-card--custom .item-emoji{font-size:.8rem;opacity:.6}
+.item-card--custom .item-name::after{content:'Custom';font-size:.62rem;color:var(--text-light);background:var(--border);padding:0 5px;border-radius:3px;margin-left:5px;font-weight:400}
+.item-remove{background:none;border:none;cursor:pointer;font-size:.85rem;color:var(--text-light);padding:2px 5px;border-radius:4px;transition:all .15s;flex-shrink:0;line-height:1}
+.item-remove:hover{color:#DC2626;background:#FEE2E2}
+.add-item-form{grid-column:1/-1;display:flex;gap:5px;margin-top:4px;padding-top:8px;border-top:1px dashed var(--border)}
+.add-item-input{flex:1;padding:8px 10px;border:2px solid var(--border);border-radius:var(--radius-sm);font-family:var(--font);font-size:.82rem;outline:none;transition:border-color .2s;background:var(--card)}
+.add-item-input:focus{border-color:var(--primary)}
+.add-item-input::placeholder{color:var(--text-light);font-size:.78rem}
+.add-item-btn{padding:8px 14px;border:none;border-radius:var(--radius-sm);background:var(--primary);color:#fff;font-family:var(--font);font-size:.8rem;font-weight:600;cursor:pointer;transition:background .18s;white-space:nowrap}
+.add-item-btn:hover{background:var(--primary-dark)}
+
+/* ==================== CART SIDEBAR (Desktop) ==================== */
+.cart-sidebar{display:none}
+@media(min-width:1024px){
+  .cart-sidebar{display:flex;flex-direction:column;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);position:sticky;top:76px;max-height:calc(100vh - 90px);overflow:hidden}
+  .cart-header{padding:14px 16px 10px;font-size:.95rem;font-weight:700;border-bottom:2px solid var(--bg);display:flex;align-items:center;gap:6px}
+  .cart-items{flex:1;overflow-y:auto;padding:8px 12px;min-height:60px}
+  .cart-empty{text-align:center;color:var(--text-light);font-size:.8rem;padding:30px 10px}
+  .cart-item{display:flex;align-items:center;gap:8px;padding:7px 6px;border-radius:6px;transition:background .15s}
+  .cart-item:hover{background:var(--bg)}
+  .cart-item .ci-emoji{font-size:.9rem;flex-shrink:0}
+  .cart-item .ci-name{font-size:.8rem;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .cart-item .ci-remove{background:none;border:none;cursor:pointer;font-size:.7rem;color:var(--text-light);padding:3px 5px;border-radius:3px;transition:all .12s;flex-shrink:0}
+  .cart-item .ci-remove:hover{color:#DC2626;background:#FEE2E2}
+  .cart-footer{padding:10px 14px 14px;border-top:2px solid var(--bg)}
+  .cart-count{font-size:.78rem;color:var(--text-light);margin-bottom:8px}
+  .cart-checkout{width:100%;padding:11px 0;border:none;border-radius:var(--radius-sm);background:var(--accent);color:#fff;font-family:var(--font);font-size:.85rem;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px}
+  .cart-checkout:hover{background:var(--accent-hover);transform:translateY(-1px);box-shadow:0 4px 12px rgba(255,107,53,.35)}
+  .cart-checkout:active{transform:translateY(0)}
+  .cart-checkout:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+}
+
+/* ==================== MOBILE FLOATING BAR ==================== */
+.cart-floating-bar{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--primary);color:#fff;padding:10px 16px;align-items:center;justify-content:space-between;box-shadow:0 -4px 16px rgba(0,0,0,.2);transform:translateY(100%);transition:transform .3s cubic-bezier(.22,1,.36,1)}
+.cart-floating-bar.is-visible{transform:translateY(0)}
+.cart-floating-bar .cfb-label{font-size:.85rem;font-weight:600;display:flex;align-items:center;gap:6px}
+.cart-floating-bar .cfb-btn{padding:8px 18px;border:none;border-radius:var(--radius-sm);background:var(--accent);color:#fff;font-family:var(--font);font-size:.82rem;font-weight:700;cursor:pointer;transition:background .18s}
+.cart-floating-bar .cfb-btn:hover{background:var(--accent-hover)}
+@media(min-width:1024px){.cart-floating-bar{display:none}}
+
+/* ==================== CART MODAL (Mobile) ==================== */
+.cart-modal-overlay{display:none;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.45);backdrop-filter:blur(3px)}
+.cart-modal-overlay.is-open{display:block}
+.cart-modal{position:fixed;bottom:0;left:0;right:0;max-height:80vh;background:var(--card);border-radius:var(--radius) var(--radius) 0 0;display:flex;flex-direction:column;animation:slideUp .3s cubic-bezier(.22,1,.36,1)}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.cart-modal-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:2px solid var(--bg);font-size:.95rem;font-weight:700}
+.cart-modal-header .cmh-close{background:none;border:none;font-size:1.1rem;cursor:pointer;color:var(--text-light);padding:4px 8px;border-radius:4px}
+.cart-modal-header .cmh-close:hover{background:var(--bg);color:var(--text)}
+.cart-modal-body{flex:1;overflow-y:auto;padding:8px 14px;min-height:100px}
+.cart-modal-body .cart-item{padding:10px 4px;border-bottom:1px solid var(--bg)}
+.cart-modal-footer{padding:12px 16px 20px;border-top:2px solid var(--bg)}
+.cart-modal-footer .cart-checkout{width:100%;padding:13px 0;border:none;border-radius:var(--radius-sm);background:var(--accent);color:#fff;font-family:var(--font);font-size:.9rem;font-weight:700;cursor:pointer;transition:all .2s}
+.cart-modal-footer .cart-checkout:hover{background:var(--accent-hover)}
+.cart-modal-footer .cart-checkout:disabled{opacity:.4;cursor:not-allowed}
+
+/* ==================== BOTTOM BAR ==================== */
+.bottom-bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:14px;padding-top:12px;border-top:2px solid var(--border)}
+.summary-text{font-size:.82rem;color:var(--text-light);font-weight:500}
+.bottom-actions{display:flex;gap:6px;flex-wrap:wrap}
+.bottom-actions button,.bottom-actions a{padding:8px 16px;border:none;border-radius:var(--radius-sm);font-family:var(--font);font-size:.8rem;font-weight:600;cursor:pointer;transition:all .18s;display:inline-flex;align-items:center;gap:5px}
+.btn-print{background:var(--primary);color:#fff}
+.btn-print:hover{background:var(--primary-dark)}
+.btn-reset{background:var(--bg);color:var(--text-light);border:1px solid var(--border)}
+.btn-reset:hover{background:#FEE2E2;color:#DC2626;border-color:#FECACA}
+.btn-print:focus-visible,.btn-reset:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ==================== FOOTER ==================== */
+.site-footer{background:var(--primary-dark);color:rgba(255,255,255,.7);text-align:center;padding:18px;font-size:.78rem;margin-top:auto}
+.site-footer a{color:rgba(255,255,255,.9);text-decoration:underline}
+.site-footer a:hover{color:#fff}
+.site-footer .footer-links{display:flex;justify-content:center;gap:14px;margin-bottom:4px;flex-wrap:wrap}
+.site-footer .footer-links a{text-decoration:none;font-weight:500}
+.site-footer .footer-links a:hover{text-decoration:underline}
+
+/* ==================== RESPONSIVE ==================== */
+@media(max-width:400px){
+  .intro h1{font-size:1.2rem}
+  .site-header .logo{font-size:1rem}
+  .item-card{padding:8px 10px}
+  .item-shop{font-size:.65rem;padding:3px 8px}
+  .tab-btn{padding:6px 12px;font-size:.74rem}
+}
+
+/* ==================== PRINT ==================== */
+@media print{
+  @page{margin:1.5cm .8cm}
+  body{background:#fff;font-size:11pt;color:#000}
+  .site-header,.tabs-wrap,.bottom-bar,.site-footer,
+  .ad-placeholder,.cat-actions,.item-shop,.item-meta,
+  .intro p,.item-remove,.add-item-form,
+  .cart-sidebar,.cart-floating-bar,.cart-modal-overlay{display:none!important}
+  .progress-wrap,.category-panel{box-shadow:none;padding:4px 0;margin:0}
+  .progress-wrap{display:none!important}
+  .container{padding:0;max-width:100%}
+  .app-layout{display:block}
+  .category-panel{border-radius:0;background:transparent;padding:0}
+  .category-header{border-bottom:1px solid #ccc;margin-top:14px}
+  .category-title{font-size:13pt}
+  .items-grid{display:block}
+  .item-card{display:none;padding:3px 0;background:transparent;border:none;page-break-inside:avoid}
+  .item-card.is-checked{display:flex;flex-direction:row;align-items:center;background:transparent}
+  .item-card.is-checked .item-row{width:100%}
+  .item-card.is-checked .check-box{background:transparent;border:none;width:auto;height:auto}
+  .item-card.is-checked .check-box svg{display:none}
+  .item-card.is-checked .check-box::after{content:"☐";font-size:14pt;line-height:1}
+  .item-card.is-checked .item-check input:checked~.check-box::after{content:"☑"}
+  .item-card.is-checked .item-name{font-weight:600}
+  .item-card.is-checked .item-desc{color:#555;display:block}
+  .is-checked .item-meta{display:none!important}
+  .item-card--custom .item-name::after{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <div class="logo">📋 <span>Check</span>listLab</div>
+    <div class="tagline">Interactive checklists for life's big moments</div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="intro">
+    <h1>🎒 College Dorm Checklist</h1>
+    <p>Check off what you need. Add items to your cart. Shop Amazon in one batch.</p>
+  </div>
+
+  <div class="ad-placeholder">📢 AdSense Banner (728×90) – Place your ad code here</div>
+
+  <div class="app-layout">
+
+    <!-- ====== LEFT: MAIN TOOL ====== -->
+    <div class="app-main">
+      <div class="progress-wrap" id="progressWrap">
+        <div class="progress-stats"><span id="checkedCount">0</span> of <span id="totalCount">0</span> items</div>
+        <div class="progress-bar-track"><div class="progress-bar-fill" id="progressFill" style="width:0%"></div></div>
+        <div class="progress-label" id="progressLabel">0%</div>
+      </div>
+
+      <div class="tabs-wrap">
+        <button class="tab-scroll-btn tab-scroll-btn--left" id="tabsScrollLeft" aria-label="Scroll left">‹</button>
+        <div class="tabs-scroll" id="tabsContainer" role="tablist"></div>
+        <button class="tab-scroll-btn tab-scroll-btn--right" id="tabsScrollRight" aria-label="Scroll right">›</button>
+      </div>
+
+      <div class="category-panel" id="categoryPanel"></div>
+
+      <div class="bottom-bar">
+        <div class="summary-text" id="summaryText">Ready to pack? Start checking items off!</div>
+        <div class="bottom-actions">
+          <button class="btn-print" id="printBtn">🖨️ Print Checklist</button>
+          <button class="btn-reset" id="resetBtn">🔄 Reset All</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== RIGHT: CART SIDEBAR (Desktop) ====== -->
+    <aside class="cart-sidebar" id="cartSidebar">
+      <div class="cart-header">🛒 Shopping Cart</div>
+      <div class="cart-items" id="cartItems">
+        <div class="cart-empty">Click <strong>Shop ↗</strong> on any item to add it here</div>
+      </div>
+      <div class="cart-footer" id="cartFooter">
+        <div class="cart-count" id="cartCount">0 items</div>
+        <button class="cart-checkout" id="cartCheckoutBtn" disabled>🛒 Shop All (0) on Amazon ↗</button>
+      </div>
+    </aside>
+  </div>
+
+  <div class="ad-placeholder ad-placeholder--tall">📢 AdSense Banner (728×90) – Place your ad code here</div>
+</main>
+
+<!-- Mobile floating cart bar -->
+<div class="cart-floating-bar" id="cartFloatingBar">
+  <span class="cfb-label">🛒 <span id="cartCountMobile">0</span> Items Selected</span>
+  <button class="cfb-btn" id="cartCheckoutMobile">Checkout ↗</button>
+</div>
+
+<!-- Mobile cart modal -->
+<div class="cart-modal-overlay" id="cartModal">
+  <div class="cart-modal">
+    <div class="cart-modal-header">
+      <span>🛒 Shopping Cart</span>
+      <button class="cmh-close" id="cartModalClose">✕</button>
+    </div>
+    <div class="cart-modal-body" id="cartModalBody"></div>
+    <div class="cart-modal-footer">
+      <button class="cart-checkout" id="cartModalCheckout" disabled>🛒 Shop All (0) on Amazon ↗</button>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-links">
+    <a href="#">🏠 Home</a> <a href="#">📋 All Checklists</a>
+    <a href="#">📧 Contact</a> <a href="#">🔒 Privacy</a>
+  </div>
+  <div>&copy; 2026 ChecklistLab. Built for students, by students.</div>
+</footer>
+
+<script>
+/* ==================== DATA ==================== */
+const CHECKLIST_DATA = [
+  { id:'bedding', name:'Bedding & Linens', icon:'🛏️', items:[
+    { id:'twin-xl-sheets',name:'Twin XL Sheet Set',desc:'Standard dorm bed size — get at least 2 sets for swapping',price:29.99,emoji:'🛌'},
+    { id:'mattress-topper',name:'Mattress Topper',desc:'Thin dorm mattresses are brutal; a topper saves your back',price:39.99,emoji:'🛏️'},
+    { id:'comforter-duvet',name:'Comforter / Duvet',desc:'Go for a lightweight all-season fill',price:49.99,emoji:'🛏️'},
+    { id:'pillows',name:'Pillows (2-pack)',desc:'One for sleeping, one for propping up in bed',price:24.99,emoji:'🛌'},
+    { id:'mattress-protector',name:'Mattress Protector',desc:'Waterproof — bedbug-proof — a must for dorm life',price:19.99,emoji:'🛡️'},
+    { id:'extra-blanket',name:'Extra Blanket / Throw',desc:'Dorm AC is unpredictable; layer up',price:29.99,emoji:'🧣'},
+    { id:'bed-risers',name:'Bed Risers',desc:'Gain valuable under-bed storage space',price:14.99,emoji:'📦'},
+    { id:'weighted-blanket',name:'Weighted Blanket',desc:'Helps with move-in stress and better sleep',price:39.99,emoji:'🛌'},
+  ]},
+  { id:'bath',name:'Bathroom',icon:'🚿',items:[
+    { id:'shower-caddy',name:'Shower Caddy',desc:'Carry soap, shampoo & razor to the communal shower',price:14.99,emoji:'🧺'},
+    { id:'shower-flipflops',name:'Shower Flip Flops',desc:'Protect feet from communal shower floors',price:9.99,emoji:'🩴'},
+    { id:'towel-set',name:'Towel Set (3-pack)',desc:'Bath, hand & washcloth — rotate for laundry day',price:24.99,emoji:'🧴'},
+    { id:'bathrobe',name:'Bathrobe',desc:'Walk to shared bath without getting fully dressed',price:29.99,emoji:'🧥'},
+    { id:'toiletry-bag',name:'Toiletry Bag',desc:'Keep toothbrush, deodorant & meds organized',price:19.99,emoji:'🧳'},
+    { id:'overdoor-hook',name:'Over-the-Door Hook',desc:'Instant towel & robe storage without drilling',price:8.99,emoji:'🚪'},
+    { id:'bath-mat',name:'Non-Slip Bath Mat',desc:'Step out of shower onto something soft & dry',price:12.99,emoji:'🛁'},
+  ]},
+  { id:'desk',name:'Desk & Supplies',icon:'📚',items:[
+    { id:'desk-lamp',name:'Desk Lamp',desc:'Dorm ceiling lights are harsh — get an LED lamp',price:24.99,emoji:'💡'},
+    { id:'power-strip',name:'Power Strip / Surge Protector',desc:'Dorms never have enough outlets — get one with USB',price:19.99,emoji:'🔌'},
+    { id:'laptop-stand',name:'Laptop Stand',desc:'Raises screen to eye level; saves your neck',price:29.99,emoji:'💻'},
+    { id:'pen-holder',name:'Pen / Pencil Holder',desc:'Keep your desk clutter-free',price:9.99,emoji:'✏️'},
+    { id:'sticky-notes',name:'Sticky Notes Set',desc:'For reminders, study prompts & roommate messages',price:7.99,emoji:'📝'},
+    { id:'planner',name:'Planner / Agenda',desc:'Track assignments, exams & social plans',price:14.99,emoji:'📅'},
+    { id:'bulletin-board',name:'Bulletin Board',desc:'Pin schedule, photos & important docs above desk',price:19.99,emoji:'📌'},
+    { id:'noise-headphones',name:'Noise-Canceling Headphones',desc:'Library-level focus in a noisy dorm room',price:79.99,emoji:'🎧'},
+  ]},
+  { id:'electronics',name:'Electronics',icon:'📱',items:[
+    { id:'phone-charger',name:'Phone Charger (6ft+)',desc:'Dorm outlets are far from bed — get a long cable',price:12.99,emoji:'🔋'},
+    { id:'laptop-sleeve',name:'Laptop Sleeve',desc:'Protect laptop in backpack between classes',price:24.99,emoji:'💼'},
+    { id:'extension-cord',name:'Extension Cord',desc:'Reach awkwardly placed outlets',price:9.99,emoji:'🔌'},
+  ]},
+  { id:'kitchen',name:'Kitchen & Food',icon:'🍳',items:[
+    { id:'mini-fridge',name:'Mini Fridge',desc:'Keep leftovers & drinks cold (check size rules)',price:129.99,emoji:'🧊'},
+    { id:'microwave',name:'Microwave',desc:'Ramen, popcorn & hot meals without leaving dorm',price:69.99,emoji:'📟'},
+    { id:'water-bottle',name:'Reusable Water Bottle',desc:'Stay hydrated — 32oz+ recommended',price:19.99,emoji:'💧'},
+  ]},
+  { id:'laundry',name:'Laundry',icon:'🧺',items:[
+    { id:'hamper',name:'Laundry Hamper / Bag',desc:'Portable — you will carry it to the laundry room',price:14.99,emoji:'🧺'},
+    { id:'detergent',name:'Laundry Detergent Pods',desc:'Pre-measured pods are easier than a bottle',price:12.99,emoji:'🧼'},
+    { id:'drying-rack',name:'Foldable Drying Rack',desc:'For delicates that cannot go in the dryer',price:15.99,emoji:'🧺'},
+  ]},
+  { id:'storage',name:'Storage & Org',icon:'📦',items:[
+    { id:'underbed-bins',name:'Under-Bed Storage Bins',desc:'Maximize the most underused dorm space',price:24.99,emoji:'📦'},
+    { id:'overdoor-organizer',name:'Over-the-Door Organizer',desc:'Keeps small items off the floor',price:16.99,emoji:'🚪'},
+    { id:'drawer-dividers',name:'Drawer Dividers',desc:'Stop socks & accessories becoming a black hole',price:9.99,emoji:'🗂️'},
+  ]},
+  { id:'cleaning',name:'Cleaning',icon:'🧹',items:[
+    { id:'wipes',name:'Disinfecting Wipes',desc:'Quick cleanups for desks, counters & door handles',price:6.99,emoji:'🧻'},
+    { id:'trash-can',name:'Trash Can (small)',desc:'Under-desk size — empty it weekly',price:9.99,emoji:'🗑️'},
+    { id:'mini-vacuum',name:'Mini Vacuum / Dustbuster',desc:'Crumbs, dust bunnies & cereal spills',price:29.99,emoji:'🧹'},
+  ]},
+  { id:'clothing',name:'Clothing',icon:'👕',items:[
+    { id:'hangers',name:'Hangers (15-20 pack)',desc:'Velvet or slim-profile ones save closet space',price:12.99,emoji:'👔'},
+    { id:'laundry-bag',name:'Mesh Laundry Bag',desc:'Separate delicates or keep laundry contained',price:8.99,emoji:'🧺'},
+    { id:'command-hooks',name:'Command Hooks (variety)',desc:'Damage-free hanging for coats, bags & towels',price:7.99,emoji:'🪝'},
+  ]},
+  { id:'documents',name:'Documents & Health',icon:'📋',items:[
+    { id:'id-folder',name:'Important Docs Folder',desc:'ID, insurance, bank info & schedule in one place',price:9.99,emoji:'📁'},
+    { id:'first-aid-kit',name:'First Aid Kit (small)',desc:'Band-aids, pain relievers, antiseptic & tweezers',price:12.99,emoji:'🩹'},
+    { id:'flashlight',name:'Flashlight / Night Light',desc:'Power outages & late-night bathroom trips',price:11.99,emoji:'🔦'},
+  ]},
+];
+
+/* ==================== STATE ==================== */
+const STORAGE_KEY = 'checklistlab_dorm';
+let state = {
+  activeTab: CHECKLIST_DATA[0].id,
+  checked: {},
+  customItems: {},
+  cart: [],       // { id, name, emoji, amazonUrl }
+};
+
+let totalFixedItems = 0;
+CHECKLIST_DATA.forEach(c => totalFixedItems += c.items.length);
+
+function ensureCustomItems() {
+  CHECKLIST_DATA.forEach(c => { if (!state.customItems[c.id]) state.customItems[c.id] = []; });
+}
+
+/* ==================== DOM REFS ==================== */
+const $ = (s, e) => (e||document).querySelector(s);
+const $$ = (s, e) => [...(e||document).querySelectorAll(s)];
+
+/* ==================== HELPERS ==================== */
+function getCategory(id) { return CHECKLIST_DATA.find(c => c.id === id); }
+function getCustomItems(cid) { return state.customItems[cid] || []; }
+function getAmazonUrl(name) { return 'https://amazon.com/s?k=' + encodeURIComponent(name + ' dorm') + '&tag=CHECKLISTLAB-20'; }
+
+function getCheckedCount() {
+  var c = CHECKLIST_DATA.reduce((s, cat) => s + cat.items.filter(it => state.checked[it.id]).length, 0);
+  Object.keys(state.customItems).forEach(k => (state.customItems[k]||[]).forEach(it => { if (it.checked) c++; }));
+  return c;
+}
+function getCategoryChecked(cid) {
+  var cat = getCategory(cid);
+  var c = cat ? cat.items.filter(it => state.checked[it.id]).length : 0;
+  getCustomItems(cid).forEach(it => { if (it.checked) c++; });
+  return c;
+}
+function getCategoryTotal(cid) {
+  var cat = getCategory(cid);
+  return (cat ? cat.items.length : 0) + getCustomItems(cid).length;
+}
+function getAllItemsCount() {
+  return totalFixedItems + Object.keys(state.customItems).reduce((s, k) => s + (state.customItems[k]||[]).length, 0);
+}
+
+/* ==================== LOCAL STORAGE ==================== */
+function saveState() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ checked: state.checked, customItems: state.customItems, cart: state.cart })); } catch(e) {}
+}
+function loadState() {
+  try {
+    var saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      var p = JSON.parse(saved);
+      if (p.checked) { CHECKLIST_DATA.forEach(c => c.items.forEach(it => { state.checked[it.id] = typeof p.checked[it.id] === 'boolean' ? p.checked[it.id] : false; })); }
+      else { CHECKLIST_DATA.forEach(c => c.items.forEach(it => { state.checked[it.id] = false; })); }
+      if (p.customItems) state.customItems = p.customItems;
+      if (p.cart) state.cart = p.cart;
+      ensureCustomItems();
+    } else {
+      CHECKLIST_DATA.forEach(c => c.items.forEach(it => { state.checked[it.id] = false; }));
+      ensureCustomItems();
+    }
+  } catch(e) { CHECKLIST_DATA.forEach(c => c.items.forEach(it => { state.checked[it.id] = false; })); ensureCustomItems(); }
+}
+
+/* ==================== RENDER — Tabs ==================== */
+function renderTabs() {
+  tabsContainer.innerHTML = '';
+  CHECKLIST_DATA.forEach(cat => {
+    var btn = document.createElement('button');
+    btn.className = 'tab-btn' + (cat.id === state.activeTab ? ' is-active' : '');
+    btn.setAttribute('role','tab');
+    btn.setAttribute('aria-selected', cat.id === state.activeTab ? 'true' : 'false');
+    btn.dataset.category = cat.id;
+    btn.innerHTML = cat.icon + ' ' + cat.name + ' <span class="tab-count">' + getCategoryChecked(cat.id) + '/' + getCategoryTotal(cat.id) + '</span>';
+    btn.addEventListener('click', function(){ switchTab(cat.id); });
+    tabsContainer.appendChild(btn);
+  });
+}
+
+/* ==================== RENDER — Category Panel ==================== */
+function renderCategory(catId) {
+  var cat = getCategory(catId);
+  if (!cat) return;
+  var custom = getCustomItems(catId);
+  var cart = state.cart;
+
+  // Fixed items
+  var fixedHtml = '';
+  cat.items.forEach(function(it) {
+    var isChecked = state.checked[it.id];
+    var inCart = cart.some(function(c){ return c.id === it.id; });
+    fixedHtml += '<div class="item-card' + (isChecked?' is-checked':'') + '">' +
+      '<div class="item-row">' +
+        '<label class="item-check">' +
+          '<input type="checkbox"' + (isChecked?' checked':'') + ' data-iid="' + it.id + '">' +
+          '<span class="check-box"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></span>' +
+          '<span class="item-name">' + it.name + '</span>' +
+        '</label>' +
+        '<button class="item-shop' + (inCart?' is-in-cart':'') + '" data-iid="' + it.id + '">' + (inCart ? 'Added ✓' : 'Shop ↗') + '</button>' +
+      '</div>' +
+      (it.desc ? '<div class="item-desc">' + it.desc + '</div>' : '') +
+    '</div>';
+  });
+
+  // Custom items
+  var customHtml = '';
+  custom.forEach(function(it) {
+    var inCart = cart.some(function(c){ return c.id === it.id; });
+    customHtml += '<div class="item-card item-card--custom' + (it.checked?' is-checked':'') + '">' +
+      '<div class="item-row">' +
+        '<label class="item-check">' +
+          '<input type="checkbox"' + (it.checked?' checked':'') + ' data-iid="' + it.id + '">' +
+          '<span class="check-box"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></span>' +
+          '<span class="item-name">' + escHtml(it.name) + '</span>' +
+        '</label>' +
+        '<button class="item-shop' + (inCart?' is-in-cart':'') + '" data-iid="' + it.id + '">' + (inCart ? 'Added ✓' : 'Shop ↗') + '</button>' +
+        '<button class="item-remove" data-iid="' + it.id + '" title="Remove">✕</button>' +
+      '</div></div>';
+  });
+
+  // Add form
+  var addFormHtml = '<div class="add-item-form" data-cat="' + catId + '">' +
+    '<input class="add-item-input" type="text" placeholder=\'+ Add your own item (e.g. "Guitar stand")\' maxlength="120">' +
+    '<button class="add-item-btn" type="button">Add</button></div>';
+
+  categoryPanel.innerHTML =
+    '<div class="category-header">' +
+      '<div class="category-title">' + cat.icon + ' ' + cat.name + '</div>' +
+      '<div class="cat-actions">' +
+        '<button class="btn-select-all" data-action="select-all">✓ Select All</button>' +
+        '<button class="btn-deselect-all" data-action="deselect-all">✕ Deselect</button>' +
+      '</div></div>' +
+    '<div class="items-grid">' + fixedHtml + customHtml + addFormHtml + '</div>';
+
+  // Events
+  $$('.item-check input[type="checkbox"]', categoryPanel).forEach(function(cb) {
+    cb.addEventListener('change', function(){ toggleItem(this.dataset.iid); });
+  });
+  // Shop buttons
+  $$('.item-shop', categoryPanel).forEach(function(btn) {
+    btn.addEventListener('click', function(){ toggleCart(this.dataset.iid); });
+  });
+  // Custom item remove
+  $$('.item-remove', categoryPanel).forEach(function(btn) {
+    btn.addEventListener('click', function(){ removeCustomItem(catId, this.dataset.iid); });
+  });
+  // Select/Deselect
+  var selBtn = $('[data-action="select-all"]', categoryPanel);
+  var desBtn = $('[data-action="deselect-all"]', categoryPanel);
+  if (selBtn) selBtn.addEventListener('click', function(){ selectAll(catId); });
+  if (desBtn) desBtn.addEventListener('click', function(){ deselectAll(catId); });
+  // Add form
+  var form = $('.add-item-form[data-cat="' + catId + '"]', categoryPanel);
+  if (form) {
+    var inp = form.querySelector('.add-item-input');
+    var aBtn = form.querySelector('.add-item-btn');
+    function doAdd() {
+      var n = inp.value.trim();
+      if (n.length < 1) return;
+      addCustomItem(catId, n);
+      inp.value = ''; inp.focus();
+    }
+    aBtn.addEventListener('click', doAdd);
+    inp.addEventListener('keydown', function(e){ if (e.key==='Enter') { e.preventDefault(); doAdd(); } });
+  }
+}
+
+/* ==================== RENDER — Cart Sidebar + Mobile ==================== */
+function renderCart() {
+  var cart = state.cart;
+  var count = cart.length;
+
+  // Desktop sidebar
+  var cartContainer = document.getElementById('cartItems');
+  if (cartContainer) {
+    if (count === 0) {
+      cartContainer.innerHTML = '<div class="cart-empty">Click <strong>Shop ↗</strong> on any item to add it here</div>';
+    } else {
+      var html = '';
+      cart.forEach(function(item) {
+        html += '<div class="cart-item">' +
+          '<span class="ci-emoji">' + (item.emoji||'•') + '</span>' +
+          '<span class="ci-name">' + item.name + '</span>' +
+          '<button class="ci-remove" data-iid="' + item.id + '">✕</button>' +
+        '</div>';
+      });
+      cartContainer.innerHTML = html;
+      // Remove buttons
+      $$('.ci-remove', cartContainer).forEach(function(btn) {
+        btn.addEventListener('click', function(){ toggleCart(this.dataset.iid); });
+      });
+    }
+  }
+
+  // Counts
+  document.getElementById('cartCount').textContent = count + (count === 1 ? ' item' : ' items');
+  var mobileCount = document.getElementById('cartCountMobile');
+  if (mobileCount) mobileCount.textContent = count;
+
+  // Checkout buttons
+  var allDisabled = count === 0;
+  var btn1 = document.getElementById('cartCheckoutBtn');
+  var btn2 = document.getElementById('cartModalCheckout');
+  if (btn1) { btn1.disabled = allDisabled; btn1.textContent = '🛒 Shop All (' + count + ') on Amazon ↗'; }
+  if (btn2) { btn2.disabled = allDisabled; btn2.textContent = '🛒 Shop All (' + count + ') on Amazon ↗'; }
+
+  // Mobile floating bar
+  var bar = document.getElementById('cartFloatingBar');
+  if (bar) bar.classList.toggle('is-visible', count > 0);
+}
+
+/* ==================== CART ACTIONS ==================== */
+function toggleCart(itemId) {
+  var idx = state.cart.findIndex(function(c){ return c.id === itemId; });
+  if (idx >= 0) {
+    state.cart.splice(idx, 1);
+  } else {
+    // Find item in data
+    var found = null;
+    CHECKLIST_DATA.forEach(function(cat) {
+      cat.items.forEach(function(it) {
+        if (it.id === itemId) {
+          found = { id: it.id, name: it.name, emoji: it.emoji, amazonUrl: getAmazonUrl(it.name) };
+        }
+      });
+    });
+    if (found) state.cart.push(found);
+    if (!found) {
+      // Search custom items
+      for (var k in state.customItems) {
+        var arr = state.customItems[k];
+        var it = arr.find(function(i){ return i.id === itemId; });
+        if (it) {
+          found = { id: it.id, name: it.name, emoji: '+', amazonUrl: getAmazonUrl(it.name) };
+          break;
+        }
+      }
+      if (found) state.cart.push(found);
+    }
+  }
+  saveState();
+  renderCart();
+  renderCategory(state.activeTab);
+  renderTabs();
+}
+
+function shopAll() {
+  var cart = state.cart;
+  if (cart.length === 0) return;
+  // Open each Amazon link in a new tab
+  cart.forEach(function(item) {
+    window.open(item.amazonUrl, '_blank');
+  });
+}
+
+/* ==================== MOBILE CART MODAL ==================== */
+function openCartModal() {
+  var overlay = document.getElementById('cartModal');
+  overlay.classList.add('is-open');
+  // Populate modal body
+  var body = document.getElementById('cartModalBody');
+  var cart = state.cart;
+  if (cart.length === 0) {
+    body.innerHTML = '<div class="cart-empty">Your cart is empty</div>';
+  } else {
+    var html = '';
+    cart.forEach(function(item) {
+      html += '<div class="cart-item">' +
+        '<span class="ci-emoji">' + (item.emoji||'•') + '</span>' +
+        '<span class="ci-name">' + item.name + '</span>' +
+        '<button class="ci-remove" data-iid="' + item.id + '">✕</button>' +
+      '</div>';
+    });
+    body.innerHTML = html;
+    $$('.ci-remove', body).forEach(function(btn) {
+      btn.addEventListener('click', function(){ toggleCart(this.dataset.iid); openCartModal(); });
+    });
+  }
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCartModal() {
+  document.getElementById('cartModal').classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+
+/* ==================== ACTIONS ==================== */
+function switchTab(catId) {
+  state.activeTab = catId;
+  renderTabs(); renderCategory(catId);
+  var btn = $('.tab-btn[data-category="' + catId + '"]', tabsContainer);
+  if (btn) btn.scrollIntoView({ behavior:'smooth', inline:'center', block:'nearest' });
+}
+
+function toggleItem(itemId) {
+  if (state.checked.hasOwnProperty(itemId)) {
+    state.checked[itemId] = !state.checked[itemId];
+  } else {
+    for (var k in state.customItems) {
+      var arr = state.customItems[k];
+      var f = arr.find(function(it){ return it.id === itemId; });
+      if (f) { f.checked = !f.checked; break; }
+    }
+  }
+  saveState(); updateProgress(); renderTabs(); renderCategory(state.activeTab);
+}
+
+function selectAll(catId) {
+  var cat = getCategory(catId);
+  if (cat) cat.items.forEach(function(it){ state.checked[it.id] = true; });
+  getCustomItems(catId).forEach(function(it){ it.checked = true; });
+  saveState(); updateProgress(); renderTabs(); renderCategory(catId);
+}
+
+function deselectAll(catId) {
+  var cat = getCategory(catId);
+  if (cat) cat.items.forEach(function(it){ state.checked[it.id] = false; });
+  getCustomItems(catId).forEach(function(it){ it.checked = false; });
+  saveState(); updateProgress(); renderTabs(); renderCategory(catId);
+}
+
+function addCustomItem(catId, name) {
+  var id = 'cus_' + Date.now() + '_' + Math.random().toString(36).slice(2,6);
+  state.customItems[catId].push({ id:id, name:name, checked:false });
+  ensureCustomItems(); saveState(); updateProgress(); renderTabs(); renderCategory(catId);
+}
+
+function removeCustomItem(catId, itemId) {
+  var found = getCustomItems(catId).find(function(it){ return it.id === itemId; });
+  if (!confirm('Remove "' + (found ? found.name : 'this item') + '" from your list?')) return;
+  state.customItems[catId] = state.customItems[catId].filter(function(it){ return it.id !== itemId; });
+  saveState(); updateProgress(); renderTabs(); renderCategory(catId);
+}
+
+function resetAll() {
+  if (!confirm('Reset everything? This will clear your checklist AND shopping cart.')) return;
+  CHECKLIST_DATA.forEach(function(c){ c.items.forEach(function(it){ state.checked[it.id]=false; }); });
+  state.customItems = {}; state.cart = [];
+  ensureCustomItems(); saveState(); updateProgress(); renderTabs(); renderCategory(state.activeTab); renderCart();
+}
+
+/* ==================== PROGRESS ==================== */
+function updateProgress() {
+  var checked = getCheckedCount();
+  var total = getAllItemsCount();
+  var pct = total > 0 ? Math.round((checked/total)*100) : 0;
+  document.getElementById('checkedCount').textContent = checked;
+  document.getElementById('totalCount').textContent = total;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = pct + '%';
+  var wrap = document.getElementById('progressWrap');
+  wrap.classList.toggle('is-done', pct === 100);
+  var st = document.getElementById('summaryText');
+  if (pct === 0) st.textContent = 'Ready to pack? Start checking items off!';
+  else if (pct === 100) st.textContent = '🎉 All set! You are ready for move-in day!';
+  else st.textContent = "You're " + pct + "% there — keep going!";
+}
+
+/* ==================== PRINT ==================== */
+function printChecklist() { window.print(); }
+
+/* ==================== UTILITY ==================== */
+function escHtml(s) { var d=document.createElement('div'); d.appendChild(document.createTextNode(s)); return d.innerHTML; }
+
+/* ==================== INIT ==================== */
+function init() {
+  loadState();
+  updateProgress(); renderTabs(); renderCategory(state.activeTab); renderCart();
+
+  document.getElementById('printBtn').addEventListener('click', printChecklist);
+  document.getElementById('resetBtn').addEventListener('click', resetAll);
+  document.getElementById('cartCheckoutBtn').addEventListener('click', shopAll);
+  document.getElementById('cartCheckoutMobile').addEventListener('click', openCartModal);
+  document.getElementById('cartModalCheckout').addEventListener('click', function(){ closeCartModal(); shopAll(); });
+  document.getElementById('cartModalClose').addEventListener('click', closeCartModal);
+  document.getElementById('cartModal').addEventListener('click', function(e) { if (e.target === this) closeCartModal(); });
+
+  // Tab scroll buttons
+  var tsContainer = document.getElementById('tabsContainer');
+  var tsLeft = document.getElementById('tabsScrollLeft');
+  var tsRight = document.getElementById('tabsScrollRight');
+  function updateTabScroll() {
+    var sl = tsContainer.scrollLeft;
+    var sw = tsContainer.scrollWidth - tsContainer.clientWidth;
+    tsLeft.classList.toggle('is-visible', sl > 8);
+    tsRight.classList.toggle('is-visible', sl < sw - 8);
+  }
+  tsContainer.addEventListener('scroll', updateTabScroll);
+  tsLeft.addEventListener('click', function(){ tsContainer.scrollBy({ left:-200, behavior:'smooth' }); });
+  tsRight.addEventListener('click', function(){ tsContainer.scrollBy({ left:200, behavior:'smooth' }); });
+  updateTabScroll();
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
