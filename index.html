@@ -132,8 +132,8 @@ img{max-width:100%;display:block}
 #dorm-checklist-app .dc-btn-desel{background:var(--bg);color:var(--text-light)}
 #dorm-checklist-app .dc-btn-desel:hover{background:#FEE2E2;color:#DC2626}
 
-#dorm-checklist-app .dc-grid{display:grid;grid-template-columns:1fr;gap:5px}
-@media(min-width:540px){#dorm-checklist-app .dc-grid{grid-template-columns:1fr 1fr}}
+#dorm-checklist-app .dc-grid{display:grid;grid-template-columns:1fr;gap:6px}
+@media(min-width:640px){#dorm-checklist-app .dc-grid{grid-template-columns:1fr 1fr}}
 #dorm-checklist-app .dc-layout{overflow-x:hidden;max-width:100%}
 #dorm-checklist-app .dc-body{overflow-x:hidden}
 #dorm-checklist-app .dc-panel{overflow-x:hidden}
@@ -141,8 +141,8 @@ img{max-width:100%;display:block}
 #dorm-checklist-app .dc-item:hover{border-color:var(--border)}
 #dorm-checklist-app .dc-item.is-checked{background:var(--success-light);border-color:var(--success)}
 #dorm-checklist-app .dc-item.is-checked .dc-iname{font-weight:600}
-#dorm-checklist-app .dc-irow{display:flex;align-items:center;gap:7px;flex-wrap:nowrap}
-@media(max-width:420px){#dorm-checklist-app .dc-irow{flex-wrap:wrap;gap:3px}}
+#dorm-checklist-app .dc-irow{display:flex;align-items:center;gap:4px;flex-wrap:wrap;min-width:0}
+@media(min-width:640px){#dorm-checklist-app .dc-irow{flex-wrap:nowrap;gap:7px}}
 #dorm-checklist-app .dc-ichk{cursor:pointer;display:flex;align-items:center;gap:7px;flex:1;min-width:0}
 #dorm-checklist-app .dc-ichk input{position:absolute;opacity:0;width:0;height:0}
 #dorm-checklist-app .dc-ibox{flex-shrink:0;width:17px;height:17px;border:2px solid #CBD5E1;border-radius:4px;display:flex;align-items:center;justify-content:center;transition:all .2s;background:var(--card)}
