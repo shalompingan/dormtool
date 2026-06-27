@@ -18,8 +18,8 @@
   "@type": "WebSite",
   "name": "DormTool – Your Complete College Transition Toolkit",
   "description": "Free interactive tools for college students: dorm checklist, laundry timer, move-out checklist, moving cost calculator, rent affordability calculator, bill splitter, and first apartment checklist.",
-  "url": "https://dormtool.com/"
-  
+  "url": "https://dormtool.com/",
+
   "author": { "@type": "Organization", "name": "SettleList Labs", "url": "https://dormtool.com" },
   "mainEntityOfPage": { "@type": "WebPage", "@id": "https://dormtool.com/" },
   "mentions": [
@@ -34,6 +34,7 @@
   ]
 }
 </script>
+
 
 <meta name="description" content="Free interactive tools for college students: dorm checklist, laundry timer, move-out checklist, moving cost calculator, rent affordability calculator, bill splitter, and first apartment checklist.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -346,6 +347,7 @@ img{max-width:100%;display:block}
   <div class="hub-intro">
     <h1>🎒 Your <span>College Life</span>, Organized</h1>
     <p>From move-in to move-out, from laundry to lease signing — everything you need in one place. Free, no signup, works on any device.</p>
+	    <p style="margin-top:12px;font-size:.82rem"><a href="mailto:hello@dormtool.com" style="color:var(--hub-accent);font-weight:600">✉️ hello@dormtool.com</a> — Questions? Drop us a line.</p>
   </div>
 
   <!-- ==================== CATEGORY NAV ==================== -->
@@ -457,6 +459,7 @@ img{max-width:100%;display:block}
             <li><a href="#" data-modal="terms">📜 Terms of Service</a></li>
             <li><a href="#" data-modal="about">🧑‍💻 About Us</a></li>
             <li><a href="#" data-modal="contact">📬 Contact Us</a></li>
+            <li><a href="mailto:hello@dormtool.com" style="font-size:.72rem;color:rgba(255,255,255,.45)">✉️ hello@dormtool.com</a></li>
           </ul>
         </div>
         <div class="fcol">
@@ -1055,23 +1058,37 @@ document.addEventListener('DOMContentLoaded', dcInit);
     overlay.addEventListener('click', function(e) { if (e.target === this) closeAllModals(); });
   });
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeAllModals(); });
-  // Contact form demo
-  var cfBtn = document.getElementById('cfSubmit');
+  // Contact form — sends via Formspree (https://formspree.io)
+  // TODO: Replace YOUR_FORM_ID below with your actual Formspree form ID
+  var cfForm = document.getElementById('cfForm');
   var cfStatus = document.getElementById('cfStatus');
-  if (cfBtn && cfStatus) {
-    cfBtn.addEventListener('click', function() {
-      var name = (document.getElementById('cfName').value || '').trim();
-      var email = (document.getElementById('cfEmail').value || '').trim();
-      var msg = (document.getElementById('cfMessage').value || '').trim();
-      if (!name || !email || !msg) {
-        cfStatus.textContent = '⚠️ Please fill in all fields before sending.';
-        cfStatus.style.color = '#DC2626'; return;
-      }
-      cfStatus.textContent = '✅ Thanks ' + name + '! Your message was received. We will reply to ' + email + ' within 48 hours.';
-      cfStatus.style.color = 'var(--success)';
-      document.getElementById('cfName').value = '';
-      document.getElementById('cfEmail').value = '';
-      document.getElementById('cfMessage').value = '';
+  var cfSubmitBtn = document.getElementById('cfSubmit');
+  if (cfForm && cfStatus && cfSubmitBtn) {
+    cfForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var formData = new FormData(cfForm);
+      cfStatus.textContent = '⏳ Sending...';
+      cfStatus.style.color = 'var(--text-light)';
+      cfSubmitBtn.disabled = true;
+      fetch('https://formspree.io/f/YOUR_FORM_ID', {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      }).then(function(r) {
+        if (r.ok) {
+          cfStatus.textContent = '✅ Thanks! Your message was sent. We will reply within 48 hours.';
+          cfStatus.style.color = 'var(--success)';
+          cfForm.reset();
+        } else {
+          cfStatus.textContent = '⚠️ Failed to send. Please email us directly at support@settlelist.com.';
+          cfStatus.style.color = '#DC2626';
+        }
+      }).catch(function() {
+        cfStatus.textContent = '⚠️ Network error. Please email us directly at support@settlelist.com.';
+        cfStatus.style.color = '#DC2626';
+      }).finally(function() {
+        cfSubmitBtn.disabled = false;
+      });
     });
   }
 
@@ -1181,18 +1198,18 @@ document.addEventListener('DOMContentLoaded', dcInit);
     </div>
     <div class="mc-body">
       <p>We would love to hear from you. Whether you have a suggestion for a new tool, feedback on an existing one, or a question about our policies — drop us a message.</p>
-      <div class="contact-form">
+      <form class="contact-form" id="cfForm">
         <div class="cf-email">📧 <span>support@settlelist.com</span></div>
-        <p style="font-size:.82rem;color:var(--text-light);margin:0">Or use the contact form below and we will get back to you within 48 hours:</p>
+        <p style="font-size:.82rem;color:var(--text-light);margin:0">Send us a message and we will get back to you within 48 hours:</p>
         <label for="cfName">Your Name</label>
-        <input type="text" id="cfName" placeholder="e.g. Alex Johnson" maxlength="100">
+        <input type="text" id="cfName" name="name" placeholder="e.g. Alex Johnson" maxlength="100" required>
         <label for="cfEmail">Your Email</label>
-        <input type="email" id="cfEmail" placeholder="alex@example.edu" maxlength="200">
+        <input type="email" id="cfEmail" name="_replyto" placeholder="alex@example.edu" maxlength="200" required>
         <label for="cfMessage">Message</label>
-        <textarea id="cfMessage" placeholder="Tell us what is on your mind..." maxlength="2000"></textarea>
-        <button class="cf-btn" id="cfSubmit">✉️ Send Message</button>
-        <p style="font-size:.74rem;color:var(--text-light);margin:0;text-align:center" id="cfStatus">This is a static demo — your message would be sent to support@settlelist.com.</p>
-      </div>
+        <textarea id="cfMessage" name="message" placeholder="Tell us what is on your mind..." maxlength="2000" required></textarea>
+        <button class="cf-btn" id="cfSubmit" type="submit">✉️ Send Message</button>
+        <p style="font-size:.74rem;color:var(--text-light);margin:0;text-align:center" id="cfStatus"></p>
+      </form>
     </div>
   </div>
 </div>
