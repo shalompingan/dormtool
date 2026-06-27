@@ -1058,39 +1058,8 @@ document.addEventListener('DOMContentLoaded', dcInit);
     overlay.addEventListener('click', function(e) { if (e.target === this) closeAllModals(); });
   });
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeAllModals(); });
-  // Contact form — sends via Formspree (https://formspree.io)
-  // TODO: Replace YOUR_FORM_ID below with your actual Formspree form ID
-  var cfForm = document.getElementById('cfForm');
-  var cfStatus = document.getElementById('cfStatus');
-  var cfSubmitBtn = document.getElementById('cfSubmit');
-  if (cfForm && cfStatus && cfSubmitBtn) {
-    cfForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      var formData = new FormData(cfForm);
-      cfStatus.textContent = '⏳ Sending...';
-      cfStatus.style.color = 'var(--text-light)';
-      cfSubmitBtn.disabled = true;
-      fetch('https://formspree.io/f/YOUR_FORM_ID', {
-        method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      }).then(function(r) {
-        if (r.ok) {
-          cfStatus.textContent = '✅ Thanks! Your message was sent. We will reply within 48 hours.';
-          cfStatus.style.color = 'var(--success)';
-          cfForm.reset();
-        } else {
-          cfStatus.textContent = '⚠️ Failed to send. Please email us directly at support@settlelist.com.';
-          cfStatus.style.color = '#DC2626';
-        }
-      }).catch(function() {
-        cfStatus.textContent = '⚠️ Network error. Please email us directly at support@settlelist.com.';
-        cfStatus.style.color = '#DC2626';
-      }).finally(function() {
-        cfSubmitBtn.disabled = false;
-      });
-    });
-  }
+  // Contact info
+
 
 </script>
 
@@ -1121,13 +1090,13 @@ document.addEventListener('DOMContentLoaded', dcInit);
           <li><strong>Deletion</strong> — Request that we delete your personal data (note: we do not store personal data on our servers; clearing local storage achieves this).</li>
           <li><strong>Opt-Out</strong> — Refuse the sale of your personal information. We do not sell personal data.</li>
         </ul>
-      To exercise any of these rights, contact us at support@settlelist.com.</p>
+      To exercise any of these rights, contact us at hello@dormtool.com.</p>
       <h3>4. Data Security</h3>
       <p>We implement reasonable security measures to protect your information. However, no method of electronic storage or transmission is 100% secure, and we cannot guarantee absolute security.</p>
       <h3>5. Changes to This Policy</h3>
       <p>We may update this Privacy Policy from time to time. Changes are effective immediately upon posting. We encourage you to review this page periodically.</p>
       <h3>6. Contact</h3>
-      <p>For questions about this Privacy Policy, reach us at: <strong>support@settlelist.com</strong></p>
+      <p>For questions about this Privacy Policy, reach us at: <strong>hello@dormtool.com</strong></p>
     </div>
   </div>
 </div>
@@ -1166,7 +1135,7 @@ document.addEventListener('DOMContentLoaded', dcInit);
       <h3>8. Governing Law</h3>
       <p>These Terms shall be governed by and construed in accordance with the laws of the State of Delaware, United States, without regard to its conflict of law provisions.</p>
       <h3>9. Contact</h3>
-      <p>For questions about these Terms, reach us at: <strong>support@settlelist.com</strong></p>
+      <p>For questions about these Terms, reach us at: <strong>hello@dormtool.com</strong></p>
     </div>
   </div>
 </div>
@@ -1199,16 +1168,10 @@ document.addEventListener('DOMContentLoaded', dcInit);
     <div class="mc-body">
       <p>We would love to hear from you. Whether you have a suggestion for a new tool, feedback on an existing one, or a question about our policies — drop us a message.</p>
       <form class="contact-form" id="cfForm">
-        <div class="cf-email">📧 <span>support@settlelist.com</span></div>
-        <p style="font-size:.82rem;color:var(--text-light);margin:0">Send us a message and we will get back to you within 48 hours:</p>
-        <label for="cfName">Your Name</label>
-        <input type="text" id="cfName" name="name" placeholder="e.g. Alex Johnson" maxlength="100" required>
-        <label for="cfEmail">Your Email</label>
-        <input type="email" id="cfEmail" name="_replyto" placeholder="alex@example.edu" maxlength="200" required>
-        <label for="cfMessage">Message</label>
-        <textarea id="cfMessage" name="message" placeholder="Tell us what is on your mind..." maxlength="2000" required></textarea>
-        <button class="cf-btn" id="cfSubmit" type="submit">✉️ Send Message</button>
-        <p style="font-size:.74rem;color:var(--text-light);margin:0;text-align:center" id="cfStatus"></p>
+        <div class="cf-email" style="font-size:1rem;padding:16px 18px;background:var(--hub-accent);color:#fff;border-radius:var(--radius-sm);text-align:center">
+          📧 <a href="mailto:hello@dormtool.com" style="color:#fff;font-weight:700;font-size:1.05rem">hello@dormtool.com</a>
+        </div>
+        <p style="font-size:.82rem;color:var(--text-light);margin:6px 0 0;text-align:center">Click the email above to send us a message directly from your inbox.</p>
       </form>
     </div>
   </div>
