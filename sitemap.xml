@@ -46,6 +46,11 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://dormtool.com/blog/college-move-in-day-guide/</loc>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://dormtool.com/blog/</loc>
     <priority>0.7</priority>
     <changefreq>weekly</changefreq>
