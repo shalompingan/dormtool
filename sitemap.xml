@@ -11,6 +11,11 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://dormtool.com/dorm-budget-calculator/</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://dormtool.com/dorm-laundry-hub/</loc>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
