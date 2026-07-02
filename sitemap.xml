@@ -91,8 +91,13 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://dormtool.com/blog/moving-cost-breakdown-2026/</loc>
+    <loc>https://dormtool.com/blog/dorm-meals-no-kitchen/</loc>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
-</urlset>
+  <url>
+    <loc>https://dormtool.com/blog/dorm-bed-size-guide/</loc>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
