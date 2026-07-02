@@ -46,6 +46,21 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://dormtool.com/student-loan-calculator/</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://dormtool.com/gpa-calculator/</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://dormtool.com/blog/</loc>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://dormtool.com/blog/what-not-to-bring-to-college/</loc>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
@@ -54,11 +69,6 @@
     <loc>https://dormtool.com/blog/college-move-in-day-guide/</loc>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://dormtool.com/blog/</loc>
-    <priority>0.7</priority>
-    <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://dormtool.com/blog/37-things-you-actually-need-dorm-room-2026/</loc>
@@ -91,7 +101,7 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://dormtool.com/blog/dorm-meals-no-kitchen/</loc>
+    <loc>https://dormtool.com/blog/moving-cost-breakdown-2026/</loc>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
@@ -101,3 +111,8 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://dormtool.com/blog/dorm-meals-no-kitchen/</loc>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+</urlset>
