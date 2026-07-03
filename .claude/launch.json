@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "moveout",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["http-server", "C:\\Users\\shalom\\Desktop\\dormtool", "-c-1", "-p", "3099"],
+      "port": 3099
+    }
+  ]
+}
