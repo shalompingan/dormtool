@@ -63,6 +63,14 @@ find "C:\Users\shalom\Desktop\dormtool" -name "*.orig" -type f -delete
 4. `<footer class="site-footer">` — 页脚（含 affiliate disclaimer）
 5. Modal 弹窗 — Privacy / Terms / About / Contact
 
+## 修改 minified 文件注意事项
+
+minified HTML 是单行无格式代码，用 sed/perl 做字符串替换时极易误删相邻代码。
+
+- 追加内容时，优先插入到结束标记前（如 `];` / `}};`），而非替换已有条目
+- 如果必须替换，确保替换内容包含被匹配的原文，不要丢弃
+- **每次修改后立即验证**：grep 检查被改的关键变量/条目是否仍完整存在，不要批量改完再验证
+
 ## 已知 issue
 
 - `index.html`（首页）有多个 .bak 备份文件，可清理
