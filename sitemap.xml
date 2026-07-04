@@ -31,6 +31,11 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://dormtool.com/final-grade-calculator/</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://dormtool.com/first-apartment-checklist/</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
