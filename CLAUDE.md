@@ -45,7 +45,7 @@ find "C:\Users\shalom\Desktop\dormtool" -name "*.orig" -type f -delete
 
 ## 关键约定
 
-- **Emoji**: 仅保留导航栏 logo 🛠、侧边栏图标、TOOL_NAV_DATA 中的 emoji 值。页面内容区域（标题、标签、按钮等）不使用 emoji
+- **Emoji**: 仅保留导航栏 logo 🛠、侧边栏图标、TOOL_NAV_DATA 中的 emoji 值。页面内容区域（标题、标签、按钮等）不使用 emoji。文章内的装饰性 emoji 图标（如推荐卡片、网格图标等）一律不加
 - **跨工具链接**：统一用 `.next-card` 样式卡片放在页面底部
 - **跨站链接**：指向 koalasave.com 的链接用 "Your Next Step: ..." 标题
 - **PWA**：所有页面引用 `/manifest.json`，favicon 为 `/favicon.svg`，sw 为 `/sw.js`
