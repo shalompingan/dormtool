@@ -73,6 +73,12 @@ minified HTML 是单行无格式代码，用 sed/perl 做字符串替换时极�
 - 如果必须替换，确保替换内容包含被匹配的原文，不要丢弃
 - **每次修改后立即验证**：grep 检查被改的关键变量/条目是否仍完整存在，不要批量改完再验证
 
+## 品牌名称
+
+- 品牌名统一为 **DormTool**，禁止使用 "SettleList Labs"
+- 所有新建页面/文章的 footer、JSON-LD publisher/author、disclaimer、copyright、modal 内容中涉及公司名的位置一律写 "DormTool"
+- 邮箱 `support@settlelist.com` 保持不变
+
 ## 已知 issue
 
 - `index.html`（首页）有多个 .bak 备份文件，可清理

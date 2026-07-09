@@ -24,6 +24,6 @@ DormTool provides 12 free interactive tools covering dorm move-in checklists, GP
 - [Roommate Agreement Guide](https://dormtool.com/blog/roommate-agreement-guide/): How to create and use roommate agreements effectively
 
 ## About
-- [About Us](https://dormtool.com/about/): Information about SettleList Labs and DormTool
+- [About Us](https://dormtool.com/about/): Information about DormTool
 - [Privacy Policy](https://dormtool.com/privacy/): How user data is handled
 - [Terms of Service](https://dormtool.com/terms/): Terms governing site use
