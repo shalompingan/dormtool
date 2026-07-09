@@ -150,4 +150,9 @@
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
+  <url>
+    <loc>https://dormtool.com/blog/how-much-rent-can-i-afford/</loc>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
 </urlset>
