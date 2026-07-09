@@ -20,7 +20,7 @@ find "C:\Users\shalom\Desktop\dormtool" -name "*.orig" -type f -delete
 
 - `/roommate-agreement/index.html` — Dorm Roommate Agreement Generator（交互式勾选 → 生成可打印协议，8个分类32个条款）
 - `/index.html` — 首页（Dorm Essentials Checklist + 工具矩阵）
-- `/tools/index.html` — 工具中心页（9 tools 分类展示）
+- `/tools/index.html` — 工具中心页（全量工具分类展示）
 - `/dorm-checklist/index.html` — Dorm Essentials Checklist
 - `/dorm-laundry-hub/index.html` — Dorm Laundry Hub
 - `/move-out-checklist/index.html` — Dorm Move-Out Checklist
@@ -30,7 +30,7 @@ find "C:\Users\shalom\Desktop\dormtool" -name "*.orig" -type f -delete
 - `/bill-splitter/index.html` — Roommate Bill Splitter
 - `/student-loan-calculator/index.html` — Student Loan Calculator
 - `/gpa-calculator/index.html` — GPA Calculator
-- `/blog/index.html` — Blog hub（8篇文章）
+- `/blog/index.html` — Blog hub（全量文章列表自动渲染）
 - `/blog/*/index.html` — 单篇博客文章
 
 ## 设计系统
@@ -40,7 +40,7 @@ find "C:\Users\shalom\Desktop\dormtool" -name "*.orig" -type f -delete
 - 配色：海军蓝 #1E3A5F header + 暖灰 #F8F6F3 背景 + 琥珀色 #D97706 强调色
 - 导航栏统一：🛠 + 白字 "DormTool" + 工具下拉菜单
 - 侧边面板（移动端）：`hub-side-overlay` + `hub-side-panel`
-- 工具导航数据：`TOOL_NAV_DATA` 对象（7 tools + emoji + url）
+- 工具导航数据：`TOOL_NAV_DATA` 对象（全量工具 + emoji + url）
 - 博客文章数据：`ARTICLES` 数组
 
 ## 关键约定
@@ -77,3 +77,8 @@ minified HTML 是单行无格式代码，用 sed/perl 做字符串替换时极�
 
 - `index.html`（首页）有多个 .bak 备份文件，可清理
 - 根目录有多个零散的 `.js` 调试/检查脚本，非核心代码
+
+## 执行规则
+
+- **只执行用户明确要求的修改**：不得自行修复任何布局、样式、功能、结构问题，哪怕明显有问题。用户没让改的，一概不动。
+- **不部署，除非用户说部署**：改完代码后不得自行部署、发布、或触发任何部署流程。只有用户明确说"部署"或"发布"时才执行。
