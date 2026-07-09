@@ -2,10 +2,10 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "moveout",
+      "name": "dormtool-local",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["http-server", "C:\\Users\\shalom\\Desktop\\dormtool", "-c-1", "-p", "3099"],
-      "port": 3099
+      "runtimeArgs": ["http-server", "-p", "8080", "--no-dotfiles", "-c-1"],
+      "port": 8080
     }
   ]
 }

@@ -43,8 +43,8 @@ find "C:\Users\shalom\Desktop\dormtool" -name "*.orig" -type f -delete
 - 所有页面为单文件 HTML（inline CSS + JS），无框架
 - 字体：Inter（全部页面统一）
 - 配色：海军蓝 #1E3A5F header + 暖灰 #F8F6F3 背景 + 琥珀色 #D97706 强调色
-- 导航栏统一：🛠 + 白字 "DormTool" + 工具下拉菜单
-- 侧边面板（移动端）：`hub-side-overlay` + `hub-side-panel`
+- 导航栏统一：SVG logo（40×40，白色 + #D97706 琥珀色） + 白字 "DormTool" + 工具下拉菜单
+- 侧边面板（移动端）：`hub-side-overlay` + `hub-side-panel`，logo 为 SVG（30×30，白色 + #D97706 琥珀色）
 - 工具导航数据：`TOOL_NAV_DATA` 对象（全量工具 + emoji + url）
 - 博客文章数据：`ARTICLES` 数组
 
