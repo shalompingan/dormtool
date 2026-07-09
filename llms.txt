@@ -1,0 +1,29 @@
+# DormTool
+> Free interactive tools for college students navigating dorm life, independent living, and campus finances.
+
+DormTool provides 12 free interactive tools covering dorm move-in checklists, GPA calculation, student loan planning, rent affordability, roommate bill splitting, moving cost estimation, and more. All tools are single-page HTML files with no signup or data collection required.
+
+## Tools
+- [Dorm Essentials Checklist](https://dormtool.com/dorm-checklist/): Interactive packing and shopping checklist with Amazon integration
+- [Dorm Laundry Hub](https://dormtool.com/dorm-laundry-hub/): Laundry sorting, stain removal, and machine guides
+- [Move-Out Checklist](https://dormtool.com/move-out-checklist/): Track tasks to avoid university fines at move-out
+- [Moving Cost Calculator](https://dormtool.com/moving-cost-calculator/): Estimate truck rentals, mileage, and supplies
+- [First Apartment Checklist](https://dormtool.com/first-apartment-checklist/): Room-by-room checklist for outfitting a first apartment
+- [Rent Affordability Calculator](https://dormtool.com/rent-affordability/): Calculate safe housing budget based on income
+- [Roommate Bill Splitter](https://dormtool.com/bill-splitter/): Fairly split rent, utilities, and groceries
+- [Student Loan Calculator](https://dormtool.com/student-loan-calculator/): Monthly payment and amortization estimates
+- [GPA Calculator](https://dormtool.com/gpa-calculator/): Calculate weighted GPA by course
+- [Final Grade Calculator](https://dormtool.com/final-grade-calculator/): What score needed on final exam to reach target grade
+- [Dorm Budget Calculator](https://dormtool.com/dorm-budget-calculator/): Plan move-in shopping budget with adjustable prices
+- [Roommate Agreement Generator](https://dormtool.com/roommate-agreement/): Customizable agreement to set shared expectations
+
+## Blog
+- [Dorm Room Hacks](https://dormtool.com/blog/dorm-room-hacks/): Practical tips for maximizing small dorm spaces
+- [College Money Mistakes](https://dormtool.com/blog/college-money-mistakes/): 15 common financial pitfalls and how to avoid them
+- [College Move-In Day Guide](https://dormtool.com/blog/college-move-in-day-guide/): Step-by-step move-in day survival guide
+- [Roommate Agreement Guide](https://dormtool.com/blog/roommate-agreement-guide/): How to create and use roommate agreements effectively
+
+## About
+- [About Us](https://dormtool.com/about/): Information about SettleList Labs and DormTool
+- [Privacy Policy](https://dormtool.com/privacy/): How user data is handled
+- [Terms of Service](https://dormtool.com/terms/): Terms governing site use
