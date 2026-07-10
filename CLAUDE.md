@@ -89,12 +89,37 @@ minified HTML 是单行无格式代码，用 sed/perl 做字符串替换时极�
 
 - 品牌名统一为 **DormTool**，禁止使用 "SettleList Labs"
 - 所有新建页面/文章的 footer、JSON-LD publisher/author、disclaimer、copyright、modal 内容中涉及公司名的位置一律写 "DormTool"
-- 邮箱 `support@settlelist.com` 保持不变
+- 邮箱 `hello@dormtool.com` 保持不变
 
 ## 已知 issue
 
 - `index.html`（首页）有多个 .bak 备份文件，可清理
 - 根目录有多个零散的 `.js` 调试/检查脚本，非核心代码
+
+## Footer Legal & Trust 链接
+
+所有页面的 footer "Legal & Trust" 4 个链接（Privacy/ Terms/ About/ Contact）改为真实链接，不用 JS 弹窗。路径格式跟随页面中 Smart Utilities 已有链接的风格：
+
+- 如果 Smart Utilities 用绝对路径 `/dorm-checklist/` → Legal 也用 `/privacy/`
+- 如果 Smart Utilities 用相对路径 `../dorm-checklist/index.html` → Legal 也用 `../privacy/index.html`
+- 首页（根目录）用 `privacy/index.html`
+
+所有 16 个页面的 About modal 已统一为一致内容：
+- 不含虚构的"团队"描述，明确标明 AI 辅助生成 + solo project
+- 署名统一为 `— By DormTool`，右对齐
+- 联系方式 `hello@dormtool.com`
+- 更新清单：index.html, tools/index.html, about/index.html, rent-affordability, moving-cost-calculator, move-out-checklist, first-apartment-checklist, dorm-laundry-hub, dorm-checklist, bill-splitter, blog/index.html, roommate-agreement, student-loan-calculator, gpa-calculator, final-grade-calculator, dorm-budget-calculator, college-acceptance-calculator
+
+## Smart Utilities 底部导航（2026-07-10 更新）
+
+所有 16 个页面的 footer "Smart Utilities" 栏目统一为 5 个工具链接：
+1. Dorm Checklist
+2. Rent Affordability Calculator
+3. Roommate Bill Splitter
+4. GPA Calculator
+5. Moving Cost Calculator
+
+注意：`--max-w` CSS 变量各页面可能不同（如 college-acceptance-calculator 原为 780px），影响 footer 列间距。修改时需确认一致。
 
 ## 执行规则
 
