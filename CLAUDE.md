@@ -56,7 +56,13 @@ find "C:\Users\shalom\Desktop\dormtool" -name "*.orig" -type f -delete
 - **PWA**：所有页面引用 `/manifest.json`，favicon 为 `/favicon.svg`，sw 为 `/sw.js`
 - **GA4**：`G-C7V3YR4WTZ`
 - **隐私**：所有数据 localStorage 存储，无服务器端收集
+- **Disclaimer 规则**：每篇博客文章的免责声明根据内容风险类型定制，不统一复制
+  - **财务类**（贷款、房租、预算）：加 financial advice disclaimer
+  - **学术/申请类**（GPA、大学申请、ED/EA）：加 admissions/academic advice disclaimer
+  - **法律/合约类**（roommate agreement）：加 legal advice disclaimer
+  - **纯信息类**（清单、指南）：简短 disclaimer 或无特殊声明
 - **SEO 内链**：每篇新博客文章必须内链到至少 2-3 个已有工具 + 1-2 篇相关文章，底部加 `.blog-next-moves` 推荐卡片，帮助 Google 爬取更深
+- **博客文章排序**：新文章添加到 `blog/index.html` 的 `ARTICLES` 数组时，放在数组**最前面**（即第一个位置），确保博客页最新文章排在最上方
 - **Tab 系统**（rent-affordability 等页面）：tab 内容通过 JS 动态渲染到 `#categoryPanel`，切换 tab 时替换 innerHTML
 - **打印**：每个工具页面有 `@media print` 样式，隐藏导航/广告/按钮等
 - **首页 JSON-LD**：新增工具后同步更新 `index.html` 中 `<script type="application/ld+json">` 的 `mentions` 数组和 `<meta name="description">`
