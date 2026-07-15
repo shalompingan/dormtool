@@ -67,6 +67,7 @@ find "C:\Users\shalom\Desktop\dormtool" -name "*.orig" -type f -delete
 - **打印**：每个工具页面有 `@media print` 样式，隐藏导航/广告/按钮等
 - **首页 JSON-LD**：新增工具后同步更新 `index.html` 中 `<script type="application/ld+json">` 的 `mentions` 数组和 `<meta name="description">`
 - **博客作者统一**：所有 21 篇博客文章的 byline（`.bauthor`）统一为 `"By DormTool"`，JSON-LD Article author 为 `"@type":"Person","name":"DormTool"`。新增文章时必须遵循此格式
+- **Footer tagline**：所有页面的 `.fbar` 第二行统一为 `"Built by one student who got tired of guessing. Refined with AI."`
 
 ## 工具页面通用模式
 
@@ -104,9 +105,11 @@ minified HTML 是单行无格式代码，用 sed/perl 做字符串替换时极�
 - 如果 Smart Utilities 用相对路径 `../dorm-checklist/index.html` → Legal 也用 `../privacy/index.html`
 - 首页（根目录）用 `privacy/index.html`
 
-所有 16 个页面的 About modal 已统一为一致内容：
-- 不含虚构的"团队"描述，明确标明 AI 辅助生成 + solo project
-- 署名统一为 `— By DormTool`，右对齐
+所有 16 个页面的 About modal 已统一为第一人称版本，正文如下：
+- 段落1：品牌介绍（"DormTool provides free interactive tools..."）
+- 段落2：个人故事（"I started this as a way to turn the most stressful parts..."）
+- 段落3：solo project 说明（"DormTool is a solo project. I write and organize the content myself..."）
+- 署名统一为 `— DormTool`，右对齐
 - 联系方式 `hello@dormtool.com`
 - 更新清单：index.html, tools/index.html, about/index.html, rent-affordability, moving-cost-calculator, move-out-checklist, first-apartment-checklist, dorm-laundry-hub, dorm-checklist, bill-splitter, blog/index.html, roommate-agreement, student-loan-calculator, gpa-calculator, final-grade-calculator, dorm-budget-calculator, college-acceptance-calculator
 
