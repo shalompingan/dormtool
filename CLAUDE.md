@@ -113,14 +113,17 @@ minified HTML 是单行无格式代码，用 sed/perl 做字符串替换时极�
 - 联系方式 `hello@dormtool.com`
 - 更新清单：index.html, tools/index.html, about/index.html, rent-affordability, moving-cost-calculator, move-out-checklist, first-apartment-checklist, dorm-laundry-hub, dorm-checklist, bill-splitter, blog/index.html, roommate-agreement, student-loan-calculator, gpa-calculator, final-grade-calculator, dorm-budget-calculator, college-acceptance-calculator
 
-## Smart Utilities 底部导航（2026-07-10 更新）
+## Smart Utilities 底部导航（2026-07-15 更新）
 
-所有 16 个页面的 footer "Smart Utilities" 栏目统一为 5 个工具链接：
+所有页面的 footer "Smart Utilities" 栏目统一为 5 个工具链接 + "View All Tools →"：
 1. Dorm Checklist
 2. Rent Affordability Calculator
 3. Roommate Bill Splitter
 4. GPA Calculator
 5. Moving Cost Calculator
+6. View All Tools（`<a href="/tools/">`，字体加粗，琥珀色）
+
+注意：部分页面（contact、about、privacy、terms）原先有 9 个工具，已标准化为统一的 5 个 + 查看全部。
 
 注意：`--max-w` CSS 变量各页面可能不同（如 college-acceptance-calculator 原为 780px），影响 footer 列间距。修改时需确认一致。
 
