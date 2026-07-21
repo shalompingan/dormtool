@@ -84,7 +84,10 @@ minified HTML 是单行无格式代码，用 sed/perl 做字符串替换时极�
 
 - 追加内容时，优先插入到结束标记前（如 `];` / `}};`），而非替换已有条目
 - 如果必须替换，确保替换内容包含被匹配的原文，不要丢弃
-- **每次修改后立即验证**：grep 检查被改的关键变量/条目是否仍完整存在，不要批量改完再验证
+- **每次修改后立即验证，不要批量改完再验证**，三样都要做：
+  1. grep/python 检查被改的关键变量/条目是否仍完整存在
+  2. 如果改动涉及 JSON-LD（`<script type="application/ld+json">`），用 `python3 -c "import json;json.loads(...)"` 或 `node -e` 确认还是合法 JSON——**不要用 `node build.js` 校验**，它的 JS/HTML minifier 是纯正则处理、没有语法解析，代码写坏了也会"压缩成功"不报错；唯一有 try/catch 的地方是 JSON-LD，但解析失败会静默跳过、不会报错，起不到校验作用
+  3. 本地打开改动的页面，看浏览器控制台有没有报错
 
 ## 品牌名称
 
@@ -96,6 +99,33 @@ minified HTML 是单行无格式代码，用 sed/perl 做字符串替换时极�
 
 - `index.html`（首页）有多个 .bak 备份文件，可清理
 - 根目录有多个零散的 `.js` 调试/检查脚本，非核心代码
+
+## 2026-07-21 移动端侧边栏 bug 修复记录
+
+全站排查后发现并修复了以下几类系统性问题，涉及 `blog/*/index.html` 里大量文章（不是个别页面）：
+
+- **`TOOL_NAV_DATA` 不全**：标准应为 13 个工具（顺序：dorm-checklist → dorm-laundry-hub → move-out-checklist → moving-cost-calculator → first-apartment-checklist → rent-affordability → bill-splitter → dorm-budget-calculator → student-loan-calculator → gpa-calculator → final-grade-calculator → college-acceptance-calculator → roommate-agreement）。发现时有近 20 篇文章只有 7-12 个，是历史上加新工具时忘记同步旧文章导致的。**每次新增工具后，必须检查所有已发布博客文章的 `TOOL_NAV_DATA`，不能只改首页/工具页**
+- **✕ 关闭图标 / ☰ 汉堡图标缺失**：`<button class="hsp-close" id="hubSideClose"></button>` 和 `hubHamburger` 有时会漏写图标文字（空按钮）
+- **Home/All Tools 链接不统一**：博客文章侧边栏不应该有 Home/All Tools 这两项（已统一去掉），只有首页 `index.html` 自己保留
+- **`.hub-side-overlay.is-open .hub-side-panel{transform:translateX(0)}` 规则缺失**：极隐蔽的 bug——缺了这条，遮罩层能正常变暗，但侧边面板本身永远不会滑入屏幕（点击没反应的假象）。CSS 里必须同时有 `.hub-side-overlay.is-open{display:block}` 和这条 transform 规则，两条缺一不可
+- **`--hub-primary` CSS 变量未定义**：`.hub-side-panel{background:var(--hub-primary)}` 依赖这个变量，如果 `:root` 里没定义会导致面板背景透明，文章内容透视出来。标准值 `--hub-primary:#1E3A5F`（和 `--primary` 一致）
+- **表格横向溢出**：手机端宽表格（4列以上）如果没有包一层 `.table-scroll{overflow-x:auto}` 或 `.table-wrap{overflow-x:auto}`，会撑破整个页面横向布局。新文章里的对比表格必须包这层容器
+- **early-decision-vs-early-action 文章**：内嵌的策略测试工具 JS 曾经被截断（`evaluate()` 函数写到一半没了），导致整段脚本因语法错误全部失效。已重写补全评分逻辑
+
+**建议**：新增博客文章时，直接复制近期已验证过的文章（如 `dorm-room-organization-guide`）的导航栏/侧边栏代码块作为模板，而不是手写，避免重复踩坑。
+
+## 待办：TOOL_NAV_DATA 统一迁移（方案A，尚未开始）
+
+上面这轮 bug（12篇缺工具、导航图标丢失、后续又发现另外10+篇同类问题）本质上是同一种失败模式：`TOOL_NAV_DATA` 数据散落在 35-40 个文件里各自维护一份，靠人为记得同步，迟早会漏。
+
+长远方案已经讨论并确定：**方案A——把 `TOOL_NAV_DATA`（以及可能的 `renderToolNav` 逻辑）抽成一个共享的 `/nav-data.js` 文件，全站页面统一 `<script src="/nav-data.js">` 引用，不再各自维护一份**。这样"忘记同步"这个动作在技术上不可能发生，而不是靠检查脚本或人工提醒去兜底（方案B）。方案B 的检查脚本思路不冲突，可以留着做上线前兜底，但不能替代方案A。
+
+**现状**：只是决定了方向，还没有开始迁移。原因是当前所有页面已经手动修复并验证过，站点处于正确状态，迁移属于"面向未来的保险"而非紧急修复，且这轮修复工作量已经很大，不适合疲劳状态下继续做大范围改动。
+
+**迁移涉及的复杂点**（下次动手前务必确认）：
+1. 全站有三种 URL 风格混用：绝对路径 `/xxx/`、绝对路径 `/xxx/index.html`、相对路径 `../../xxx/index.html`——迁移时建议统一成绝对路径 `/xxx/`，需要顺带处理
+2. `renderToolNav` 至少有两个变体：普通版本（无 Home/All Tools），以及带 `hubToolsMenu` + `CURRENT_TOOL`（排除当前工具自身链接）的版本，后者主要给工具页顶部下拉菜单用——迁移前要先确认工具页那边的具体用法，不能直接照搬博客文章的模式
+3. 建议节奏：先搭好 `/nav-data.js` 共享文件 → 挑2-3个页面接入验证无误 → 再批量替换其余文件 + 抽查，而不是继续"一个页面一个页面手动查"（那是排查未知bug时的节奏，迁移是机械替换，可以更快）
 
 ## Footer Legal & Trust 链接
 
@@ -131,3 +161,4 @@ minified HTML 是单行无格式代码，用 sed/perl 做字符串替换时极�
 
 - **只执行用户明确要求的修改**：不得自行修复任何布局、样式、功能、结构问题，哪怕明显有问题。用户没让改的，一概不动。
 - **不部署，除非用户说部署**：改完代码后不得自行部署、发布、或触发任何部署流程。只有用户明确说"部署"或"发布"时才执行。
+- **多页面修复必须一个一个来**：如果同一类问题涉及多个页面，修复一个页面后立即发本地连接（http://127.0.0.1:5500/...）给用户检查，等用户确认没问题后才能修复下一个页面。禁止一次性批量修改多个页面再统一汇报。
