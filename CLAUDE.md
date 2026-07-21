@@ -23,7 +23,6 @@ find "C:\Users\shalom\Desktop\dormtool" -name "*.orig" -type f -delete
 
 ## 页面结构
 
-- `/roommate-agreement/index.html` — Dorm Roommate Agreement Generator（交互式勾选 → 生成可打印协议，8个分类32个条款）
 - `/index.html` — 首页（Dorm Essentials Checklist + 工具矩阵）
 - `/tools/index.html` — 工具中心页（全量工具分类展示）
 - `/dorm-checklist/index.html` — Dorm Essentials Checklist
@@ -33,10 +32,15 @@ find "C:\Users\shalom\Desktop\dormtool" -name "*.orig" -type f -delete
 - `/first-apartment-checklist/index.html` — First Apartment Checklist
 - `/rent-affordability/index.html` — Rent Affordability Calculator（含4个tab：Calculator / What-If / City Guide / Tips&Resources）
 - `/bill-splitter/index.html` — Roommate Bill Splitter
+- `/dorm-budget-calculator/index.html` — Dorm Budget Calculator
 - `/student-loan-calculator/index.html` — Student Loan Calculator
 - `/gpa-calculator/index.html` — GPA Calculator
-- `/blog/index.html` — Blog hub（全量文章列表自动渲染）
-- `/blog/*/index.html` — 单篇博客文章
+- `/final-grade-calculator/index.html` — Final Grade Calculator
+- `/college-acceptance-calculator/index.html` — College Acceptance Calculator
+- `/roommate-agreement/index.html` — Dorm Roommate Agreement Generator（交互式勾选 → 生成可打印协议，8个分类32个条款）
+- `/about/index.html`、`/contact/index.html`、`/privacy/index.html`、`/terms/index.html` — 关于/联系/隐私/条款
+- `/blog/index.html` — Blog hub（全量文章列表自动渲染，`ARTICLES` 数组）
+- `/blog/*/index.html` — 单篇博客文章（目前 23 篇）
 
 ## 设计系统
 
@@ -66,7 +70,7 @@ find "C:\Users\shalom\Desktop\dormtool" -name "*.orig" -type f -delete
 - **Tab 系统**（rent-affordability 等页面）：tab 内容通过 JS 动态渲染到 `#categoryPanel`，切换 tab 时替换 innerHTML
 - **打印**：每个工具页面有 `@media print` 样式，隐藏导航/广告/按钮等
 - **首页 JSON-LD**：新增工具后同步更新 `index.html` 中 `<script type="application/ld+json">` 的 `mentions` 数组和 `<meta name="description">`
-- **博客作者统一**：所有 21 篇博客文章的 byline（`.bauthor`）统一为 `"By DormTool"`，JSON-LD Article author 为 `"@type":"Person","name":"DormTool"`。新增文章时必须遵循此格式
+- **博客作者统一**：所有博客文章（目前 23 篇）的 byline（`.bauthor`）统一为 `"By DormTool"`，JSON-LD Article author 为 `"@type":"Person","name":"DormTool"`。新增文章时必须遵循此格式
 - **Footer tagline**：所有页面的 `.fbar` 第二行统一为 `"Built by one student who got tired of guessing. Refined with AI."`
 
 ## 工具页面通用模式
@@ -97,8 +101,10 @@ minified HTML 是单行无格式代码，用 sed/perl 做字符串替换时极�
 
 ## 已知 issue
 
-- `index.html`（首页）有多个 .bak 备份文件，可清理
-- 根目录有多个零散的 `.js` 调试/检查脚本，非核心代码
+- 根目录有 `index.html.bak` 备份文件（只有1个，不是多个），可清理
+- 根目录有一批一次性调试脚本，非核心代码，可以清理（`build.js`、`build-nav.js`、`add-jsonld.js`、`contact-worker.js`、`sw.js`、`fix-cart.js` 是仍在用的核心脚本，不要删）：
+  `balance_check.js`、`check_brace2.js`、`check_cf.js`、`check_cf2.js`、`check_root.js`、`check_syn.js`、`check_syn2.js`、`check_tail.js`、`find_error_pos.js`、`fix_dcl1.js`、`fix_laundry.js`、`fix_one.js`、`tmp_check.js`、`trace_dcl.js`、`verify_css.js`、`verify_laundry.js`、`verify_one.js`、`verify_page.js`
+- `blog/index.html` 的 `ARTICLES` 数组曾经漏掉 4 篇已发布文章（college-money-mistakes、how-much-rent-can-i-afford、how-to-calculate-gpa、weighted-gpa-calculator），导致这 4 篇在博客列表页上是"孤岛"——文章本身能直接访问，但博客首页找不到入口，Google 从博客页爬不到。2026-07-21 已补进数组
 
 ## 2026-07-21 移动端侧边栏 bug 修复记录
 
