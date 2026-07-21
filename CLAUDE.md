@@ -104,7 +104,8 @@ minified HTML 是单行无格式代码，用 sed/perl 做字符串替换时极�
 - 根目录有 `index.html.bak` 备份文件（只有1个，不是多个），可清理
 - 根目录有一批一次性调试脚本，非核心代码，可以清理（`build.js`、`build-nav.js`、`add-jsonld.js`、`contact-worker.js`、`sw.js`、`fix-cart.js` 是仍在用的核心脚本，不要删）：
   `balance_check.js`、`check_brace2.js`、`check_cf.js`、`check_cf2.js`、`check_root.js`、`check_syn.js`、`check_syn2.js`、`check_tail.js`、`find_error_pos.js`、`fix_dcl1.js`、`fix_laundry.js`、`fix_one.js`、`tmp_check.js`、`trace_dcl.js`、`verify_css.js`、`verify_laundry.js`、`verify_one.js`、`verify_page.js`
-- `blog/index.html` 的 `ARTICLES` 数组曾经漏掉 4 篇已发布文章（college-money-mistakes、how-much-rent-can-i-afford、how-to-calculate-gpa、weighted-gpa-calculator），导致这 4 篇在博客列表页上是"孤岛"——文章本身能直接访问，但博客首页找不到入口，Google 从博客页爬不到。2026-07-21 已补进数组
+- `blog/index.html` 的 `ARTICLES` 数组曾经漏掉 1 篇已发布文章（college-money-mistakes），导致这篇在博客列表页上是"孤岛"——文章本身能直接访问，但博客首页找不到入口，Google 从博客页爬不到。2026-07-21 已补进数组
+  - 排查时的教训：另外3篇（how-much-rent-can-i-afford、how-to-calculate-gpa、weighted-gpa-calculator）一开始被误判为"也漏了"，原因是它们的对象用的是双引号 `id:"..."` 而不是数组里大多数条目用的单引号 `id:'...'`，用 grep 排查时如果只匹配单引号会漏检。之后误加了3条重复记录，已经删掉。**以后检查 ARTICLES 数组完整性时，正则必须同时匹配单引号和双引号（`id:['"]([^'"]*)['"]`），不能假设全站统一用单引号**
 
 ## 2026-07-21 移动端侧边栏 bug 修复记录
 
