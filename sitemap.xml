@@ -161,11 +161,6 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://dormtool.com/blog/how-to-calculate-gpa/</loc>
-    <priority>0.7</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
     <loc>https://dormtool.com/about/</loc>
     <priority>0.5</priority>
     <changefreq>monthly</changefreq>
