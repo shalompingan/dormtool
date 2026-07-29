@@ -106,6 +106,7 @@ minified HTML 是单行无格式代码，用 sed/perl 做字符串替换时极�
 - 2026-07-28 全站排查发现 `TOOL_NAV_DATA`/`TOOL_DATA` 里普遍缺 `college-acceptance-calculator`（新工具上线后没同步到其他页面），部分页面还缺 `roommate-agreement`、`dorm-budget-calculator`；侧边栏 emoji 已按要求全部清空；`hubToolsMenu`/`hubToolsBtn` 死代码（对应桌面下拉菜单元素已在改版中移除，但 JS 还留着引用）已清理；`about`/`contact`/`privacy`/`terms` 的 `.hub-hamburger` 缺 `margin-left:auto` 导致手机端汉堡按钮没有顶到最右边，已修复；`sw.js` 的 fetch 处理器对 POST 请求无条件调用 `cache.put()` 导致控制台报 `Uncaught TypeError`，已加 `if(e.request.method!=='GET')return;` 跳过
 - `blog/index.html` 的 `ARTICLES` 数组曾经漏掉 1 篇已发布文章（college-money-mistakes），导致这篇在博客列表页上是"孤岛"——文章本身能直接访问，但博客首页找不到入口，Google 从博客页爬不到。2026-07-21 已补进数组
   - 排查时的教训：另外3篇（how-much-rent-can-i-afford、how-to-calculate-gpa、weighted-gpa-calculator）一开始被误判为"也漏了"，原因是它们的对象用的是双引号 `id:"..."` 而不是数组里大多数条目用的单引号 `id:'...'`，用 grep 排查时如果只匹配单引号会漏检。之后误加了3条重复记录，已经删掉。**以后检查 ARTICLES 数组完整性时，正则必须同时匹配单引号和双引号（`id:['"]([^'"]*)['"]`），不能假设全站统一用单引号**
+- `blog/weighted-gpa-calculator/index.html` 的"Weighted vs Unweighted"章节里有一段像是没删干净的 AI 草稿自言自语："Wait — this calculation gives a different result? Let me recalculate. Actually, looking at the numbers..."，读起来不像正式发布的文案。2026-07-29 排查合并文章时发现，用户还没决定要不要清理，先记录，不要自行修改
 
 ## 2026-07-21 移动端侧边栏 bug 修复记录
 
@@ -120,6 +121,19 @@ minified HTML 是单行无格式代码，用 sed/perl 做字符串替换时极�
 - **early-decision-vs-early-action 文章**：内嵌的策略测试工具 JS 曾经被截断（`evaluate()` 函数写到一半没了），导致整段脚本因语法错误全部失效。已重写补全评分逻辑
 
 **建议**：新增博客文章时，直接复制近期已验证过的文章（如 `dorm-room-organization-guide`）的导航栏/侧边栏代码块作为模板，而不是手写，避免重复踩坑。
+
+## 2026-07-29 GPA 重复文章合并
+
+背景：`gpa-calculator`（工具）、`weighted-gpa-calculator`、`how-to-calculate-gpa` 三个页面关键词高度重叠，后两篇博客文章内容近似重复（cannibalization），GSC 数据显示两篇排名都很差（weighted-gpa-calculator 约65次曝光/排名83，how-to-calculate-gpa 仅1次曝光/排名93）。决定把 how-to-calculate-gpa 合并进 weighted-gpa-calculator，做法：
+
+- 对比两篇全文，把 how-to-calculate-gpa 里 weighted-gpa-calculator 没有的独有内容（累计GPA多学期合并算法、目标GPA倒推公式、retake/pass-fail/withdrawal政策、GPA对应学术地位/奖学金/读研的对照表）合并进 weighted-gpa-calculator，新增为第8-11节 + 3条FAQ（同步更新了正文和 JSON-LD FAQPage），`dateModified` 同步改为当天
+- 站点根目录新增 `_redirects` 文件（之前不存在），写入 `/blog/how-to-calculate-gpa/ /blog/weighted-gpa-calculator/ 301`
+- `blog/index.html` 的 `ARTICLES` 数组删除 how-to-calculate-gpa 条目（注意它是双引号 `id:"..."` 格式，见上面已知issue的教训）
+- `blog/early-decision-vs-early-action/index.html` 的 next-moves 卡片里原本同时链向 weighted-gpa-calculator 和 how-to-calculate-gpa——如果只是把后者的链接改成前者会造成同一组卡片里重复链接同一个页面，所以改成了链向 `final-grade-calculator`（复用了别处已有的文案，没有编造新内容）
+- `sitemap.xml` 删除 how-to-calculate-gpa 那条 `<url>` 记录
+- `blog/how-to-calculate-gpa/` 整个文件夹（含 index.html）已删除
+
+**教训/建议**：以后遇到关键词重叠的文章，先整篇读完对比内容（不能只看标题/关键词），确认是否真的是重复（如 how-much-rent-can-i-afford 和 rent-affordability-guide 经核实是不同受众角度、已经互相内链，不是重复，未合并）。合并时任何跨页面的 next-moves/内链卡片都要检查会不会因为改动产生同一组卡片重复链接同一目标的问题。
 
 ## 待办：TOOL_NAV_DATA 统一迁移（方案A，尚未开始）
 
