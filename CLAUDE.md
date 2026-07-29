@@ -101,9 +101,9 @@ minified HTML 是单行无格式代码，用 sed/perl 做字符串替换时极�
 
 ## 已知 issue
 
-- 根目录有 `index.html.bak` 备份文件（只有1个，不是多个），可清理
-- 根目录有一批一次性调试脚本，非核心代码，可以清理（`build.js`、`build-nav.js`、`add-jsonld.js`、`contact-worker.js`、`sw.js`、`fix-cart.js` 是仍在用的核心脚本，不要删）：
-  `balance_check.js`、`check_brace2.js`、`check_cf.js`、`check_cf2.js`、`check_root.js`、`check_syn.js`、`check_syn2.js`、`check_tail.js`、`find_error_pos.js`、`fix_dcl1.js`、`fix_laundry.js`、`fix_one.js`、`tmp_check.js`、`trace_dcl.js`、`verify_css.js`、`verify_laundry.js`、`verify_one.js`、`verify_page.js`
+- ~~根目录有 `index.html.bak`、`index.html.pre-navbak` 备份文件，可清理~~ 2026-07-28 已删除
+- ~~根目录有一批一次性调试脚本，非核心代码，可以清理~~ 2026-07-28 已删除（`balance_check.js`、`check_brace2.js`、`check_cf.js`、`check_cf2.js`、`check_root.js`、`check_syn.js`、`check_syn2.js`、`check_tail.js`、`find_error_pos.js`、`fix_dcl1.js`、`fix_laundry.js`、`fix_one.js`、`tmp_check.js`、`trace_dcl.js`、`verify_css.js`、`verify_laundry.js`、`verify_one.js`、`verify_page.js`）。仍在用的核心脚本不动：`build.js`、`build-nav.js`、`add-jsonld.js`、`contact-worker.js`、`sw.js`、`fix-cart.js`
+- 2026-07-28 全站排查发现 `TOOL_NAV_DATA`/`TOOL_DATA` 里普遍缺 `college-acceptance-calculator`（新工具上线后没同步到其他页面），部分页面还缺 `roommate-agreement`、`dorm-budget-calculator`；侧边栏 emoji 已按要求全部清空；`hubToolsMenu`/`hubToolsBtn` 死代码（对应桌面下拉菜单元素已在改版中移除，但 JS 还留着引用）已清理；`about`/`contact`/`privacy`/`terms` 的 `.hub-hamburger` 缺 `margin-left:auto` 导致手机端汉堡按钮没有顶到最右边，已修复；`sw.js` 的 fetch 处理器对 POST 请求无条件调用 `cache.put()` 导致控制台报 `Uncaught TypeError`，已加 `if(e.request.method!=='GET')return;` 跳过
 - `blog/index.html` 的 `ARTICLES` 数组曾经漏掉 1 篇已发布文章（college-money-mistakes），导致这篇在博客列表页上是"孤岛"——文章本身能直接访问，但博客首页找不到入口，Google 从博客页爬不到。2026-07-21 已补进数组
   - 排查时的教训：另外3篇（how-much-rent-can-i-afford、how-to-calculate-gpa、weighted-gpa-calculator）一开始被误判为"也漏了"，原因是它们的对象用的是双引号 `id:"..."` 而不是数组里大多数条目用的单引号 `id:'...'`，用 grep 排查时如果只匹配单引号会漏检。之后误加了3条重复记录，已经删掉。**以后检查 ARTICLES 数组完整性时，正则必须同时匹配单引号和双引号（`id:['"]([^'"]*)['"]`），不能假设全站统一用单引号**
 
@@ -169,3 +169,4 @@ minified HTML 是单行无格式代码，用 sed/perl 做字符串替换时极�
 - **只执行用户明确要求的修改**：不得自行修复任何布局、样式、功能、结构问题，哪怕明显有问题。用户没让改的，一概不动。
 - **不部署，除非用户说部署**：改完代码后不得自行部署、发布、或触发任何部署流程。只有用户明确说"部署"或"发布"时才执行。
 - **多页面修复必须一个一个来**：如果同一类问题涉及多个页面，修复一个页面后立即发本地连接（http://127.0.0.1:5500/...）给用户检查，等用户确认没问题后才能修复下一个页面。禁止一次性批量修改多个页面再统一汇报。
+- **修复/更新后及时清理历史包袱**：每轮修复或功能更新做完后，主动检查这次过程中产生或暴露出的历史遗留物——一次性调试脚本、备份文件（`*.bak`/`*.orig`/`*.pre-navbak`）、确认无引用的死代码、遗留的 git 锁文件（`.git/index.lock`）等——提出来问用户是否清理，不要放着攒到下次排查时才发现。清理动作本身仍然要走"用户明确指令才动手"的规矩，这条只是要求主动提出、不要遗漏，不代表可以绕过确认直接删。
