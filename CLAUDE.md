@@ -135,6 +135,26 @@ minified HTML 是单行无格式代码，用 sed/perl 做字符串替换时极�
 
 **教训/建议**：以后遇到关键词重叠的文章，先整篇读完对比内容（不能只看标题/关键词），确认是否真的是重复（如 how-much-rent-can-i-afford 和 rent-affordability-guide 经核实是不同受众角度、已经互相内链，不是重复，未合并）。合并时任何跨页面的 next-moves/内链卡片都要检查会不会因为改动产生同一组卡片重复链接同一目标的问题。
 
+## 2026-07-30 rent-affordability-guide 优化 + dorm 清洁类文章合并
+
+**rent-affordability-guide 优化**：用户上传该文章单独筛选的 GSC 数据（过去3个月331次展示/排名10.38，是当时全站排名最接近首页的文章），发现"average rent for college student"这个查询词排第7（很接近首页）。查了 Education Data Initiative（NCES数据）和 Find My Place 的 2026 学生租房数据后，给文章新增了两处：
+
+- 新增"Average Rent for College Students in 2026"板块（国家平均值 + 按城市类型分类的租金区间），引用上述两个数据源
+- 在已有的"30% Rule"章节里加了一个反查表（房租倒推所需收入），针对"what salary do you need to afford $1200 rent"这类查询词
+- 顺带发现该文章的 FAQPage JSON-LD 定义了3个问答，但正文里完全没有对应的可见 FAQ 板块（结构化数据与可见内容不匹配，不符合谷歌的FAQ rich result规范）——已补一个可见的 FAQ 板块，内容跟JSON-LD一字不差，不是新编的
+- `dateModified` 同步更新，`keywords` 字段追加了新覆盖的查询词
+
+**dorm-room-cleaning-guide / dorm-cleaning-checklist 合并**：这两篇文章跟 GPA 那次是同一个模式——用户分别导出两篇的 GSC 页面数据（过去28天，guide 222次展示/排名38.27，checklist 162次展示/排名56.98），查询词高度重叠（十几个词两篇都在抢：dorm cleaning、dorm cleaning checklist、how to clean dorm room等）。通读全文确认 checklist 基本是 guide 的缩水版，唯一独有内容是"Staying Organized（收纳整理跟打扫是两回事）"这个角度。处理方式：
+
+- 把 Staying Organized 的4个要点合并进 dorm-room-cleaning-guide，新增为第12节，原本编号12的FAQ改成13（正文+TOC都同步改了编号）
+- `_redirects` 追加一条：`/blog/dorm-cleaning-checklist/ /blog/dorm-room-cleaning-guide/ 301`
+- `blog/index.html` 的 `ARTICLES` 数组删除 dorm-cleaning-checklist 条目（这条是单引号格式）
+- 全站排查后发现只有 `blog/can-you-loft-a-dorm-bed/index.html` 一篇文章内链指向 dorm-cleaning-checklist，改成指向 dorm-room-cleaning-guide（改之前确认了该页没有已存在的 dorm-room-cleaning-guide 链接，不会造成重复）
+- `sitemap.xml` 删除 dorm-cleaning-checklist 那条 `<url>` 记录
+- `blog/dorm-cleaning-checklist/` 整个文件夹已删除
+
+**新增的选题验证流程**：这轮之前还讨论过"暑期转租(summer sublease)"这个新话题，用户用 Google Keyword Planner 查了长尾词真实搜索量，发现除了一个词（10-100/月，低竞争）外其余全部是0-10/月的最低区间，且核心词三个月内搜索量下降了100%（季节性已过季），最终判断不值得写，放弃了这个选题。**教训**：以后遇到没有 GSC 历史数据支撑的全新选题（不是老文章的关键词缺口），写之前应该先让用户用 Keyword Planner 或类似工具查一下真实搜索量再决定，不要只凭"网上有多少竞争内容"这种定性判断就动笔——竞争分析能看出"能不能打"，但看不出"值不值得打"。
+
 ## 待办：TOOL_NAV_DATA 统一迁移（方案A，尚未开始）
 
 上面这轮 bug（12篇缺工具、导航图标丢失、后续又发现另外10+篇同类问题）本质上是同一种失败模式：`TOOL_NAV_DATA` 数据散落在 35-40 个文件里各自维护一份，靠人为记得同步，迟早会漏。
