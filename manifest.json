@@ -1,11 +1,11 @@
 {
   "name": "DormTool – Your Complete College Transition Toolkit",
   "short_name": "DormTool",
-  "description": "Free interactive tools for college students: dorm checklist, laundry timer, move-out checklist, moving cost calculator, rent affordability calculator, bill splitter, and first apartment checklist.",
+  "description": "Free interactive tools for college students: dorm checklist, laundry timer, move-out checklist, moving cost calculator, first apartment checklist, rent affordability calculator, roommate bill splitter, dorm budget calculator, student loan calculator, GPA calculator, final grade calculator, college acceptance calculator, and roommate agreement generator.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0F172A",
-  "theme_color": "#6366F1",
+  "background_color": "#F8F6F3",
+  "theme_color": "#1E3A5F",
   "icons": [
     {
       "src": "/favicon.svg",
