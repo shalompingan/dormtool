@@ -70,7 +70,7 @@ find "C:\Users\shalom\Desktop\dormtool" -name "*.orig" -type f -delete
 - **Tab 系统**（rent-affordability 等页面）：tab 内容通过 JS 动态渲染到 `#categoryPanel`，切换 tab 时替换 innerHTML
 - **打印**：每个工具页面有 `@media print` 样式，隐藏导航/广告/按钮等
 - **首页 JSON-LD**：新增工具后同步更新 `index.html` 中 `<script type="application/ld+json">` 的 `mentions` 数组和 `<meta name="description">`
-- **博客作者统一**：所有博客文章（目前 23 篇）的 byline（`.bauthor`）统一为 `"By DormTool"`，JSON-LD Article author 为 `"@type":"Person","name":"DormTool"`。新增文章时必须遵循此格式
+- **博客作者统一**：所有博客文章（目前 23 篇）的 byline（`.bauthor`）统一为 `By <a href="/about/">Ben</a>`，JSON-LD Article author 为 `"@type":"Person","name":"Ben","url":"https://dormtool.com/about/","sameAs":["https://github.com/shalompingan","https://dev.to/ben_tools","https://www.indiehackers.com/shalompingan"]`。2026-09-16 从品牌名"DormTool"改为真实身份"Ben"（E-E-A-T排查后的改动，详见下方 2026-09-16 记录），新增文章时必须遵循此新格式，不要再用旧的"DormTool"品牌byline
 - **Footer tagline**：所有页面的 `.fbar` 第二行统一为 `"Built by one student who got tired of guessing. Refined with AI."`
 
 ## 工具页面通用模式
@@ -106,7 +106,8 @@ minified HTML 是单行无格式代码，用 sed/perl 做字符串替换时极�
 - 2026-07-28 全站排查发现 `TOOL_NAV_DATA`/`TOOL_DATA` 里普遍缺 `college-acceptance-calculator`（新工具上线后没同步到其他页面），部分页面还缺 `roommate-agreement`、`dorm-budget-calculator`；侧边栏 emoji 已按要求全部清空；`hubToolsMenu`/`hubToolsBtn` 死代码（对应桌面下拉菜单元素已在改版中移除，但 JS 还留着引用）已清理；`about`/`contact`/`privacy`/`terms` 的 `.hub-hamburger` 缺 `margin-left:auto` 导致手机端汉堡按钮没有顶到最右边，已修复；`sw.js` 的 fetch 处理器对 POST 请求无条件调用 `cache.put()` 导致控制台报 `Uncaught TypeError`，已加 `if(e.request.method!=='GET')return;` 跳过
 - `blog/index.html` 的 `ARTICLES` 数组曾经漏掉 1 篇已发布文章（college-money-mistakes），导致这篇在博客列表页上是"孤岛"——文章本身能直接访问，但博客首页找不到入口，Google 从博客页爬不到。2026-07-21 已补进数组
   - 排查时的教训：另外3篇（how-much-rent-can-i-afford、how-to-calculate-gpa、weighted-gpa-calculator）一开始被误判为"也漏了"，原因是它们的对象用的是双引号 `id:"..."` 而不是数组里大多数条目用的单引号 `id:'...'`，用 grep 排查时如果只匹配单引号会漏检。之后误加了3条重复记录，已经删掉。**以后检查 ARTICLES 数组完整性时，正则必须同时匹配单引号和双引号（`id:['"]([^'"]*)['"]`），不能假设全站统一用单引号**
-- `blog/weighted-gpa-calculator/index.html` 的"Weighted vs Unweighted"章节里有一段像是没删干净的 AI 草稿自言自语："Wait — this calculation gives a different result? Let me recalculate. Actually, looking at the numbers..."，读起来不像正式发布的文案。2026-07-29 排查合并文章时发现，用户还没决定要不要清理，先记录，不要自行修改
+- ~~`blog/weighted-gpa-calculator/index.html` 的"Weighted vs Unweighted"章节里有一段像是没删干净的 AI 草稿自言自语："Wait — this calculation gives a different result? Let me recalculate. Actually, looking at the numbers..."~~ 2026-07-29 排查合并文章时发现，2026-09-16 已清理，改成"Here's the math: ..."的正常陈述句
+- 15个页面（除 `/about/index.html` 本身外）弹出的 About Modal 文案仍是 2026-09-16 之前的旧版本（落款 `— DormTool`，没有"Ben"这个名字，没有 GitHub/dev.to/Indie Hackers 链接），跟已经更新的 `/about/index.html` 不一致了。要不要同步这15个 Modal，等用户明确指令
 
 ## 2026-07-21 移动端侧边栏 bug 修复记录
 
@@ -155,6 +156,20 @@ minified HTML 是单行无格式代码，用 sed/perl 做字符串替换时极�
 
 **新增的选题验证流程**：这轮之前还讨论过"暑期转租(summer sublease)"这个新话题，用户用 Google Keyword Planner 查了长尾词真实搜索量，发现除了一个词（10-100/月，低竞争）外其余全部是0-10/月的最低区间，且核心词三个月内搜索量下降了100%（季节性已过季），最终判断不值得写，放弃了这个选题。**教训**：以后遇到没有 GSC 历史数据支撑的全新选题（不是老文章的关键词缺口），写之前应该先让用户用 Keyword Planner 或类似工具查一下真实搜索量再决定，不要只凭"网上有多少竞争内容"这种定性判断就动笔——竞争分析能看出"能不能打"，但看不出"值不值得打"。
 
+## 2026-09-16 GSC排名下降排查 + E-E-A-T作者身份修复
+
+**背景**：用户发现 GSC 曝光/排名从约 2026-08-17 开始断崖式下跌，持续超过一个月未恢复。逐条排查：安全问题和人工处置措施report里无记录（排除人工处罚）；robots.txt/sitemap/索引状态正常（排除技术故障，唯一的"错误"是站点地图报告里一条很久以前误把 robots.txt 本身提交成站点地图导致的历史遗留报错，跟这次下跌无关）；Cloudflare AI Crawl Control 确认 Googlebot 抓取正常、未被拦截；对比 7月底 GPA 文章合并、dorm清洁文章合并这两个具体页面的3个月GSC曲线，发现合并后曝光是先上升、直到8/17才跟全站同步下跌，时间线对不上，排除是这两次合并导致；逐篇打开用户此前发的几个外链帖子（dev.to ×2、Medium ×2、Indie Hackers ×2、GitHub），确认全部被平台自动 nofollow/noindex 或者 canonical 指回原站（Medium 属于标准跨发布处理），是安全的标准操作，排除"链接模式触发垃圾判定"这个猜测；确认 Google 官方状态面板里 2026年8月的垃圾更新（8/18-21）已完成，到9月中旬为止没有新的核心/垃圾更新。最终没能定位到单一确切触发原因，判断是算法层面对站点整体信任度的重新评估，无法精确复现。
+
+**内容质量/E-E-A-T自查**：技术面和触发时间线都查不出更多线索后，转向内容本身排查，发现3点：
+
+1. **作者身份接近匿名**（影响面最大）：21篇博客文章 + About页署名长期是纯品牌名"DormTool"，JSON-LD `"author":{"@type":"Person","name":"DormTool"}`——用品牌名冒充 Person 类型，没有真实姓名、没有作者简介页链接、没有任何外部身份验证（无sameAs）。而用户在 dev.to（ben_tools）、GitHub（shalompingan）、Indie Hackers（shalompingan）已经用"Ben"这个身份公开发过内容，网站本身却从未体现。**处理**：21篇博客 + `/about/index.html` 的署名和 JSON-LD author 统一改成"Ben"（署名链接到 `/about/`，JSON-LD 加 `sameAs` 指向上述三个真实账号）。过程中发现 `can-you-loft-a-dorm-bed` 一篇的 author schema 用的是 `"@type":"Organization"`（跟其他20篇的`"Person"`不一致），这次一并统一成 Person
+2. `weighted-gpa-calculator` 里 2026-07-29 就记录过的 AI 草稿自言自语残留，这次一并清理（见"已知 issue"）
+3. 借这次真实编辑的机会，21篇文章的 `dateModified` 同步刷新为 2026-09-16（不是无意义刷日期，是配合本轮真实内容改动）
+
+**未完成/遗留**：15个页面（除 `/about/index.html` 外）的 About Modal 弹窗文案还是旧版本，没有同步"Ben"这个身份，见上方 About Modal 章节和"已知 issue"的记录，需要用户明确指令后再处理。
+
+**结果未知**：这轮内容改动能不能让排名恢复无法验证，GSC 本身也有滞后，建议持续观察，不代表问题已经"解决"。
+
 ## 待办：TOOL_NAV_DATA 统一迁移（方案A，尚未开始）
 
 上面这轮 bug（12篇缺工具、导航图标丢失、后续又发现另外10+篇同类问题）本质上是同一种失败模式：`TOOL_NAV_DATA` 数据散落在 35-40 个文件里各自维护一份，靠人为记得同步，迟早会漏。
@@ -183,6 +198,7 @@ minified HTML 是单行无格式代码，用 sed/perl 做字符串替换时极�
 - 署名统一为 `— DormTool`，右对齐
 - 联系方式 `hello@dormtool.com`
 - 更新清单：index.html, tools/index.html, about/index.html, rent-affordability, moving-cost-calculator, move-out-checklist, first-apartment-checklist, dorm-laundry-hub, dorm-checklist, bill-splitter, blog/index.html, roommate-agreement, student-loan-calculator, gpa-calculator, final-grade-calculator, dorm-budget-calculator, college-acceptance-calculator
+- **注意（2026-09-16起）**：以上是这15个页面 Modal 的原始版本，仍是当前状态。`/about/index.html` 这个独立页面本身已经在 2026-09-16 改过（段落2开头加"I'm Ben."，结尾加 GitHub/dev.to/Indie Hackers 链接，落款改成 `— Ben`），两者不再一致，见"已知 issue"里的对应记录
 
 ## Smart Utilities 底部导航（2026-07-15 更新）
 

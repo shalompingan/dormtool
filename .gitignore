@@ -1,1 +1,6 @@
 *.orig
+
+# test tooling (added with the automated test suite)
+node_modules/
+test-results/
+playwright-report/
